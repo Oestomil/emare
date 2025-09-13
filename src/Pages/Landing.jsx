@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DETECTIVE_NO, CASE_NO } from "../data/auth";
+import "./Landing.css";
 
 export default function Landing() {
   const navigate = useNavigate();
   const [detectiveNo, setDetectiveNo] = useState("");
   const [caseNo, setCaseNo] = useState("");
+  const [remember, setRemember] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,43 +19,93 @@ export default function Landing() {
   };
 
   return (
-    <div className="landing" style={{ textAlign: "center", padding: "2rem" }}>
-      <h1>Emare Sistemi</h1>
-      <p>Lütfen giriş bilgilerinizi giriniz.</p>
+    <div className="landing-wrap">
+      {/* Sol üst logo */}
+      <div className="brand">
+        <span className="brand-hand">Emare</span>
+        <span className="brand-underline" />
+      </div>
 
-      <form onSubmit={handleSubmit} style={{ marginTop: "1.5rem" }}>
-        <div style={{ marginBottom: "1rem" }}>
-          <input
-            type="text"
-            placeholder="Dedektif No"
-            value={detectiveNo}
-            onChange={(e) => setDetectiveNo(e.target.value)}
-            style={{ padding: "0.5rem", width: "200px" }}
-          />
-        </div>
-        <div style={{ marginBottom: "1rem" }}>
-          <input
-            type="text"
-            placeholder="Olay No"
-            value={caseNo}
-            onChange={(e) => setCaseNo(e.target.value)}
-            style={{ padding: "0.5rem", width: "200px" }}
-          />
-        </div>
-        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
-          Giriş
-        </button>
-      </form>
+      {/* Orta alan */}
+      <div className="hero">
+        {/* Kart */}
+        <div className="card">
+          <div className="card-glow" />
+          <div className="card-body">
+            <div className="card-title">
+              <span className="logo-hand">Emare</span>
+              <span className="logo-underline" />
+            </div>
 
-      {/* Footer kısmı */}
-      <footer
-        style={{
-          fontSize: "0.8rem",
-          textAlign: "center",
-          marginTop: "3rem",
-          color: "#888",
-        }}
-      >
+            <p className="helper">Sisteme erişmek için bilgileri giriniz.</p>
+
+            <form onSubmit={handleSubmit} className="form">
+              <label className="input">
+                <span className="i i-user" aria-hidden="true">👤</span>
+                <input
+                  type="text"
+                  placeholder="Dedektif Numarası"
+                  value={detectiveNo}
+                  onChange={(e) => setDetectiveNo(e.target.value)}
+                />
+              </label>
+
+              <label className="input">
+                <span className="i i-lock" aria-hidden="true">🔒</span>
+                <input
+                  type="text"
+                  placeholder="Dava Numarası"
+                  value={caseNo}
+                  onChange={(e) => setCaseNo(e.target.value)}
+                />
+              </label>
+
+              <div className="row between">
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={remember}
+                    onChange={(e) => setRemember(e.target.checked)}
+                  />
+                  <span>Beni Hatırla</span>
+                </label>
+                <button
+                  type="button"
+                  className="link"
+                  onClick={() => alert("Amirinle iletişime geçiniz.")}
+                >
+                  Parolamı Unuttum
+                </button>
+              </div>
+
+              <button type="submit" className="btn">
+                GİRİŞ
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Sağ metin bloğu */}
+        <div className="welcome">
+          <h1 className="welcome-title">
+            EKİBE <br /> HOŞ GELDİN!
+          </h1>
+
+          <p>
+            Dedektiflik Numaranı büro amirimiz <strong>Harun Kavukçu</strong>’dan alabilirsin.
+          </p>
+          <p>
+            Dava Numarasını bulmak için doğru yere baktığından emin ol.
+          </p>
+          <p>
+            Dedektif, bunu sakın unutma:<br />
+            <em>“İzler, sabırsız olanı cezalandırır…”</em>
+          </p>
+        </div>
+      </div>
+
+      {/* Sol alt footer */}
+      <footer className="site-footer">
         Bu site Emniyet Birimleri için özel tasarlanmıştır.
       </footer>
     </div>
