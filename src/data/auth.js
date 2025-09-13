@@ -1,3 +1,3 @@
-// Oyun başına değiştirebilirsin
-export const DETECTIVE_NUMBER = "35746533";
-export const CASE_NUMBER = "123123123";
+// src/data/auth.js
+export const DETECTIVE_NO = "357465";   // örnek değer, seninkini koy
+export const CASE_NO = "313131"; // örnek değer, seninkini koy

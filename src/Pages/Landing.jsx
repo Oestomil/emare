@@ -4,77 +4,58 @@ import { DETECTIVE_NO, CASE_NO } from "../data/auth";
 
 export default function Landing() {
   const navigate = useNavigate();
-  const [detective, setDetective] = useState("");
+  const [detectiveNo, setDetectiveNo] = useState("");
   const [caseNo, setCaseNo] = useState("");
-  const [remember, setRemember] = useState(false);
-  const [error, setError] = useState("");
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (detective === DETECTIVE_NO && caseNo === CASE_NO) {
-      if (remember) {
-        localStorage.setItem("detective", detective);
-        localStorage.setItem("caseNo", caseNo);
-      }
-      navigate("/search");
+    if (detectiveNo === DETECTIVE_NO && caseNo === CASE_NO) {
+      navigate("/home");
     } else {
-      setError("Numara hatalı. Lütfen tekrar deneyiniz.");
+      alert("Bilgiler hatalı!");
     }
-  }
+  };
 
   return (
-    <div className="center-screen">
-      <div className="card" style={{ padding: "28px", minWidth: "320px", maxWidth: "400px" }}>
-        <form onSubmit={handleSubmit}>
-          <label className="form-label">Dedektif Numarası</label>
-          <input
-            className="form-input"
-            value={detective}
-            onChange={(e) => setDetective(e.target.value)}
-            placeholder="35746533"
-          />
+    <div className="landing" style={{ textAlign: "center", padding: "2rem" }}>
+      <h1>Emare Sistemi</h1>
+      <p>Lütfen giriş bilgilerinizi giriniz.</p>
 
-          <label className="form-label" style={{ marginTop: "14px" }}>Dava Numarası</label>
+      <form onSubmit={handleSubmit} style={{ marginTop: "1.5rem" }}>
+        <div style={{ marginBottom: "1rem" }}>
           <input
-            className="form-input"
+            type="text"
+            placeholder="Dedektif No"
+            value={detectiveNo}
+            onChange={(e) => setDetectiveNo(e.target.value)}
+            style={{ padding: "0.5rem", width: "200px" }}
+          />
+        </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <input
+            type="text"
+            placeholder="Olay No"
             value={caseNo}
             onChange={(e) => setCaseNo(e.target.value)}
-            placeholder="123123123"
+            style={{ padding: "0.5rem", width: "200px" }}
           />
+        </div>
+        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
+          Giriş
+        </button>
+      </form>
 
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "12px" }}>
-            <label style={{ fontSize: "14px" }}>
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(e) => setRemember(e.target.checked)}
-                style={{ marginRight: "6px" }}
-              />
-              Beni hatırla
-            </label>
-            <a href="#" style={{ fontSize: "14px", color: "#69b6ff" }}>Parolamı Unuttum</a>
-          </div>
-
-          {error && <div style={{ color: "#ff5e6e", marginTop: "10px", fontSize: "14px" }}>{error}</div>}
-
-          <button className="btn" type="submit" style={{ marginTop: "16px", width: "100%" }}>
-            GİRİŞ
-          </button>
-        </form>
-      </div>
-
-      {/* Sağdaki bilgilendirme */}
-      <div style={{ marginLeft: "40px", maxWidth: "420px" }}>
-        <h1 style={{ margin: 0, fontSize: "2rem" }}>EKİBE<br />HOŞ GELDİN!</h1>
-        <p style={{ marginTop: "14px" }}>
-          Dedektiflik numaranı büro amirimiz <strong>Harun Kavukçu</strong>’dan alabilirsin.
-        </p>
-        <p>Dava numarasını bulmak için doğru yere baktığından emin ol.</p>
-        <p><strong>Dedektif!</strong> Bunu sakın unutma:</p>
-        <blockquote style={{ fontStyle: "italic", color: "#aaa" }}>
-          “İzler, sabırsız olanı cezalandırır…”
-        </blockquote>
-      </div>
+      {/* Footer kısmı */}
+      <footer
+        style={{
+          fontSize: "0.8rem",
+          textAlign: "center",
+          marginTop: "3rem",
+          color: "#888",
+        }}
+      >
+        Bu site Emniyet Birimleri için özel tasarlanmıştır.
+      </footer>
     </div>
   );
 }
