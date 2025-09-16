@@ -12,9 +12,13 @@ export const EVIDENCE = {
     footnote: "Bu site Emniyet Genel Müdürlüğü tarafından yaptırılmıştır.*",
     cornerNumber: "1",
     images: [
-      "/evidence/deneme1.png",
-      "/evidence/deneme2.jpg",
-      "/evidence/deneme3.jpg",
+      "/evidence/Azize-Ulvi_ikincitelefon_-01.jpg",
+      "/evidence/Azize-Ulvi_ikincitelefon_-02.jpg ",
+      "/evidence/Azize-Ulvi_ikincitelefon_-03.jpg",
+      "/evidence/Azize-Ulvi_ikincitelefon_-04.jpg",
+      "/evidence/Azize-Ulvi_ikincitelefon_-05.jpg",
+      "/evidence/Azize-Ulvi_ikincitelefon_-06.jpg",
+
     ],
   },
 
