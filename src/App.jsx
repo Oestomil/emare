@@ -64,6 +64,7 @@ export default function App() {
          <Route path="/gate-panel" element={<GatePanel />} />
           <Route path="/photo/:photoId" element={<PhotoPanel />} />
 
+
         {/* Eski linkler için örnek yönlendirme (gerekirse) */}
         <Route path="/s/gate" element={<Navigate to="/gate" replace />} />
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { resolveQuery } from "../data/failler";
 import { resolveEvidenceCode } from "../data/evidence";
+import { resolvePhotoEvidenceSlug } from "../data/photoEvidence"; // 👈 yeni
 
 export default function SearchBar({ autoFocus = true }) {
   const [q, setQ] = useState("");
@@ -9,38 +10,38 @@ export default function SearchBar({ autoFocus = true }) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const input = q.trim().toLowerCase();
+    const input = q.trim();
+    const lower = input.toLowerCase();
 
-    // 1) Kanıt kodu mu? (DFGR2 gibi)
-    const code = resolveEvidenceCode(input);
+    // 1) Kanıt kodu mu? (DFGR2 vb.)
+    const code = resolveEvidenceCode(lower);
     if (code) {
       navigate(`/e/${code}`);
       return;
     }
 
-    // 2) Video mu? (sktret / mtsh)
-    if (input === "sktret" || input === "mtsh") {
-      navigate(`/video/${input}`);
+    // 2) Fotoğraflı delil mi? (slug/alias -> /photo/:id)
+    const photoSlug = resolvePhotoEvidenceSlug(lower);
+    if (photoSlug) {
+      navigate(`/photo/${photoSlug}`);
       return;
     }
 
-    // 3) Profil mi?
-    const slug = resolveQuery(input);
+    // 3) Video mu? (örnek: sktret / mtsh)
+    if (lower === "sktret" || lower === "mtsh") {
+      navigate(`/video/${lower}`);
+      return;
+    }
+
+    // 4) Profil mi?
+    const slug = resolveQuery(lower);
     if (slug) {
       navigate(`/p/${slug}`);
       return;
     }
-    if (input === "foto1") {
-    navigate("/photo/photo1");
-    return;
-    }
-      if (input === "foto2") {
-  navigate("/photo/photo2");
-  return;
-    }
 
-    // 4) Hiçbiri değilse: sonuç yok
-    const params = new URLSearchParams({ q: input });
+    // 5) Hiçbiri değilse: sonuç yok
+    const params = new URLSearchParams({ q: lower });
     navigate(`/no-results?${params.toString()}`);
   }
 
@@ -50,7 +51,7 @@ export default function SearchBar({ autoFocus = true }) {
         className="search-input"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder='Ara (ör: "Ulvi Plevneli" ya da "QPRFC")'
+        placeholder='Ara (ör: "DFGR2", "fridge"/"dolap", "Ulvi Plevneli")'
         aria-label="Arama"
         autoFocus={autoFocus}
       />
