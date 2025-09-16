@@ -10,6 +10,9 @@ import NoResults from "./Pages/NoResults.jsx";
 import Profile from "./Pages/Profile.jsx";
 import EvidencePage from "./Pages/EvidencePage.jsx";
 import GatePage from "./Pages/GatePage.jsx";
+import Video from "./Pages/Video.jsx"
+import VideoPage from "./Pages/VideoPage.jsx";
+
 
 export default function App() {
   const [time, setTime] = useState("");
@@ -55,6 +58,8 @@ export default function App() {
         <Route path="/p/:slug" element={<Profile />} />
         <Route path="/e/:slug" element={<EvidencePage />} />
         <Route path="/gate" element={<GatePage />} />
+        <Route path="/video" element={<Video />} />   
+         <Route path="/video/:videoId" element={<VideoPage />} />
 
         {/* Eski linkler için örnek yönlendirme (gerekirse) */}
         <Route path="/s/gate" element={<Navigate to="/gate" replace />} />

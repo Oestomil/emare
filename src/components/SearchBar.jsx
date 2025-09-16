@@ -1,4 +1,3 @@
-// src/components/SearchBar.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { resolveQuery } from "../data/failler";
@@ -10,23 +9,30 @@ export default function SearchBar({ autoFocus = true }) {
 
   function onSubmit(e) {
     e.preventDefault();
+    const input = q.trim().toLowerCase();
 
     // 1) Kanıt kodu mu? (DFGR2 gibi)
-    const code = resolveEvidenceCode(q);
+    const code = resolveEvidenceCode(input);
     if (code) {
       navigate(`/e/${code}`);
       return;
     }
 
-    // 2) Profil mi?
-    const slug = resolveQuery(q);
+    // 2) Video mu? (sktret / mtsh)
+    if (input === "sktret" || input === "mtsh") {
+      navigate(`/video/${input}`);
+      return;
+    }
+
+    // 3) Profil mi?
+    const slug = resolveQuery(input);
     if (slug) {
       navigate(`/p/${slug}`);
       return;
     }
 
-    // 3) Hiçbiri değilse: sonuç yok
-    const params = new URLSearchParams({ q });
+    // 4) Hiçbiri değilse: sonuç yok
+    const params = new URLSearchParams({ q: input });
     navigate(`/no-results?${params.toString()}`);
   }
 
@@ -36,7 +42,7 @@ export default function SearchBar({ autoFocus = true }) {
         className="search-input"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder='Ara (ör: "Ulvi Plevneli ya da "QPRFC")'
+        placeholder='Ara (ör: "Ulvi Plevneli" ya da "QPRFC")'
         aria-label="Arama"
         autoFocus={autoFocus}
       />
