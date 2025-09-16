@@ -37,20 +37,29 @@ export default function PhotoPanel() {
       ))}
 
       {activeHotspot && (
-        <div
-          className="tooltip tooltip--down"
-          style={{
-            left: `${activeHotspot.x}%`,
-            top: `calc(${activeHotspot.y}% + 14px)`,
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <img
+          <div
+    className="tooltip tooltip--down"
+        style={{
+      left: `${activeHotspot.x}%`,
+      top: `calc(${activeHotspot.y}% + 14px)`,
+        }   }
+         onClick={(e) => e.stopPropagation()}
+      >
+    {/* Kapatma butonu */}
+            <button
+            className="tooltip-close"
+           onClick={() => setActiveHotspot(null)}
+             aria-label="Kapat"
+         >
+      ×
+         </button>
+
+            <img
             src={activeHotspot.img}
-            alt={activeHotspot.label}
-            className="tooltip-img"
-          />
-          <span className="tooltip-title">{activeHotspot.label}</span>
+             alt={activeHotspot.label}
+                className="tooltip-img"
+            />
+            <span className="tooltip-title">{activeHotspot.label}</span>
         </div>
       )}
     </div>
