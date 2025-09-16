@@ -13,6 +13,7 @@ import GatePage from "./Pages/GatePage.jsx";
 import Video from "./Pages/Video.jsx"
 import VideoPage from "./Pages/VideoPage.jsx";
 import GatePanel from "./Pages/GatePanel.jsx";
+import PhotoPanel from "./Pages/PhotoPanel.jsx";  
 
 export default function App() {
   const [time, setTime] = useState("");
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="/video" element={<Video />} />   
          <Route path="/video/:videoId" element={<VideoPage />} />
          <Route path="/gate-panel" element={<GatePanel />} />
+          <Route path="/photo/:photoId" element={<PhotoPanel />} />
 
         {/* Eski linkler için örnek yönlendirme (gerekirse) */}
         <Route path="/s/gate" element={<Navigate to="/gate" replace />} />

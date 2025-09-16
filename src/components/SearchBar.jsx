@@ -30,6 +30,14 @@ export default function SearchBar({ autoFocus = true }) {
       navigate(`/p/${slug}`);
       return;
     }
+    if (input === "foto1") {
+    navigate("/photo/photo1");
+    return;
+    }
+      if (input === "foto2") {
+  navigate("/photo/photo2");
+  return;
+    }
 
     // 4) Hiçbiri değilse: sonuç yok
     const params = new URLSearchParams({ q: input });
