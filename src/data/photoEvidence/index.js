@@ -10,10 +10,7 @@ export const PHOTO_EVIDENCES = {
 
 // alias -> slug (çoklu isim desteği)
 const ALIASES = {
-  "dolap": "fridge",
-  "buzdolabi": "fridge",
-  "mutfak-dolap": "fridge",
-  "fridge": "fridge",
+  "CHEL54": "fridge",
 };
 
 export function normalizeSlug(s) {

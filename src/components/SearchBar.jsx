@@ -39,10 +39,16 @@ export default function SearchBar({ autoFocus = true }) {
       navigate(`/p/${slug}`);
       return;
     }
+    if (lower === "qprfc") {
+       navigate("/videofeed");
+      return;
+    }
+
 
     // 5) Hiçbiri değilse: sonuç yok
     const params = new URLSearchParams({ q: lower });
     navigate(`/no-results?${params.toString()}`);
+
   }
 
   return (
