@@ -62,7 +62,7 @@ export default function EvidenceViewer({
       {/* Üst şerit (linkler tıklanabilir) */}
       <div className={styles.topbar}>
         <div className={styles.leftArea}>
-          <Link to="/" className={styles.homeLink}>← Ana sayfa</Link>
+          <Link to="/gate" className={styles.homeLink}>← Geri</Link>
         </div>
         <div className={styles.rightTexts}>
           {code && (
