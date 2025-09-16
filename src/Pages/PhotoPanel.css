@@ -22,16 +22,13 @@
 /* --- Tooltip aşağı doğru açılsın --- */
 .tooltip {
   position: absolute;
-  transform: translate(-50%, 0);              /* yukarı değil, aşağı konumlandıracağız */
-  background: #111a2b;
+  transform: translate(-50%, 0);
+  background: #111a2b;               /* 👈 arka plan var */
   border: 1px solid rgba(255,255,255,.12);
-  border-radius: 10px;
-  padding: 8px 8px 6px;
-  color: #fff;
-  text-align: center;
-  z-index: 3;
-  box-shadow: 0 12px 26px rgba(0,0,0,.5);
-  max-width: 220px;
+  border-radius: 8px;
+  padding: 0;                        /* iç boşluk yok */
+  display: inline-block;             /* boyut img ile eşitlenir */
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
 }
 
 /* ok (arrow) yukarıda görünsün */
@@ -50,35 +47,23 @@
   position: absolute;
   top: -9px; left: 50%;
   transform: translateX(-50%);
-  border-left: 9px solid transparent;
+  border-left: 9x solid transparent;
   border-right: 9px solid transparent;
   border-bottom: 9px solid rgba(255,255,255,.12);    /* tooltip border rengi */
   z-index: -1;
 }
 
 .tooltip-img {
-  max-width: 180px;
-  border-radius: 8px;
   display: block;
-  margin: 0 auto 6px auto;
+  max-width: 680px;                  /* burada senin verdiğin değere oturur */
+  height: auto;
+  border-radius: 8px;
 }
+
 .tooltip-title {
   display: block;
   font-size: .92rem;
   color: #cfd6ff;
-}
-.tooltip {
-  position: absolute;
-  transform: translate(-50%, 0);
-  background: #111a2b;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 10px;
-  padding: 12px 12px 8px;
-  color: #fff;
-  text-align: center;
-  z-index: 3;
-  box-shadow: 0 12px 26px rgba(0,0,0,.5);
-  max-width: 220px;
 }
 
 .tooltip-close {
