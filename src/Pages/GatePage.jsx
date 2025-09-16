@@ -15,11 +15,20 @@ export default function GatePage() {
       return;
     }
 
+    // Dış link ise aynen bırak
     if (/^https?:\/\//i.test(url)) {
       window.location.href = url;
-    } else {
-      navigate(url);
+      return;
     }
+
+    // EvidenceViewer hedefi ise önce GatePanel'e uğra
+    if (url.startsWith("/e/")) {
+      navigate("/gate-panel", { state: { target: url, pin: code } });
+      return;
+    }
+
+    // Diğer iç rotalar (profil vs.)
+    navigate(url);
   }
 
   return (
@@ -31,7 +40,6 @@ export default function GatePage() {
       }}
     >
       <div className="card" style={{ width: "min(960px, 96vw)", padding: 28, position: "relative" }}>
-        
         {/* 🔽 Home link (ev ikonu) */}
         <Link
           to="/"
@@ -51,16 +59,10 @@ export default function GatePage() {
           }}
           title="Ana Sayfa"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ width: 20, height: 20 }}
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" strokeWidth="2"
+               strokeLinecap="round" strokeLinejoin="round"
+               style={{ width: 20, height: 20 }}>
             <path d="M3 9l9-7 9 7" />
             <path d="M9 22V12h6v10" />
           </svg>

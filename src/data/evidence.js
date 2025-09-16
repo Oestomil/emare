@@ -29,8 +29,8 @@ export const EVIDENCE = {
     footnote: "Gizli – yalnızca iç kullanım için.",
     cornerNumber: "2",
     images: [
-      "/evidence/abcd1-1.jpg",
-      "/evidence/abcd1-2.jpg",
+      "/bedirhan.jpg",
+      "/azize.jpg",
     ],
   },
 
