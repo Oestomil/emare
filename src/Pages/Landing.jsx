@@ -116,7 +116,7 @@ export default function Landing() {
       </main>
 
       <footer className="site-footer">
-        © {new Date().getFullYear()} Emare • Internal Use Only
+        © {new Date().getFullYear()} Emare • Güvenlik Birimleri İçin Tasarlanmıştır.
       </footer>
     </div>
   );
