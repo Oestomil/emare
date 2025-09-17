@@ -1,75 +1,153 @@
 :root{
-  --bg:#0e1420;
-  --panel:#141c2b;
-  --panel2:#182236;
-  --text:#e8ecf7;
-  --muted:#9aa4b6;
+  --bg:#0c1320;
+  --panel:#141d2f;
+  --text:#e9eefb;
+  --muted:#a2acc0;
   --accent:#6aa9ff;
-  --accent-soft: rgba(106,169,255,0.25);
-  --btnText:#e8ecf7;
-  --shadow: 0 10px 30px rgba(0,0,0,.45);
+  --accent-soft: rgba(106,169,255,.28);
+  --ring: rgba(106,169,255,.22);
+  --shadow: 0 20px 55px rgba(0,0,0,.45);
+  --topbar: 64px;               /* sabit üst bar yüksekliği */
 }
+
 *{ box-sizing:border-box; }
 html,body,#root{ height:100%; }
-body{ margin:0; background:var(--bg); color:var(--text); font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Helvetica Neue",sans-serif; }
-
-.landing-wrap{ min-height:100dvh; display:flex; flex-direction:column; position:relative; overflow:hidden; }
-
-/* sol üst logo */
-.brand{ position:absolute; left:40px; top:28px; display:flex; align-items:flex-end; gap:8px; opacity:.95; }
-.brand-hand{ font-size:30px; font-weight:800; letter-spacing:.5px; }
-.brand-underline{ display:inline-block; width:68px; height:3px; border-radius:3px; background:linear-gradient(90deg, var(--text), transparent); transform: translateY(-6px); }
-
-/* ana düzen */
-.hero{
-  flex:1; display:grid;
-  grid-template-columns:minmax(320px,420px) minmax(420px,640px);
-  gap:56px; align-items:center; justify-content:center;
-  padding:100px 40px 80px;
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Helvetica Neue",sans-serif;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-/* kart */
-.card{ position:relative; border-radius:22px; background: radial-gradient(120% 120% at 10% 10%, var(--panel2), var(--panel)); box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.03) inset; }
-.card-glow{ position:absolute; inset:-2px; border-radius:24px; background:
-  radial-gradient(18% 28% at 12% 50%, var(--accent-soft), transparent 50%),
-  radial-gradient(18% 28% at 88% 50%, var(--accent-soft), transparent 50%);
-  filter: blur(10px); pointer-events:none; }
-.card-body{ position:relative; padding:28px 26px 30px; }
+/* ---- Layout ---- */
+.landing{
+  position:relative; min-height:120dvh; overflow-x:hidden;
+  padding-top: var(--topbar);           /* SABİT: içerik topbar’dan kaçsın */
+}
 
-/* kart logo (banner.svg) */
-.card-logo{ display:block; height:36px; margin:2px 0 12px; opacity:.95; }
+.container{
+  width: min(1120px, 100% - 48px);
+  margin-inline:auto;
+}
 
-/* açıklama */
-.helper{ color:var(--muted); font-size:.9rem; margin:6px 0 16px; }
+/* ---- Topbar ---- */
+.topbar{
+  position:fixed; inset:0 0 auto 0; height: var(--topbar);
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 20px;
+  background: linear-gradient(180deg, rgba(10,14,24,.75), rgba(10,14,24,0));
+  backdrop-filter:saturate(130%) blur(6px);
+  z-index: 100;                       /* her şeyin üstünde */
+}
+.brand{ height:28px; opacity:.95; }
+.clock{
+  display:inline-block; min-width:62px; text-align:center;
+  background:#0f1a31; color:#cfe0ff; font-weight:700;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px; padding:8px 12px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.06), 0 8px 24px rgba(0,0,0,.35);
+}
 
-/* form */
+/* ---- Background effects (arka kat) ---- */
+.bg-aurora, .bg-noise{ position:fixed; inset:0; pointer-events:none; z-index:0; }
+.bg-aurora{
+  background:
+    radial-gradient(35% 45% at 80% 20%, var(--accent-soft), transparent 60%),
+    radial-gradient(32% 40% at 10% 85%, rgba(130,200,255,.18), transparent 60%);
+  filter: blur(42px) saturate(120%);
+  opacity:.8;
+}
+.bg-noise{
+  opacity:.05; mix-blend:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.25'/></svg>");
+}
+
+/* ---- Hero ---- */
+.hero{
+  position:relative; z-index: 1;      /* topbar/arka plandan bağımsız */
+  display:grid; align-items:center; gap: clamp(24px, 6vw, 64px);
+  grid-template-columns: 1.4fr 1.1fr;
+  padding-block: clamp(72px, 14vh, 140px);
+}
+
+.welcome{ max-width: fit-content; overflow-wrap:anywhere; }
+.welcome-title{
+  margin:0 0 12px;
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1.02; letter-spacing:.4px;
+}
+.welcome p{ color:var(--muted); font-size: clamp(14px, 1.4vw, 18px); margin: 0 0 12px; }
+.welcome .quote em{ color:#d4e1ff; }
+
+/* ---- Card ---- */
+.card{
+  position:relative; border-radius:18px; padding:22px;
+  background: linear-gradient(180deg, rgba(27,35,54,.65), rgba(17,24,41,.65));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px) saturate(120%);
+  z-index:1;                         /* metinle aynı kat, topbar altı */
+}
 .form{ display:flex; flex-direction:column; gap:12px; }
-.input{ display:flex; align-items:center; gap:10px; background:#0b111c; border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius:10px; }
-.input:hover{ border-color: rgba(255,255,255,.12); }
-.input input{ flex:1; background:transparent; border:0; outline:0; color:var(--text); font-size:.95rem; }
+
+.input{
+  display:flex; align-items:center; gap:10px;
+  background:#0b1220; border:1px solid rgba(255,255,255,.08);
+  padding:12px 14px; border-radius:12px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.input:focus-within{
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+.input input{
+  flex:1; background:transparent; border:0; outline:0; color:var(--text);
+  font-size:1rem;
+}
 .i{ width:20px; text-align:center; opacity:.9; }
+
 .row{ display:flex; gap:12px; align-items:center; }
 .row.between{ justify-content:space-between; }
 .check{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:.9rem; }
 .check input{ accent-color: var(--accent); }
-.link{ background:none; border:0; color:var(--muted); cursor:pointer; font-size:.9rem; text-decoration:underline; }
-.link:hover{ color:var(--text); }
-.btn{ margin-top:6px; background:linear-gradient(180deg, #111a2b, #0c1220); border:1px solid rgba(255,255,255,.08); color:var(--btnText); font-weight:800; letter-spacing:.6px; padding:12px 18px; border-radius:12px; cursor:pointer; box-shadow: inset 0 -2px 0 rgba(255,255,255,.05); }
-.btn:hover{ border-color: rgba(255,255,255,.16); }
 
-/* sağ metin */
-.welcome{ max-width:640px; }
-.welcome-title{ font-size:52px; line-height:1.05; margin:0 0 18px; letter-spacing:1px; }
-.welcome p{ color:var(--muted); font-size:1.02rem; margin:0 0 14px; }
-.welcome em{ color:#c7d4ff; }
+.link{
+  background:none; border:0; color:var(--muted); cursor:pointer;
+  font-size:.9rem; text-decoration:underline; padding:6px 4px;
+}
+.link:hover{ color:#d9e3ff; }
 
-/* footer sol alt */
-.site-footer{ position:absolute; left:28px; bottom:20px; color:#a5afc2; font-size:.8rem; opacity:.9; }
+.btn{
+  margin-top:4px;
+  background: linear-gradient(180deg, #132140, #0e1833);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text); font-weight:800; letter-spacing:.6px;
+  padding:12px 18px; border-radius:12px; cursor:pointer;
+  box-shadow: inset 0 -2px 0 rgba(255,255,255,.06);
+  transition: transform .06s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.btn:hover{ border-color: rgba(255,255,255,.2); box-shadow: 0 12px 26px rgba(0,0,0,.35); }
+.btn:active{ transform: translateY(1px); }
 
-/* responsive */
-@media (max-width:1024px){
-  .hero{ grid-template-columns:1fr; gap:32px; padding:120px 24px 90px; }
-  .welcome-title{ font-size:40px; }
-  .brand{ left:24px; top:22px; }
-  .site-footer{ left:22px; bottom:16px; }
+/* ---- Footer ---- */
+.site-footer{
+  position:fixed; left:24px; bottom:18px; z-index:1;
+  color:#aab6cc; font-size:.82rem; opacity:.9;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px){
+  .hero{ grid-template-columns: minmax(0,1fr); }
+  .welcome{ order:1; }
+  .card{ order:2; }
+}
+@media (max-width: 600px){
+  .topbar{ height:56px; }
+  :root{ --topbar: 56px; }           /* padding-top otomatik güncellenir */
+  .brand{ height:24px; }
+  .clock{ padding:6px 10px; min-width:56px; }
+  .hero{ gap:20px; padding-block: 72px; }
+  .welcome-title{ font-size: clamp(28px, 9vw, 40px); }
+  .card{ padding:18px; border-radius:14px; }
+  .input{ padding:11px 12px; border-radius:10px; }
+  .btn{ padding:11px 16px; border-radius:10px; }
 }
