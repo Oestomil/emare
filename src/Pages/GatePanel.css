@@ -123,3 +123,32 @@
 @media (max-width: 860px){
   .gp-grid{ grid-template-columns: 1fr; gap: 14px; }
 }
+/* Modal'ın mobilde tam görünmesi ve içerik kayabilmesi için */
+.gp-modal{
+  width: min(920px, 96vw);
+  max-height: 90dvh;              /* ekranın %90'ı kadar */
+  display: flex;
+  flex-direction: column;         /* başlık - gövde - altlık dizilsin */
+}
+
+.gp-modal-body{
+  flex: 1 1 auto;
+  min-height: 0;                  /* flex çocukların taşmaması için kritik */
+  overflow: auto;                 /* içerik taşarsa kaydır */
+  padding: 16px;
+}
+
+/* pre içeriğini güvenli sar: uzun satır/kelimeler kırılabilsin */
+.gp-pre{
+  white-space: pre-wrap;          /* \n korunsun, satır sarılsın */
+  word-break: break-word;         /* çok uzun kelimeleri kır */
+}
+
+/* Kullanışlı: çok dar ekranlarda iç boşlukları azalt */
+@media (max-width: 480px){
+  .gp-modal-head{ padding: 12px; }
+  .gp-modal-body{ padding: 12px; }
+  .gp-modal-foot{ padding-right: 12px; }
+  .gp-btn{ padding: 9px 12px; }
+}
+

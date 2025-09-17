@@ -40,10 +40,6 @@ export default function Landing() {
       <div className="bg-aurora" aria-hidden="true" />
       <div className="bg-noise" aria-hidden="true" />
 
-      <header className="topbar">
-        <img src="/banner.svg" alt="Emare" className="brand" />
-
-      </header>
 
       <main className="container hero" role="main">
         {/* Metin – mobilde üste gelecek */}

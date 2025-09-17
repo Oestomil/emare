@@ -101,8 +101,9 @@ export default function GatePanel() {
             </div>
             <div className="gp-modal-body">
               <div className="gp-notepad" aria-readonly>
-                <pre>{noteText}</pre>
-              </div>
+                <pre className="gp-pre">{noteText}</pre>
+                  </div>
+             
               <div className="gp-modal-foot">
                 <button className="gp-btn" onClick={() => setShowNote(false)}>Kapat</button>
                 <button className="gp-btn ghost" onClick={goEvidence}>Kanıta Git</button>
@@ -113,7 +114,7 @@ export default function GatePanel() {
       )}
 
       {/* Sol alttaki resmi not */}
-      <div className="gp-footnote">Bu site Emniyet Birimleri için özel tasarlanmıştır.</div>
+      <div className="gp-footnote">Bu site Güvenlik Birimleri için özel Tasarlanmıştır.</div>
     </div>
   );
 }

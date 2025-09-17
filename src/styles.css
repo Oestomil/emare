@@ -223,3 +223,17 @@ a{ color:var(--accent); text-decoration:none; }
 .logo-alt1{ font-family:'Orbitron', sans-serif; letter-spacing:2px; }
 .logo-alt2{ font-family:'Merriweather', serif; font-style:italic; }
 .logo-alt3{ font-family:'Poppins', sans-serif; }
+
+.logo-text.logo-alt1{
+  width:300px;
+  height:150px;
+}
+
+/* telefonlarda (600px ve altı) biraz küçült */
+@media (max-width:600px){
+  .logo-text.logo-alt1{
+    width:200px;
+    height:100px;
+  }
+}
+

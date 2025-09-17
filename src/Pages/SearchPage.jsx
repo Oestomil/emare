@@ -6,10 +6,9 @@ export default function Home() {
     <div className="center-screen">
       {/* Logomsu AvalFinder */}
       <img
-        src="./banner.svg"
+      src="./banner.svg"
         alt="Emare"
         className="logo-text logo-alt1"
-        style={{ width: "350px", height: "200px" }}
       />
 
       {/* Arama Çubuğu */}
