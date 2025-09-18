@@ -24,7 +24,7 @@ const instaHotspots = {
   },
 
   azize: {
-    bg: "/images/azize_profile.jpg",
+    bg: "/images/azize_profile.png",
     boxes: sharedBoxes.map((b) => ({
       ...b,
       img: `/images/azize${b.id}.png`,
@@ -33,7 +33,7 @@ const instaHotspots = {
   },
 
   bedirhan: {
-    bg: "/images/bedirhan_profile.jpg",
+    bg: "/images/bedirhan_profile.png",
     boxes: sharedBoxes.map((b) => ({
       ...b,
       img: `/images/bedirhan${b.id}.png`,

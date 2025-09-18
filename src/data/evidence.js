@@ -22,16 +22,40 @@ export const EVIDENCE = {
     ],
   },
 
-  ABCD1: {
+  EU82HNS: {
     brand: "Emare",
-    code: "ABCD1",
-    subtitle: "Kaynak: Arşiv • Cihaz: iPhone 12 Pro",
+    code: "EU82HNS",
+    subtitle: "Kaynak: Arşiv • Cihaz: iPhone 13 Pro",
     footnote: "Gizli – yalnızca iç kullanım için.",
     cornerNumber: "2",
     images: [
-      "/bedirhan.jpg",
-      "/azize.jpg",
+      "/evidence/sen1.png",
+      "/evidence/sen2.png",
+      "/evidence/sen3.png",
+      "/evidence/sen4.png",
+      "/evidence/sen5.png",
+      "/evidence/sen6.png",
+      "/evidence/sen7.png",
+      "/evidence/sen8.png",
+
     ],
+  },
+  ORTOTR: {
+    brand: "Emare",
+    code: "ORTOTR",
+    subtitle: "Kaynak: Kamera görüntüsü • iPhone 13 Pro",
+    footnote: "Tüm hakları saklıdır.",
+    cornerNumber: "3",
+    images: [
+      "/evidence/aziul1.jpg",
+      "/evidence/aziul2.jpg",
+      "/evidence/aziul3.jpg",
+      "/evidence/aziul4.jpg",
+      "/evidence/aziul5.jpg",
+      "/evidence/aziul6.jpg",
+      { type: "video", src: "/videos/clip1.mp4" },
+      { type: "video", src: "/videos/clip2.mp4" },
+    ]
   },
 
   XYZ99: {
@@ -44,7 +68,21 @@ export const EVIDENCE = {
       "/evidence/xyz99-1.jpg",
     ],
   },
-};
+
+  KRTTLR: {
+    brand: "Emare",
+    code: "KRTTLR",
+    subtitle: "Kaynak: Telefon Kayıtları • Cihaz: Google Pixel 6",
+    footnote: "Gizli – yalnızca iç kullanım için.",
+    cornerNumber: "8",
+    images: [
+      "/evidence/krtlr1.png",
+      "/evidence/krtlr2.png",
+      "/evidence/krtlr3.png",
+      "/evidence/krtlr4.png",
+    ]
+  }
+}
 
 // ----------------------------------------------------
 // 2) Kod çözümleyici (arama çubuğu için normalize eder)

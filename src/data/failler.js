@@ -110,7 +110,8 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/kamiladli.pdf" },
       { title: "Parmak İzi", url: "/kamilparmak.jpg" },
-      { title: "kamilsenn Instagram", url: "#/insta/kamil" }
+      { title: "kamilsenn Instagram", url: "#/insta/kamil" },
+      { title: "Telefon Kayıtları", url: "#/e/KRTTLR" }
     ],
     news: [
       {
@@ -145,7 +146,8 @@ export const PROFILES = {
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/azizeadli.pdf" },
-      { title: "Parmak İzi", url: "/azizeparmak.jpg" },
+      { title: "Parmak İzi", url: "/azizeparmak.jpg" }, 
+       { title: "azize.g Instagram", url: "#/insta/azize" }
     ],
     news: [
       {
@@ -214,6 +216,7 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/bediradli.pdf" },
       { title: "Parmak İzi", url: "/bedriparmak.jpg" },
+      { title: "bedirhan_35 Instagram", url: "#/insta/bedirhan" }
     ],
     news: [
       {
@@ -242,7 +245,8 @@ export const PROFILES = {
     projects: [
   { title: "Adli Sicil Kaydı", url: "/ulviadli.pdf" },
   { title: "Parmak İzi", url: "/ulviparmak.jpg" },
-  { title: "2. Telefon", url: "#/gate" } // ✅ /s/gate değil
+  { title: "2. Telefon", url: "#/gate" }, // ✅ /s/gate değil
+  { title: "1. Telefon", url: "#/birincitelefon" } // ✅ /s/evidence/DFGR2 değil
     ],
 
     news: [

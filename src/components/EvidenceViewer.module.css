@@ -52,16 +52,20 @@
 }
 
 /* Ana görsel */
-.mainImg{
+.mainImg {
   display: block;
   max-width: min(84vw, 900px);
   max-height: min(78vh, 760px);
-  box-shadow: 0 24px 70px rgba(0,0,0,.55);
+  object-fit: contain;   /* 👈 video da görüntü tam otursun */
+  background: #000;      /* video kenarları siyah olsun */
   border-radius: 10px;
-  transform: translateY(6px) scale(.985);
+  box-shadow: 0 24px 70px rgba(0,0,0,.55);
   opacity: 0;
+  transform: translateY(6px) scale(.985);
   transition: opacity .25s ease, transform .25s ease;
 }
+
+
 .show{
   opacity: 1;
   transform: translateY(0) scale(1);

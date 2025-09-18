@@ -1,14 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./EvidenceViewer.module.css";
 
-/**
- * Serbest (floating) Evidence Viewer
- * - Ortada aktif görsel
- * - Arka planda sol/sağ blur önizleme
- * - Resim alanının sol/sağ yarısı tıklanabilir (hit alanları sadece resimde)
- * - Üst şerit: sol "← Ana sayfa", sağ "Delil Kodu" + alt yazı
- */
 export default function EvidenceViewer({
   images = [],
   code,
@@ -19,39 +12,60 @@ export default function EvidenceViewer({
   const [idx, setIdx] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const touch = useRef({ x: 0 });
+  const navigate = useNavigate();
 
   const total = images.length;
-  const prevIdx = useMemo(() => (idx - 1 + total) % total, [idx, total]);
-  const nextIdx = useMemo(() => (idx + 1) % total, [idx, total]);
 
-  const next = () => { if (!total) return; setLoaded(false); setIdx(nextIdx); };
-  const prev = () => { if (!total) return; setLoaded(false); setIdx(prevIdx); };
+  // normalize: her şeyi {type, src} haline getir
+  const normalize = (item) => {
+    if (!item) return null;
+    if (typeof item === "string") return { type: "image", src: item };
+    return item; // {type:"video",src:"..."} gibi
+  };
+
+  const cur = normalize(images[idx]);
+  const prev = normalize(images[(idx - 1 + total) % total]);
+  const next = normalize(images[(idx + 1) % total]);
+
+  const goNext = () => {
+    if (!total) return;
+    setLoaded(false);
+    setIdx((idx + 1) % total);
+  };
+  const goPrev = () => {
+    if (!total) return;
+    setLoaded(false);
+    setIdx((idx - 1 + total) % total);
+  };
 
   // Klavye
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [nextIdx, prevIdx, total]);
+  }, [idx, total]);
 
   // Swipe (mobil)
   const onTouchStart = (e) => { touch.current.x = e.touches[0].clientX; };
   const onTouchEnd = (e) => {
     const dx = e.changedTouches[0].clientX - touch.current.x;
-    if (Math.abs(dx) > 30) (dx < 0 ? next() : prev());
+    if (Math.abs(dx) > 30) (dx < 0 ? goNext() : goPrev());
   };
 
-  // Önyükleme
+  // Ön yükleme sadece image için
   useEffect(() => {
-    if (total <= 1) return;
-    const a = new Image(); a.src = images[nextIdx];
-    const b = new Image(); b.src = images[prevIdx];
-  }, [idx, images, total, nextIdx, prevIdx]);
+    [prev, next].forEach((item) => {
+      if (item?.type === "image") {
+        const img = new Image();
+        img.src = item.src;
+      }
+    });
+  }, [idx]);
 
-  if (!total) return null;
+  if (!total || !cur) return null;
 
   return (
     <div
@@ -59,10 +73,12 @@ export default function EvidenceViewer({
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Üst şerit (linkler tıklanabilir) */}
+      {/* Üst şerit */}
       <div className={styles.topbar}>
         <div className={styles.leftArea}>
-          <Link to="/gate" className={styles.homeLink}>← Geri</Link>
+          <button onClick={() => navigate(-1)} className={styles.homeLink}>
+            ← Geri
+          </button>
         </div>
         <div className={styles.rightTexts}>
           {code && (
@@ -74,61 +90,79 @@ export default function EvidenceViewer({
         </div>
       </div>
 
-      {/* Blur arkaplan önizlemeler */}
+      {/* Blur arkaplan (sadece resim) */}
       {total > 1 && (
         <>
-          <img
-            src={images[prevIdx]}
-            alt=""
-            className={`${styles.bgImg} ${styles.bgLeft}`}
-            draggable={false}
-          />
-          <img
-            src={images[nextIdx]}
-            alt=""
-            className={`${styles.bgImg} ${styles.bgRight}`}
-            draggable={false}
-          />
+          {prev?.type === "image" && (
+            <img
+              src={prev.src}
+              alt=""
+              className={`${styles.bgImg} ${styles.bgLeft}`}
+              draggable={false}
+            />
+          )}
+          {next?.type === "image" && (
+            <img
+              src={next.src}
+              alt=""
+              className={`${styles.bgImg} ${styles.bgRight}`}
+              draggable={false}
+            />
+          )}
         </>
       )}
 
-      {/* SADECE resim alanını kapsayan sahne */}
+      {/* Ana sahne */}
       <div className={styles.stage}>
-        {/* Hit alanları (resmin sol/sağ yarısı) */}
         {total > 1 && (
           <>
             <button
               className={`${styles.hit} ${styles.left}`}
+              onClick={goPrev}
               aria-label="Önceki"
-              onClick={prev}
             />
             <button
               className={`${styles.hit} ${styles.right}`}
+              onClick={goNext}
               aria-label="Sonraki"
-              onClick={next}
             />
           </>
         )}
 
-        {/* Ana görsel */}
-        <img
-          key={images[idx]}
-          src={images[idx]}
-          alt={`evidence-${idx + 1}`}
-          className={`${styles.mainImg} ${loaded ? styles.show : ""}`}
-          onLoad={() => setLoaded(true)}
-          draggable={false}
-          onClick={next}
-        />
+        {cur.type === "image" && (
+          <img
+            key={cur.src}
+            src={cur.src}
+            alt={`evidence-${idx + 1}`}
+            className={`${styles.mainImg} ${loaded ? styles.show : ""}`}
+            onLoad={() => setLoaded(true)}
+            draggable={false}
+            onClick={goNext}
+          />
+        )}
+
+        {cur.type === "video" && (
+          <video
+            key={cur.src}
+            src={cur.src}
+            className={`${styles.mainImg} ${loaded ? styles.show : ""}`}
+            controls
+            autoPlay
+            playsInline
+            onCanPlay={() => setLoaded(true)}
+          />
+        )}
       </div>
 
-      {/* Alt dipnot & sayfa bilgisi */}
+      {/* Alt bar */}
       <div className={styles.bottombar}>
         {footnote && <div className={styles.footnote}>{footnote}</div>}
         <div className={styles.pager}>{idx + 1} / {total}</div>
       </div>
 
-      {cornerNumber && <div className={styles.cornerNumber}>{cornerNumber}</div>}
+      {cornerNumber && (
+        <div className={styles.cornerNumber}>{cornerNumber}</div>
+      )}
     </div>
   );
 }
