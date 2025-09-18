@@ -15,6 +15,9 @@ import VideoPage from "./Pages/VideoPage.jsx";
 import GatePanel from "./Pages/GatePanel.jsx";
 import PhotoPanel from "./Pages/PhotoPanel.jsx";  
 import VideoFeedPage from "./Pages/VideoFeedPage.jsx";
+import Insta from "./Pages/Insta.jsx";
+import InstaHotspots from "./Pages/InstaHotspots.jsx";
+
 
 export default function App() {
   const [time, setTime] = useState("");
@@ -64,7 +67,10 @@ export default function App() {
          <Route path="/video/:videoId" element={<VideoPage />} />
          <Route path="/gate-panel" element={<GatePanel />} />
           <Route path="/photo/:photoId" element={<PhotoPanel />} />
-            <Route path="/videofeed" element={<VideoFeedPage />} />
+          <Route path="/videofeed" element={<VideoFeedPage />} />
+
+          <Route path="/insta/:name" element={<InstaHotspots />} />
+
 
 
         {/* Eski linkler için örnek yönlendirme (gerekirse) */}

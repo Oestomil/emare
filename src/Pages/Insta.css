@@ -1,0 +1,51 @@
+.insta-wrap{
+  min-height:100dvh;
+  background:#0c1320;
+  color:#e9eefb;
+  padding:24px;
+  font-family:ui-sans-serif,system-ui;
+}
+
+.insta-title{
+  margin:0 0 20px;
+  font-size:1.6rem;
+  font-weight:700;
+}
+
+/* panel */
+.insta-panel{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px;
+}
+
+/* her fotoğraf kutusu */
+.insta-item{
+  background:#141d2f;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  transition:transform .15s ease;
+}
+.insta-item:hover{ transform:translateY(-3px); }
+
+.insta-item img{
+  display:block;
+  width:100%; height:auto;
+  object-fit:cover;
+}
+
+/* boş durumda */
+.insta-empty{
+  color:#a4aec2;
+  grid-column:1 / -1; /* tüm satırı kaplasın */
+  text-align:center;
+  padding:40px 0;
+}
+
+/* mobil optimizasyon */
+@media (max-width:600px){
+  .insta-wrap{ padding:16px; }
+  .insta-title{ font-size:1.3rem; margin-bottom:12px; }
+  .insta-panel{ gap:12px; }
+}

@@ -110,6 +110,7 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/kamiladli.pdf" },
       { title: "Parmak İzi", url: "/kamilparmak.jpg" },
+      { title: "kamilsenn Instagram", url: "#/insta/kamil" }
     ],
     news: [
       {
