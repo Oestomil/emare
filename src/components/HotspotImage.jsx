@@ -42,7 +42,6 @@ export default function HotspotImage({ src, boxes = [] }) {
 
   const calculatePosition = (box) => {
     const wrap = wrapRef.current;
-    const tip = tipRef.current;
     if (!wrap) return;
     
     const wrapRect = wrap.getBoundingClientRect();
@@ -55,20 +54,21 @@ export default function HotspotImage({ src, boxes = [] }) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     
-    // Tooltip boyutları (tahmin veya gerçek)
-    const tipWidth = tip ? tip.offsetWidth : 320;
-    const tipHeight = tip ? tip.offsetHeight : 400;
+    // Sabit tooltip boyutları (mobil/desktop ayrımı)
+    const isMobile = viewportWidth <= 768;
+    const tooltipWidth = isMobile ? Math.min(viewportWidth - 40, 320) : 480;
+    const tooltipHeight = isMobile ? Math.min(viewportHeight - 80, 400) : 600;
     
     // Yatay pozisyon hesaplaması
     let left = anchorX;
     
     // Sol kenarda mı?
-    if (left - tipWidth / 2 < margin) {
-      left = margin + tipWidth / 2;
+    if (left - tooltipWidth / 2 < margin) {
+      left = margin + tooltipWidth / 2;
     }
     // Sağ kenarda mı?
-    else if (left + tipWidth / 2 > viewportWidth - margin) {
-      left = viewportWidth - margin - tipWidth / 2;
+    else if (left + tooltipWidth / 2 > viewportWidth - margin) {
+      left = viewportWidth - margin - tooltipWidth / 2;
     }
     
     // Dikey pozisyon ve yön hesaplaması
@@ -79,12 +79,12 @@ export default function HotspotImage({ src, boxes = [] }) {
     let top = anchorY;
     
     // Aşağıda yeterli yer var mı?
-    if (spaceBelow >= tipHeight + margin) {
+    if (spaceBelow >= tooltipHeight + margin) {
       newDir = "down";
       top = anchorY;
     }
     // Yukarıda yeterli yer var mı?
-    else if (spaceAbove >= tipHeight + margin) {
+    else if (spaceAbove >= tooltipHeight + margin) {
       newDir = "up";
       top = anchorY;
     }
@@ -105,14 +105,7 @@ export default function HotspotImage({ src, boxes = [] }) {
 
   const openBox = (box) => {
     setActive(box);
-    
-    // İlk hesaplama (tooltip henüz render olmadığı için tahminî boyutlarla)
     calculatePosition(box);
-    
-    // Tooltip render olduktan sonra gerçek boyutlarla tekrar hesapla
-    setTimeout(() => {
-      calculatePosition(box);
-    }, 0);
   };
 
   const closeTooltip = () => {
