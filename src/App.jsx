@@ -17,6 +17,7 @@ import PhotoPanel from "./Pages/PhotoPanel.jsx";
 import VideoFeedPage from "./Pages/VideoFeedPage.jsx";
 import Insta from "./Pages/Insta.jsx";
 import InstaHotspots from "./Pages/InstaHotspots.jsx";
+import BirinciTelefon from "./Pages/BirinciTelefon.jsx";
 
 
 
@@ -72,6 +73,8 @@ export default function App() {
           <Route path="/videofeed" element={<VideoFeedPage />} />
 
           <Route path="/insta/:name" element={<InstaHotspots />} />
+          <Route path="/birincitelefon" element={<BirinciTelefon />} />
+          
 
 
 
