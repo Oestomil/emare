@@ -1,0 +1,12 @@
+// Kişi -> Instagram kullanıcı adı / tam URL
+const instaLinks = {
+  azize_g:   { label: "azize_g",   username: "azize_g" },
+  bedirhan_35:{ label: "bedirhan_35",username: "bedirhan_35" },
+  kamilsenn:   { label: "kamilsenn",username: "kamilsenn" },
+};
+
+// URL üretici (kullanıcı adı veya tam url)
+export const toInstaUrl = (u) =>
+  /^https?:\/\//.test(u) ? u : `#/insta/${u}`;
+
+export default instaLinks;

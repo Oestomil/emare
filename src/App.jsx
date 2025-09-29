@@ -18,6 +18,7 @@ import VideoFeedPage from "./Pages/VideoFeedPage.jsx";
 import Insta from "./Pages/Insta.jsx";
 import InstaHotspots from "./Pages/InstaHotspots.jsx";
 import BirinciTelefon from "./Pages/BirinciTelefon.jsx";
+import InstaGo from "./Pages/InstaGo.jsx";
 
 
 
@@ -71,6 +72,8 @@ export default function App() {
          <Route path="/gate-panel" element={<GatePanel />} />
           <Route path="/photo/:photoId" element={<PhotoPanel />} />
           <Route path="/videofeed" element={<VideoFeedPage />} />
+          <Route path="/i" element={<InstaGo />} />
+          <Route path="/i/:name" element={<InstaGo />} />
 
           <Route path="/insta/:name" element={<InstaHotspots />} />
           <Route path="/birincitelefon" element={<BirinciTelefon />} />

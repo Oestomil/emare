@@ -7,6 +7,7 @@ const sharedBoxes = [
   { id: 1, x: 0.1,  y: 55.7, w: 33.5, h: 22.8 },
   { id: 2, x: 33.4, y: 55.7, w: 33.5, h: 22.8 },
   { id: 3, x: 66.7, y: 55.7, w: 33.5, h: 22.8 },
+  {id: 7, x: 0.1, y:0.1, w:10, h:5, kind: "link"},
   // 2. satır grid
   { id: 4, x: 0.1,  y: 78.2, w: 33.5, h: 22.8 },
   { id: 5, x: 33.4, y: 78.2, w: 33.5, h: 22.8 },
@@ -14,7 +15,7 @@ const sharedBoxes = [
 ];
 
 const instaHotspots = {
-  kamil: {
+  kamilsenn: {
     bg: "/images/kamil_profile.jpg",          // büyük profil ekran görüntüsü
     boxes: sharedBoxes.map((b) => ({
       ...b,
@@ -23,7 +24,7 @@ const instaHotspots = {
     })),
   },
 
-  azize: {
+  azize_g: {
     bg: "/images/azize_profile.png",
     boxes: sharedBoxes.map((b) => ({
       ...b,
@@ -32,7 +33,7 @@ const instaHotspots = {
     })),
   },
 
-  bedirhan: {
+  bedirhan_35: {
     bg: "/images/bedirhan_profile.png",
     boxes: sharedBoxes.map((b) => ({
       ...b,
@@ -41,14 +42,7 @@ const instaHotspots = {
     })),
   },
 
-  funda: {
-    bg: "/images/funda_profile.jpg",
-    boxes: sharedBoxes.map((b) => ({
-      ...b,
-      img: `/images/funda${b.id}.png`,
-      caption: `Funda • Fotoğraf ${b.id}`,
-    })),
-  },
+
 };
 
 export default instaHotspots;
