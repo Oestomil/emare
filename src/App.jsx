@@ -19,8 +19,8 @@ import Insta from "./Pages/Insta.jsx";
 import InstaHotspots from "./Pages/InstaHotspots.jsx";
 import BirinciTelefon from "./Pages/BirinciTelefon.jsx";
 import InstaGo from "./Pages/InstaGo.jsx";
-
-
+import Final from "./Pages/Final.jsx";
+import FinalConfession from "./Pages/FinalConfession.jsx";
 
 
 export default function App() {
@@ -77,7 +77,9 @@ export default function App() {
 
           <Route path="/insta/:name" element={<InstaHotspots />} />
           <Route path="/birincitelefon" element={<BirinciTelefon />} />
-          
+          <Route path="/final" element={<Final />} />
+          <Route path="/ss" element={<FinalConfession />} />
+
 
 
 
