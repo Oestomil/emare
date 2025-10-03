@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import instaLinks, { toInstaUrl } from "../data/instaLinks";
-import "./InstaGo.css";
+import "./instaGo.css";
 
 /* IG kullanıcı adı doğrulaması:
    1–30 char, harf/rakam/._ ; baş/son nokta yok; çift nokta yok */

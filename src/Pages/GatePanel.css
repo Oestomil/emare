@@ -10,6 +10,7 @@
   --shadow: 0 10px 30px rgba(0,0,0,.45);
 }
 
+/* === Sayfa sarmalayıcı === */
 .gp-wrap{
   min-height: calc(100vh - 48px);
   display:flex;
@@ -21,17 +22,20 @@
   position: relative;
 }
 
+/* === Grid === */
 .gp-grid{
   width: min(1080px, 96vw);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
+  align-items: stretch; /* kutular eşit yükseklik */
 }
 
+/* === Kart === */
 .gp-box{
   position: relative;
   border-radius: 16px;
-  background: radial-gradient(120% 120% at 10% 10%, var(--panel2), var(--panel));
+  overflow: hidden;
   border: 1px solid var(--ring);
   box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.03) inset;
   padding: 22px;
@@ -40,13 +44,32 @@
   display: grid;
   align-content: start;
   gap: 6px;
+  background: none; /* glow için pseudo-element kullanacağız */
 }
+
+.gp-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background:
+    radial-gradient(140% 120% at 50% 20%, rgba(106,169,255,.18), transparent 60%),
+    radial-gradient(120% 120% at 10% 10%, var(--panel2), var(--panel));
+  z-index:0;
+}
+
+.gp-box > *{
+  position: relative;
+  z-index: 1;
+}
+
 .gp-box:hover{
   transform: translateY(-4px);
   border-color: rgba(255,255,255,.12);
   box-shadow: 0 16px 42px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04) inset;
 }
 
+/* === İçerikler === */
 .gp-box-title{ font-weight: 800; letter-spacing: .2px; font-size: 1.1rem; }
 .gp-box-sub{ color: var(--muted); font-size: .96rem; }
 
@@ -73,7 +96,7 @@
   color: #cdd6ff;
 }
 
-/* modal */
+/* === Modal === */
 .gp-modal-backdrop{
   position: fixed; inset: 0;
   background: rgba(0,0,0,.6);
@@ -82,6 +105,9 @@
 }
 .gp-modal{
   width: min(920px, 96vw);
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
   background: linear-gradient(180deg, #0f1722, #0a1118);
   border:1px solid rgba(255,255,255,.05);
@@ -97,7 +123,12 @@
   background: transparent; border:0; color: var(--muted);
   font-size: 18px; cursor: pointer;
 }
-.gp-modal-body{ padding: 16px; }
+.gp-modal-body{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px;
+}
 .gp-notepad{
   background:#08101a;
   border:1px solid rgba(255,255,255,.06);
@@ -112,43 +143,24 @@
 .gp-modal-foot{
   display:flex; justify-content:flex-end; gap:10px; margin-top: 12px;
 }
+.gp-pre{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 
-/* sayfa alt notu */
+/* === Sayfa alt notu === */
 .gp-footnote{
   position: absolute; left: 22px; bottom: 16px;
   color:#a5afc2; font-size:.82rem; opacity:.9;
 }
 
-/* responsive */
+/* === Responsive === */
 @media (max-width: 860px){
   .gp-grid{ grid-template-columns: 1fr; gap: 14px; }
 }
-/* Modal'ın mobilde tam görünmesi ve içerik kayabilmesi için */
-.gp-modal{
-  width: min(920px, 96vw);
-  max-height: 90dvh;              /* ekranın %90'ı kadar */
-  display: flex;
-  flex-direction: column;         /* başlık - gövde - altlık dizilsin */
-}
-
-.gp-modal-body{
-  flex: 1 1 auto;
-  min-height: 0;                  /* flex çocukların taşmaması için kritik */
-  overflow: auto;                 /* içerik taşarsa kaydır */
-  padding: 16px;
-}
-
-/* pre içeriğini güvenli sar: uzun satır/kelimeler kırılabilsin */
-.gp-pre{
-  white-space: pre-wrap;          /* \n korunsun, satır sarılsın */
-  word-break: break-word;         /* çok uzun kelimeleri kır */
-}
-
-/* Kullanışlı: çok dar ekranlarda iç boşlukları azalt */
 @media (max-width: 480px){
   .gp-modal-head{ padding: 12px; }
   .gp-modal-body{ padding: 12px; }
   .gp-modal-foot{ padding-right: 12px; }
   .gp-btn{ padding: 9px 12px; }
 }
-

@@ -1,4 +1,4 @@
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Yeni sayfalar
@@ -25,6 +25,7 @@ import FinalConfession from "./Pages/FinalConfession.jsx";
 
 export default function App() {
   const [time, setTime] = useState("");
+    const location = useLocation();
 
   useEffect(() => {
     function updateTime() {
@@ -39,20 +40,26 @@ export default function App() {
     const interval = setInterval(updateTime, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
-
+  const hideHeader = location.pathname === "/" || location.pathname === "/landing";
   return (
-    <div className="container">
-      {/* Header */}
-      <header className="header">
-        <Link to="/" aria-label="Emare anasayfa">
-          <img
-            src="/banner.svg"
-            alt="Emare"
-            style={{ width: 100, height: "auto", display: "block" }}
-          />
-        </Link>
-        <span className="badge">{time}</span>
-      </header>
+     <div className="container">
+      {/* Header – sadece landing dışında */}
+      {!hideHeader && (
+        <header className="header">
+          
+          <Link to="/search?case=313131" aria-label="Emare anasayfa">
+            <img
+              src="/banner.svg"
+              alt="Emare"
+              style={{ width: 100, height: "auto", display: "block" }}
+            />
+            
+          </Link>
+              
+          <span className="badge">{time}</span>
+        </header>
+      )}
+
 
       {/* Rotalar */}
       <Routes>

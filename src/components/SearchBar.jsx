@@ -57,7 +57,7 @@ export default function SearchBar({ autoFocus = true }) {
         className="search-input"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder='Ara (ör: "DFGR2", "fridge"/"dolap", "Ulvi Plevneli")'
+        placeholder='Ara (ör: "Ulvi Plevneli")'
         aria-label="Arama"
         autoFocus={autoFocus}
       />

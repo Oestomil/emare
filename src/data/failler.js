@@ -103,7 +103,6 @@ export const PROFILES = {
     tags: ["Metin & Fatma"],
     birth: { date: "30.09.2006", place: "Ankara" },
     death: null,
-    bio: `Ablasının (Funda) yanında eline bir miktar para geçene kadar kalmak zorunda olan Aşçı kardeş. Ablasının otoriter kişiliğinin altında ezilmiş olsa da ona annesinden daha bağlıdır. Eniştesi (Ulvi), ona sürekli yanlarında sığıntı gibi yaşadığını hatırlatacak söylemler ve hareketlerde bulunduğundan, kendisinden haz etmez. Artık başka ev bulup, gitmesi gün aşırı konuşulur olmuştur ve Kamil artık kendini köşeye sıkışmış hissetmektedir. Kamil, öfke problemleri olan aile otoritesin ve huzurunu yaşayamamış birisidir. Ayrıca Kamil yeni hayatının ilk zamanlarını yaşıyordur. Zira adam yaralamadan 1 kez ıslah evinde yatmıştır, uyuşturucu madde kullanmak ve bulundurmaktan da sabıkası vardır.  İçeri girip çıkmış ve ona ablası kapılarını açmıştır. Bir tanıdığının restorantında mutfakta iş ayarlamıştır.  Şartlı tahliye ile çıkmıştır, onun için de zaten çalışması gerekmektedir.`,
     education: [
       "Lisans: Yok",
     ],
@@ -142,7 +141,6 @@ export const PROFILES = {
     tags: ["Bahadır & Ayten"],
     birth: { date: "27.02.2007", place: "Edirne" },
     death: null,
-    bio: `Genç yaşında yasak bir ilişki sonucu hamile kalan Azize, durumu hocası Ulvi Pinebleni'ye anlattıktan sonra bir daha asla kendisine ulaşamaz. Bunu ailesi ve sevgilisi Bedirhan Mardinli öğrenirse kendisine zarar vereceklerini ve hayatının eskisi gibi olmayacağından endişelenerek stres bozukluğu yaşamaktadır. Bir gece intihar etmeye çalışır fakat gözünü açtığında hastanededir.`,
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/azizeadli.pdf" },
@@ -177,7 +175,6 @@ export const PROFILES = {
     tags: ["Metin & Fatma"],
     birth: { date: "03.08.1986", place: "Ankara" },
     death: null,
-    bio: `Gençliğinde yerel güzellik yarışmasında birincilik almıştır. Hayatının erken yaşlarında modellik yaparak para kazanan Funda, eşi Ulvi ile tanıştıktan sonra bir daha çalışmasına izin verilmemiş bir ev hanımıdır. Sağlık durumu nedeniyle çocuk sahibi olamadığını evliliğinin 5. yılında öğrenen çiftin evliliği, uçuruma doğru sürüklenmektedir. Funda, kendinde kusur görmeyecek kadar egoist bir kişiliğe sahip. Hatta hamile kalmama sebebini kocasının beceriksizliğine bağlasa da evliliğine bağlı kalmıştır.`,
     education: ["Lisans: YOK"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/fundaadli.pdf" },
@@ -211,7 +208,6 @@ export const PROFILES = {
     tags: ["Ahmet & Leman"],
     birth: { date: "19.08.2006", place: "İzmir" },
     death: null,
-    bio: `Bedirhan, 2006 yılında İzmir Bornova'da, 5 çocuklu bir ailenin ortanca çocuğu olarak dünyaya geldi. En küçük kardeşini okutmak için hem okuyup hem çalışan Bedirhan, 2020 yılında Ankara'da üniversite okuma fırsatını yakaladı. Bedirhan, hem okuyup aynı zamanda şantiyelerde çalışarak, ailesine para göndermektedir.`,
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor.)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/bediradli.pdf" },
@@ -235,8 +231,8 @@ export const PROFILES = {
     photo: "/ulvi.jpg", // public/bedirhan.jpg
     tags: ["Şenol & Fadime"],
     birth: { date: "09.01.1986", place: "Eskişehir" },
-    death: { date: "11.04.2025", place: "Ankara"},
-    bio: `EKLENECEK`,
+    death: { date: "25.05.2025", place: "Ankara"},
+    
     education: ["Lisans: Ankara Üniversitesi",
       "Yüksek Lisans: Anadolu Üniversitesi",
       "Doktora: Anadolu Üniversitesi"
@@ -252,7 +248,7 @@ export const PROFILES = {
         {
         id: "n1",
         title: "Çankaya'da Vahşet",
-        date: "18 Nisan 2025",
+        date: "25 Mayıs 2025",
         source: "Gerekli Haber",
         snippet:
           "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
