@@ -1,0 +1,234 @@
+/* =========================================================
+   Final — modern desktop-first tasarım (JSX'e dokunmadan)
+   ========================================================= */
+
+.final{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Geri butonu */
+.final .gp-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:12px; cursor:pointer;
+  background:#112057; color:#fff; border:1px solid #273055;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+  transition:transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.final .gp-btn:hover{ background:#152764; transform:translateY(-1px); }
+
+/* ---- Kart (form) — inline stilin üstüne hafif cilalar ---- */
+.final .card{
+  /* inline geldiği için küçük rötuşlar */
+  border:1px solid #1b2445 !important;
+  padding:28px !important;
+  border-radius:22px !important;
+  backdrop-filter:saturate(110%) blur(2px);
+}
+
+/* Başlık */
+.final .title{
+  margin:0 0 20px 0 !important;
+  font-size: clamp(22px, 2.2vw, 32px) !important;
+  letter-spacing:.2px; font-weight:800;
+}
+
+/* Etiketler */
+.final .form-label{
+  font-size:13px; color:#aeb6dc; margin-bottom:8px !important;
+}
+
+/* Alanlar (input/select/textarea) */
+.final .field{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#0d1330; color:#e9edff;
+  border:1px solid #273055; outline:none;
+  transition:border-color .12s ease, box-shadow .12s ease;
+  font-size:16px; line-height:1.4;   /* iOS zoom fix + okuma */
+}
+.final .field:focus{
+  border-color:#3a4b80;
+  box-shadow:0 0 0 3px rgba(105,182,255,.12);
+}
+.final .field::placeholder{ color:rgba(233,237,255,.55); }
+
+/* Select okları (styles ile uyumlu, taşma yapmasın) */
+.final select.field{
+  appearance:none;
+  padding-right:46px;                            /* oklar için boşluk */
+  background-image:
+    linear-gradient(45deg, transparent 50%, #7da8ff 50%),
+    linear-gradient(135deg, #7da8ff 50%, transparent 50%),
+    linear-gradient(to right, #273055, #273055);
+  background-position:
+    calc(100% - 22px) calc(50% - 4px),
+    calc(100% - 14px) calc(50% - 4px),
+    calc(100% - 36px) 50%;
+  background-size:6px 6px, 6px 6px, 1px 60%;
+  background-repeat:no-repeat;
+}
+
+/* Textarea */
+.final textarea.field{
+  min-height: 220px;
+  resize: vertical;
+  line-height:1.5;
+}
+
+/* E-posta bölümü */
+.final .article{
+  margin-top:18px !important; padding:16px;
+  border-radius:14px; background:#0f1634; border:1px solid #232a4b;
+}
+.final .article .field{ margin-top:8px; }
+
+/* Aksiyon alanı ve butonlar */
+.final .btn{
+  display:inline-block; padding:10px 16px; border-radius:12px; cursor:pointer;
+  background:#112057; color:#fff; border:1px solid #273055;
+  transition:transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.final .btn:hover{ background:#152764; transform:translateY(-1px); }
+
+.final .btn-danger{
+  background:#d31328; border-color:#99121f;
+  font-weight:800; letter-spacing:.2px;
+  box-shadow:0 10px 26px rgba(211,19,40,.25);
+}
+.final .btn-danger:hover{ background:#e21a31; }
+
+/* Boş/yanlış durum kutusu */
+.final .empty{
+  text-align:center; margin-top:16px !important;
+  padding:24px; border-radius:14px;
+  background:#0f1634; border:1px dashed #273055; color:#9aa3cc;
+}
+
+/* ------------------ GRID düzeni (JSX'e dokunmadan) ------------------ */
+/* Form içindeki 1. grid: iki select sütunu */
+.final form .grid:nth-of-type(1){
+  gap:20px !important;
+  /* JSX inline gridTemplateColumns veriyor; biz desktop/mobilde override edeceğiz */
+}
+/* Form içindeki 2. grid: Motivasyon + Delil */
+.final form .grid:nth-of-type(2){
+  gap:20px !important;
+}
+
+/* Desktop (≥1024px): net ve ferah hizalama */
+@media (min-width:1024px){
+  .final form .grid:nth-of-type(1){
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .final form .grid:nth-of-type(2){
+    grid-template-columns: 1.4fr 1fr !important; /* metin alanı daha geniş */
+  }
+  .final textarea.field{ min-height: 260px; }
+  .final .card{ padding:32px !important; }
+}
+
+/* Tablet (≥768px ve <1024px) — iki sütun kalsın ama biraz sıkı */
+@media (min-width:768px) and (max-width:1023.98px){
+  .final form .grid:nth-of-type(1){
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .final form .grid:nth-of-type(2){
+    grid-template-columns: 1.2fr 1fr !important;
+  }
+}
+
+/* Mobil (≤767px): tek sütun, tam genişlik CTA */
+@media (max-width:767.98px){
+  .final{ padding:16px; }
+  .final .card{ padding:18px !important; border-radius:16px !important; }
+
+  .final form .grid:nth-of-type(1),
+  .final form .grid:nth-of-type(2){
+    grid-template-columns: 1fr !important;
+    gap:14px !important;
+  }
+
+  .final textarea.field{ min-height: 160px; }
+
+  .final .btn-danger{
+    width:100%;
+    min-height:46px;
+    border-radius:12px;
+  }
+}
+
+/* Güvenli alan (iPhone alt çubuk) */
+.final{ padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+
+/* Odak halkaları */
+.final .gp-btn:focus-visible,
+.final .btn:focus-visible,
+.final .btn-danger:focus-visible,
+.final .field:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(106,169,255,.22), 0 6px 18px rgba(0,0,0,.25);
+  border-color:#3a4b80;
+}
+
+/* Hareket azaltma tercihi */
+@media (prefers-reduced-motion: reduce){
+  .final .gp-btn, .final .btn{ transition:none; }
+}
+/* =========================================================
+   Final – Desktop genişlik ve ortalama (JSX'e dokunmadan)
+   ========================================================= */
+
+/* İç içe container kısıtını kaldır, genişlik ver */
+.final > .container{
+  max-width: unset !important;   /* global .container (960/1080) sınırını kaldır */
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Dış sarmalı ortalama alanı olarak kullan */
+.final{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;         /* içeriği yatayda ortala */
+}
+
+/* Kartı merkezde ve daha geniş yap */
+@media (min-width: 1024px){
+  .final .card{
+    width: min(1200px, 92vw) !important;  /* 1080 → 1200/92vw */
+    margin: 0 auto !important;
+  }
+}
+
+/* Çok geniş ekranlarda biraz daha aç */
+@media (min-width: 1440px){
+  .final .card{
+    width: min(1280px, 86vw) !important;
+  }
+}
+
+/* Grid kolon oranlarını geniş yüzeye göre ayarla */
+@media (min-width: 1080px){
+  /* 1. grid: iki select */
+  .final form .grid:nth-of-type(1){
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+  }
+  /* 2. grid: motivasyon + delil */
+  .final form .grid:nth-of-type(2){
+    grid-template-columns: 1.6fr 1fr !important; /* yazı alanı daha geniş */
+    gap: 20px !important;
+  }
+}
+
+/* Üstteki "Geri" butonunun kartla hizalanması için küçük ayar */
+.final .gp-btn{
+  margin-left: clamp(0px, (100vw - 1200px)/2, 10vw); /* kartın sol kenarıyla hizalanır */
+}
+@media (max-width: 1023.98px){
+  .final .gp-btn{ margin-left: 0; }  /* mobil/tablet normal */
+}

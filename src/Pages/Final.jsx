@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabase";
+import { useNavigate } from "react-router-dom";
+import "./Final.css"
 
 const PEOPLE = [
   "Kamil Şen",
@@ -16,6 +18,7 @@ export default function Final() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [wrong, setWrong] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -60,10 +63,13 @@ export default function Final() {
   }
 
   return (
+    <div className="container final">
+
     <div className="container" style={{ maxWidth: 1080 }}>
-      <header className="header" style={{ marginBottom: 24 }}>
-        <img src="/banner.svg" alt="Emare" style={{ width: 120, opacity: .95 }} />
-      </header>
+              {/* Home butonu */}
+         <button className="gp-btn" style={{ marginBottom: "12px" }} onClick={() => navigate(-1)}>
+          ← Geri
+        </button>
 
       <form onSubmit={handleSubmit}
         className="card"
@@ -150,5 +156,7 @@ export default function Final() {
         )}
       </form>
     </div>
+    </div>
+    
   );
 }
