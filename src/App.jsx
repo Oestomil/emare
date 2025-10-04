@@ -22,6 +22,7 @@ import InstaGo from "./Pages/InstaGo.jsx";
 import Final from "./Pages/Final.jsx";
 import FinalConfession from "./Pages/FinalConfession.jsx";
 import Pdf from "./Pages/Pdf.jsx";
+import CrimeScene from "./Pages/CrimeScene.jsx";
 
 
 export default function App() {
@@ -87,6 +88,7 @@ export default function App() {
           <Route path="/birincitelefon" element={<BirinciTelefon />} />
           <Route path="/final" element={<Final />} />
           <Route path="/ss" element={<FinalConfession />} />
+          <Route path="/olayyeri" element={<CrimeScene />} />
 
 
 

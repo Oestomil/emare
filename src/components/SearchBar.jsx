@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { resolveQuery } from "../data/failler";
 import { resolveEvidenceCode } from "../data/evidence";
 import { resolvePhotoEvidenceSlug } from "../data/photoEvidence"; // 👈 yeni
+import { resolvePdfSlug } from "../data/pdf"; // 👈 ekle
+
 
 export default function SearchBar({ autoFocus = true }) {
   const [q, setQ] = useState("");
@@ -32,6 +34,14 @@ export default function SearchBar({ autoFocus = true }) {
       navigate(`/video/${lower}`);
       return;
     }
+    // 4) PDF mi?
+    const pdfSlug = resolvePdfSlug(lower);
+    if (pdfSlug) {
+      navigate(`/pdf/${pdfSlug}`);
+     return;
+    }
+
+
 
     // 4) Profil mi?
     const slug = resolveQuery(lower);
@@ -43,7 +53,11 @@ export default function SearchBar({ autoFocus = true }) {
        navigate("/videofeed");
       return;
     }
-
+    if (lower === "plara") {
+    navigate("/olayyeri");
+    return;
+   }
+   
 
     // 5) Hiçbiri değilse: sonuç yok
     const params = new URLSearchParams({ q: lower });

@@ -107,7 +107,7 @@ export const PROFILES = {
       "Lisans: Yok",
     ],
     projects: [
-      { title: "Adli Sicil Kaydı", url: "/kamiladli.pdf" },
+      { title: "Adli Sicil Kaydı", url: "/pdf/kamiladli" },
       { title: "Parmak İzi", url: "/kamilparmak.jpg" },
       { title: "kamilsenn Instagram", url: "/i/" },
       { title: "Telefon Kayıtları", url: "/e/KRTTLR" }
@@ -121,14 +121,7 @@ export const PROFILES = {
         snippet:
           "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
       },
-      {
-        id: "n2",
-        title: "Yaşlı Taksiciye Gasp Girişimi",
-        date: "10 Mayıs 2018",
-        source: "Taraf",
-        snippet:
-          "Ankara Mamak'da, K.Ş. (17) uyuşturucu parası için O.D. (62)'nin taksisine binerek bıçak zoruyla tüm parasına el koydu. Uzun bir kovalamacanın ardından yakalanan K.Ş. kasten adam yaralama ve hırsızlık suçundan yarın hakim karşısına çıkıcak.",
-      },
+
     ],
     
   },
@@ -143,7 +136,7 @@ export const PROFILES = {
     death: null,
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor)"],
     projects: [
-      { title: "Adli Sicil Kaydı", url: "/azizeadli.pdf" },
+      { title: "Adli Sicil Kaydı", url: "/pdf/azizeadli" },
       { title: "Parmak İzi", url: "/azizeparmak.jpg" }, 
        { title: "azize_g Instagram", url: "/i/" }
     ],
@@ -177,7 +170,7 @@ export const PROFILES = {
     death: null,
     education: ["Lisans: YOK"],
     projects: [
-      { title: "Adli Sicil Kaydı", url: "/fundaadli.pdf" },
+      { title: "Adli Sicil Kaydı", url: "/pdf/fundaadli" },
       { title: "Parmak İzi", url: "/fundaparmak.jpg" },
     ],
     news: [
@@ -210,7 +203,7 @@ export const PROFILES = {
     death: null,
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor.)"],
     projects: [
-      { title: "Adli Sicil Kaydı", url: "/bediradli.pdf" },
+      { title: "Adli Sicil Kaydı", url: "/pdf/bediradli" },
       { title: "Parmak İzi", url: "/bedriparmak.jpg" },
     ],
     news: [
@@ -238,7 +231,7 @@ export const PROFILES = {
       "Doktora: Anadolu Üniversitesi"
     ],
     projects: [
-  { title: "Adli Sicil Kaydı", url: "/ulviadli.pdf" },
+  { title: "Adli Sicil Kaydı", url: "/pdf/ulviadli" },
   { title: "Parmak İzi", url: "/ulviparmak.jpg" },
   { title: "2. Telefon", url: "/gate" }, // ✅ /s/gate değil
   { title: "1. Telefon", url: "/birincitelefon" } // ✅ /s/evidence/DFGR2 değil

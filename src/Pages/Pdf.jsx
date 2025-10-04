@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPdfBySlug } from "../data/pdf";
-import "./pdf.css";
+import "./Pdf.css";
 
 export default function Pdf() {
   const { slug } = useParams();

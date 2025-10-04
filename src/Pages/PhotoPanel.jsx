@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPhotoEvidence } from "../data/photoEvidence";
 import "./PhotoPanel.css";
+import { useNavigate } from "react-router-dom";
 
 export default function PhotoPanel() {
   const { photoId } = useParams();
   const evidence = getPhotoEvidence(photoId);   // 👈 ev yerine evidence
   const [activeHotspot, setActiveHotspot] = useState(null);
+  const navigate = useNavigate();
 
   // Esc ile kapat
   useEffect(() => {
@@ -21,6 +23,11 @@ export default function PhotoPanel() {
 
   return (
     // Dışarı tık → kapat
+    <div className="top-photo-panel">
+               <button className="gp-btn" style={{ marginBottom: "12px" }} onClick={() => navigate(-1)}>
+          ← Geri
+        </button>
+        
     <div className="photo-panel" onClick={() => setActiveHotspot(null)}>
       <img src={evidence.main} alt={evidence.id} className="main-photo" />
 
@@ -62,6 +69,7 @@ export default function PhotoPanel() {
             <span className="tooltip-title">{activeHotspot.label}</span>
         </div>
       )}
+    </div>
     </div>
   );
 }
