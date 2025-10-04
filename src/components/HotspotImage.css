@@ -1,10 +1,3 @@
-/* Global güvenlik (gerek olursa) */
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 /* Kapsayıcı */
 .hs-wrap {
   position: relative;
@@ -25,7 +18,7 @@ html, body {
   pointer-events: none; /* tıklamalar hotspotlara gitsin */
 }
 
-/* Hotspot alanları */
+/* Hotspot düğmeleri (alanları) */
 .hs-dot {
   position: absolute;
   background: transparent;
@@ -40,12 +33,14 @@ html, body {
   border-color: rgba(106,169,255,.85);
   box-shadow: 0 0 0 3px rgba(106,169,255,.28) inset;
 }
+
+/* "Geri/Link" tipini görsel olarak biraz farklılaştırmak istersen */
 .hs-dot.is-link {
   border-style: solid;
   border-color: rgba(255, 200, 120, .75);
 }
 
-/* Overlay */
+/* Karanlık overlay */
 .hs-overlay {
   position: fixed;
   inset: 0;
@@ -55,12 +50,13 @@ html, body {
   z-index: 1000;
   animation: hs-fade-in .18s ease-out;
 }
+
 @keyframes hs-fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* Tooltip genel kutu */
+/* Tooltip temel kutu (modal/sheet) */
 .hs-tooltip {
   position: fixed;
   z-index: 1010;
@@ -70,7 +66,7 @@ html, body {
   color: #e9eefb;
 }
 
-/* Masaüstü: ortalı modal */
+/* Masaüstü: ekran ortası modal */
 .hs-tooltip.center {
   top: 50%;
   left: 50%;
@@ -83,65 +79,54 @@ html, body {
   animation: hs-pop .2s ease-out;
 }
 
-/* Mobil/Tablet: tam genişlik sheet (solda boşluk yok) */
+/* Mobil/Tablet: alt sheet */
 .hs-tooltip.sheet {
-  position: fixed;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 0;
-  transform: none;
-  width: 100vw;
+  transform: translateX(-50%);
+  width: 100%;
   max-width: 100vw;
-
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-
-  box-sizing: border-box;
-  padding-top: 14px;
-  padding-bottom: max(18px, env(safe-area-inset-bottom));
-  padding-left: max(12px, env(safe-area-inset-left));
-  padding-right: max(12px, env(safe-area-inset-right));
-
+  padding: 14px 14px 18px;
   animation: hs-slide-up .22s cubic-bezier(.34,1.56,.64,1);
 }
 
-/* İç görsel */
+/* İç görsel boyutları */
 .hs-media {
   display: block;
   width: auto;
   height: auto;
   border-radius: 10px;
   background: rgba(255,255,255,.04);
-
   /* Masaüstünde ekrana sığsın */
   max-width: 86vw;
   max-height: 76vh;
 }
 
-/* Center modda (masaüstü) sınırlar */
+/* Center mod özel sınırlar (masaüstünde daha geniş serbestlik) */
 .hs-tooltip.center .hs-media {
   max-width: min(86vw, 960px);
   max-height: 72vh;
 }
 
-/* Sheet modda (mobil) kenardan kenara */
+/* Sheet modda (mobil) daha güvenli sınırlar */
 .hs-tooltip.sheet .hs-media {
   width: 100%;
   height: auto;
   max-height: 55vh;
-  object-fit: contain;
 }
 
-/* Açıklama */
+/* Başlık/açıklama */
 .hs-cap {
   margin-top: 12px;
   font-size: .95rem;
   line-height: 1.45;
   color: #cfd9f7;
-  padding-right: 36px; /* kapat butonu boşluğu */
+  padding-right: 36px; /* kapat düğmesi boşluğu */
 }
 
-/* Kapatma butonu */
+/* Kapatma düğmesi */
 .hs-close {
   position: absolute;
   top: 10px;
@@ -172,11 +157,11 @@ html, body {
   to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 @keyframes hs-slide-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* Işık modu */
+/* Işık modunda görünüm */
 @media (prefers-color-scheme: light) {
   .hs-tooltip {
     background: #ffffff;
@@ -192,12 +177,9 @@ html, body {
   }
 }
 
-/* Ufak ekran ekstra dokunuş */
+/* Ufak ekran iyileştirmeleri */
 @media (max-width: 480px) {
-  .hs-tooltip.sheet {
-    padding-left: max(8px, env(safe-area-inset-left));
-    padding-right: max(8px, env(safe-area-inset-right));
-  }
+  .hs-tooltip.sheet { padding: 12px 12px 16px; }
   .hs-cap { font-size: .9rem; }
   .hs-close { width: 36px; height: 36px; font-size: 16px; }
 }

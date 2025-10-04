@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HotspotImage.css";
 
@@ -6,32 +6,41 @@ import "./HotspotImage.css";
  * props:
  *  - src: string (arka plan görseli)
  *  - boxes: Array<{ id:number|string, x:number, y:number, w:number, h:number, img?:string, caption?:string, kind?:'link'|'default' }>
- *  - onBoxClick?: (box) => void   // opsiyonel: link tipine özel davranış
+ *  - onBoxClick?: (box) => void   // opsiyonel: link-type için özel davranış yazmak istersen
  */
 export default function HotspotImage({ src, boxes = [], onBoxClick }) {
   const navigate = useNavigate();
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(null); // aktif kutu içeriği
+  const overlayRef = useRef(null);
 
-  // Masaüstü tespiti: fare + geniş ekran
+  // Masaüstü (mouse/fare) tespiti: pointer:fine && min-width:769px
   const isDesktop = useMemo(() => {
     if (typeof window === "undefined" || !window.matchMedia) return true;
-    return window.matchMedia("(pointer:fine) and (min-width: 769px)").matches;
+    // Bazı cihazlar 'fine' raporlayabilir; genişlik filtresi ile birlikte kullanıyoruz
+    const mq = window.matchMedia("(pointer:fine) and (min-width: 769px)");
+    return mq.matches;
   }, []);
 
   // ESC kapatma
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setActive(null);
+    const onKey = (e) => {
+      if (e.key === "Escape") setActive(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
   const handleHotspotClick = (box) => {
-    // Geri/Link
+    // Link türü: önce dışarıdan handler varsa onu çağır
     if (box?.id === 7 || box?.kind === "link") {
-      if (typeof onBoxClick === "function") return onBoxClick(box);
+      if (typeof onBoxClick === "function") {
+        onBoxClick(box);
+        return;
+      }
       navigate("/i");
       return;
     }
+    // Normal tooltip
     setActive(box);
   };
 
@@ -56,21 +65,31 @@ export default function HotspotImage({ src, boxes = [], onBoxClick }) {
 
       {active && (
         <>
-          <div className="hs-overlay" onClick={() => setActive(null)} aria-hidden="true" />
+          <div
+            ref={overlayRef}
+            className="hs-overlay"
+            onClick={() => setActive(null)}
+            aria-hidden="true"
+          />
           <div
             className={`hs-tooltip ${isDesktop ? "center" : "sheet"}`}
             role="dialog"
             aria-modal="true"
           >
-            <button className="hs-close" onClick={() => setActive(null)} aria-label="Kapat">
+            <button
+              className="hs-close"
+              onClick={() => setActive(null)}
+              aria-label="Kapat"
+            >
               ✕
             </button>
 
+            {/* İçerik */}
             {active.img && (
               <img
                 className="hs-media"
                 src={active.img}
-                alt={active.caption || "Görsel"}
+                alt={active.caption || "Öğe"}
                 draggable={false}
               />
             )}
