@@ -1,8 +1,10 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { PROFILES } from "../data/failler";
+import "./Profile.css";
 
 export default function Profile() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const p = PROFILES[slug];
 
   if (!p) {
@@ -19,6 +21,11 @@ export default function Profile() {
     <div className="grid grid-2">
       {/* Sol panel */}
       <aside className="card side">
+        {/* Geri butonu */}
+        <button className="btn" style={{ marginBottom: "12px" }} onClick={() => navigate(-1)}>
+          ← Geri
+        </button>
+
         <div className="photo">
           <img
             src={p.photo}
@@ -49,15 +56,14 @@ export default function Profile() {
               <span>{p.tags.join(", ")}</span>
             </div>
           )}
-                  {/* Eğitim */}
           {p.education?.length > 0 && (
-           <div className="row">
-            <strong>Eğitim</strong>
-            <span>
-              {p.education.map((e, i) => <li key={i}>{e}</li>)}
-            </span>
-          </div>
-        )}
+            <div className="row">
+              <strong>Eğitim</strong>
+              <span>
+                {p.education.map((e, i) => <li key={i}>{e}</li>)}
+              </span>
+            </div>
+          )}
         </div>
       </aside>
 
@@ -72,26 +78,28 @@ export default function Profile() {
           <p style={{ margin: 0, whiteSpace: "pre-line" }}>{p.bio}</p>
         </section>
 
-
-
         {/* Projeler */}
         <section className="section">
-           <h3 style={{ margin: "0 0 8px 0" }}>İlgili Dosyalar</h3>
-             {p.projects?.length ? (
+          <h3 style={{ margin: "0 0 8px 0" }}>İlgili Dosyalar</h3>
+          
+          {p.projects?.length ? (
             p.projects.map((proj, i) => (
               <article key={i} className="article">
-              <a href={proj.url} target="_blank" rel="noopener noreferrer">
-          {proj.title}
-           </a>
-         </article>
+                {proj.url.match(/\.(jpg|pdf)$/i) ? (
+                  <a href={proj.url} target="_blank" rel="noopener noreferrer">
+                    {proj.title}
+                  </a>
+                ) : (
+                  <Link to={`../${proj.url}`}>
+                    {proj.title}
+                  </Link>
+                )}
+              </article>
             ))
-         ) : (
-          <div className="empty">Dosya eklenmemiş.</div>
-         )}
-         </section>
-         
-      
-
+          ) : (
+            <div className="empty">Dosya eklenmemiş.</div>
+          )}
+        </section>
 
         {/* Haberler */}
         <section className="section">

@@ -22,6 +22,16 @@
   position: relative;
 }
 
+.gp-btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  background:#112057;
+  color:#fff;
+  border:1px solid #273055;
+}
+
 /* === Grid === */
 .gp-grid{
   width: min(1080px, 96vw);

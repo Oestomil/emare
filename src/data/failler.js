@@ -109,8 +109,8 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/kamiladli.pdf" },
       { title: "Parmak İzi", url: "/kamilparmak.jpg" },
-      { title: "kamilsenn Instagram", url: "#/i/" },
-      { title: "Telefon Kayıtları", url: "#/e/KRTTLR" }
+      { title: "kamilsenn Instagram", url: "/i/" },
+      { title: "Telefon Kayıtları", url: "/e/KRTTLR" }
     ],
     news: [
       {
@@ -145,7 +145,7 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/azizeadli.pdf" },
       { title: "Parmak İzi", url: "/azizeparmak.jpg" }, 
-       { title: "azize.g Instagram", url: "#/i/" }
+       { title: "azize_g Instagram", url: "/i/" }
     ],
     news: [
       {
@@ -240,8 +240,8 @@ export const PROFILES = {
     projects: [
   { title: "Adli Sicil Kaydı", url: "/ulviadli.pdf" },
   { title: "Parmak İzi", url: "/ulviparmak.jpg" },
-  { title: "2. Telefon", url: "#/gate" }, // ✅ /s/gate değil
-  { title: "1. Telefon", url: "#/birincitelefon" } // ✅ /s/evidence/DFGR2 değil
+  { title: "2. Telefon", url: "/gate" }, // ✅ /s/gate değil
+  { title: "1. Telefon", url: "/birincitelefon" } // ✅ /s/evidence/DFGR2 değil
     ],
 
     news: [
