@@ -1,0 +1,129 @@
+/* pages/pdf.css — koyu tema, responsive PDF gömme */
+
+:root{
+  --pdf-bg:#0f1424;
+  --pdf-panel:#151b30;
+  --pdf-border:#222948;
+  --pdf-text:#e9edff;
+  --pdf-muted:#9aa3cc;
+  --pdf-accent:#69b6ff;
+  --pdf-accent2:#ff5e6e;
+  --pdf-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
+
+/* Sayfa zemini ve hizalama */
+.pdf-wrap{
+  min-height: 100dvh;
+  background: var(--pdf-bg);
+  color: var(--pdf-text);
+  display: grid;
+  place-items: start center;
+  padding: 20px clamp(12px, 3vw, 24px);
+}
+
+/* Kart */
+.pdf-card{
+  width: min(1200px, 96vw);
+  background: linear-gradient(180deg, rgba(27,35,54,.8), rgba(17,24,49,.9));
+  border: 1px solid var(--pdf-border);
+  border-radius: 18px;
+  box-shadow: var(--pdf-shadow);
+  overflow: hidden;         /* köşeler düzgün kalsın */
+}
+
+/* Üst bar */
+.pdf-top{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px clamp(12px, 2.4vw, 20px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: linear-gradient(180deg, rgba(20,27,51,.85), rgba(20,27,51,.6));
+}
+
+/* Geri ve aksiyon butonları */
+.pdf-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 10px 14px;
+  min-height: 40px;
+  border-radius: 12px;
+  background:#112057; color:#fff;
+  border:1px solid #273055;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.pdf-btn:hover{ background:#152764; transform: translateY(-1px); }
+.pdf-btn--accent{
+  background: #1f2d5a;
+  border-color: #2d3b72;
+}
+.pdf-btn--accent:hover{ background:#2a3a74; }
+
+/* Başlık & meta */
+.pdf-meta{
+  display: grid;
+  gap: 4px;
+}
+.pdf-title{
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.pdf-sub{
+  font-size: 13px;
+  color: var(--pdf-muted);
+}
+
+/* Aksiyonlar sağa */
+.pdf-actions{ margin-left:auto; display:flex; align-items:center; gap:8px; }
+
+/* Görüntüleme alanı */
+.pdf-view{
+  position: relative;
+  background: #0d1330;
+  height: calc(100dvh - 160px);   /* üst bar + alt boşluk çıkar */
+  min-height: 420px;
+}
+
+/* Iframe ve Embed üst üste — iframe öncelikli */
+.pdf-frame,
+.pdf-embed{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0;
+}
+
+/* Fallback mesajı: yalnızca iframe/embed render etmiyorsa görünür kalsın */
+.pdf-fallback{
+  position: relative;
+  z-index: 1;
+  color: var(--pdf-muted);
+  font-size: 14px;
+  padding: 18px;
+  display:none;
+}
+.pdf-view:has(.pdf-frame:empty) .pdf-fallback,
+.pdf-view:has(.pdf-embed:empty) .pdf-fallback{
+  display:block;
+}
+
+/* Küçük ekran uyumu */
+@media (max-width: 720px){
+  .pdf-actions{ display:none; } /* mobilde sadeleştir */
+  .pdf-top{ gap:10px; padding: 12px 12px; }
+  .pdf-view{ height: calc(100dvh - 120px); }
+}
+
+/* Çok küçük ekran: güvenli alan */
+.pdf-wrap{
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
+/* Odak halkaları */
+.pdf-btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(105,182,255,.22), 0 8px 20px rgba(0,0,0,.25);
+  border-color:#3a4b80;
+}
