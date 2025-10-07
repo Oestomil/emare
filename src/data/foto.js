@@ -4,9 +4,9 @@ export const PICS = {
   olayyeri: {
     slug: "Ben Ölüme Yürüdüm",
     title: "Gazete Küpürü",
-    src: "/evidence/korkulanolmadi.jpeg", // senin verdiğin yol
+    src: "/evidence/korkulanolmadi.png", // senin verdiğin yol
     aliases: ["ben ölüme yürüdüm", "benölümeyürüdüm", "ben olume yurudum", "benolumeyurudum"],
-    note: "Merkez kare (720p görünümünde gösterilir).",
+    note: "Azize Güner (19) İntihar  Haberi.",
   },
 
   // örnek ikinci kayıt – istediğin gibi çoğalt
