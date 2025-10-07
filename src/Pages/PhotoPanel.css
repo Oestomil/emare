@@ -1,84 +1,133 @@
+/* ==== Genel Panel Yapısı ==== */
 .photo-panel {
   position: relative;
-  display: inline-block;  /* fit-content ile uyumlu */
+  display: inline-block;     /* görsel kadar genişlik */
+  max-width: 100%;
 }
 
 .main-photo {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 12px;
 }
 
+/* ==== Hotspot ==== */
 .hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 50px; height: 50px; border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   background: transparent;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0,0,0,.6);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
   z-index: 2;
 }
 
-/* --- Tooltip aşağı doğru açılsın --- */
+/* ==== Tooltip (Ekran Ortasında Açılır) ==== */
 .tooltip {
-  position: absolute;
-  transform: translate(-50%, 0);
-  background: #111a2b;               /* 👈 arka plan var */
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 8px;
-  padding: 0;                        /* iç boşluk yok */
-  display: inline-block;             /* boyut img ile eşitlenir */
-  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  /*Viewportmerkezindesabitlenir*/top: 50%;
+  left: 50%;
+  /*hafifyukarıalmakistersenvar(--tooltip-shift)ileoynayabilirsin*/--tooltip-shift: 0px;
+  transform: translate(50%, calc(-90% - var(--tooltip-shift)));
+  -webkit-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
+  -moz-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
+  -ms-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
+  -o-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
+  z-index: 9999;
+  background: #0f56da;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0;
+  display: inline-block;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .5);
+  /*Küçükekrandataşmayıengelle*/max-width: min(680px, 92vw);
+  max-height: 92vh;
+  overflow: hidden;
 }
 
-/* ok (arrow) yukarıda görünsün */
-.tooltip--down::before {
-  content: "";
-  position: absolute;
-  top: -8px; left: 50%;
-  transform: translateX(-50%);
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid #111a2b;                 /* tooltip arka planı */
-}
-.tooltip--down::after {
-  /* ok için ince kenarlık efekti */
-  content: "";
-  position: absolute;
-  top: -9px; left: 50%;
-  transform: translateX(-50%);
-  border-left: 9x solid transparent;
-  border-right: 9px solid transparent;
-  border-bottom: 9px solid rgba(255,255,255,.12);    /* tooltip border rengi */
-  z-index: -1;
-}
-
+/* ==== Tooltip İçerikleri ==== */
 .tooltip-img {
   display: block;
-  max-width: 680px;                  /* burada senin verdiğin değere oturur */
+  width: 100%;               /* görsel genişliği tooltip’e uyar */
   height: auto;
-  border-radius: 8px;
+  max-height: 78vh;          /* çok uzunsa dikeyde taşmasın */
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .tooltip-title {
   display: block;
-  font-size: .92rem;
+  padding: 8px 12px 10px;
+  font-size: 0.95rem;
   color: #cfd6ff;
 }
 
+/* Kapat butonu */
 .tooltip-close {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  background: #ff0000;
+  top: 8px;
+  right: 8px;
+  background: #ff5252;
   border: none;
-  color: #000000;
-  font-size: 18px;
+  color: #0f0f0f;
+  font-size: 16px;
   line-height: 1;
   cursor: pointer;
-  opacity: 12;
+  border-radius: 8px;
+  padding: 6px 8px;
+  opacity: 0.85;             /* 0–1 aralığında olmalı */
+  transition: opacity .15s ease, transform .15s ease;
 }
-.tooltip-close:hover {
-  opacity: 1;
+.tooltip-close:hover { opacity: 1; transform: scale(1.03); }
+
+/* ==== Ok (arrow) - ortada üstte görünsün ==== */
+.tooltip--down::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #0f56da; /* tooltip arka planıyla aynı renk */
+}
+.tooltip--down::after {
+  /* İnce kenarlık efekti */
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 9px solid transparent;   /* 9x hatası düzeltilmiş */
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid rgba(255,255,255,.12);
+  z-index: -1;
 }
 
+/* ==== Erişilebilirlik: animasyon azaltma ==== */
+@media (prefers-reduced-motion: reduce) {
+  .tooltip,
+  .tooltip-close {
+    transition: none !important;
+  }
+}
+
+/* ==== Mobil Uyum ==== */
+@media (max-width: 820px) {
+  .hotspot { width: 42px; height: 42px; }
+  .tooltip { border-radius: 10px; }
+  .tooltip-img { max-height: 74vh; }
+  .tooltip-title { font-size: 0.92rem; }
+}
+
+@media (max-width: 480px) {
+  .hotspot { width: 36px; height: 36px; }
+  .tooltip {
+    max-width: 94vw;
+    --tooltip-shift: 8px; /* telefonda biraz daha yukarı dursun */
+  }
+  .tooltip-img { max-height: 70vh; }
+  .tooltip-title { font-size: 0.9rem; }
+}

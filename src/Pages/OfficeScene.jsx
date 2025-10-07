@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 /** İstersen burayı props veya API'den besleyebilirsin */
 const CASE_NO = "357465";
-const PHOTO_SRC = "/evidence/office.jpeg"; // public/evindence/olayana.jpeg
 // Eğer klasörün "evidence" ise: const PHOTO_SRC = "/evidence/olayana.jpeg";
 
 const DESTINATIONS = [
@@ -24,10 +23,6 @@ export default function CrimeScene() {
       <div className="cs-card">
         <div className="cs-top">
           <div className="cs-case">Dava No : {CASE_NO}</div>
-        </div>
-
-        <div className="cs-photo">
-          <img src={PHOTO_SRC} alt="Olay yeri fotoğrafı" />
         </div>
 
         <div className="cs-caption">Ulvi Plevneli'nin Okul Ofisi</div>
