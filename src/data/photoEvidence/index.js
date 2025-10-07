@@ -3,6 +3,8 @@ import { FRIDGE } from "./photo_fridge.js";
 import { KULLUK } from "./photo_kulluk.js";
 import { MASA } from "./photo_masa.js";
 import { ANTRE } from "./photo_antre.js";
+import { COP } from "./photo_cop.js";
+import { PC } from "./photo_pc.js";
 // ileride PHOTO2, PHOTO3... eklenir
 
 // slug -> record
@@ -11,6 +13,9 @@ export const PHOTO_EVIDENCES = {
   kulluk: KULLUK,
   masa: MASA,
   antre: ANTRE,
+  cop: COP,
+  pc: PC,
+  // "living-room": PHOTO1,
   // "living-room": PHOTO2,
 };
 export const PHOTO_EVIDENCES_LIST = Object.values(PHOTO_EVIDENCES);

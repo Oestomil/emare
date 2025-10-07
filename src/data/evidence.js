@@ -31,9 +31,13 @@ export const EVIDENCE = {
       "/evidence/hlklr1.jpeg",
       "/evidence/hlklr2.jpeg",
       "/evidence/hlklr3.jpeg",
+      "/evidence/hlklr4.jpeg",
 
     ],
   },
+
+ 
+
 
   EU82HNS: {
     brand: "Emare",
