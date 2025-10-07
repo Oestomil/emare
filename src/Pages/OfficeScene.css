@@ -1,0 +1,120 @@
+/* =========================================================
+   CrimeScene page (koyu tema, responsive)
+   Bu sayfa sadece kendi sınıflarını kullanır.
+   ========================================================= */
+:root{
+  --cs-bg:#0f1424;
+  --cs-panel:#1b2b5a;           /* kart çerçeve tonu */
+  --cs-panel-2:#111831;
+  --cs-text:#e9edff;
+  --cs-muted:#9aa3cc;
+  --cs-border:#273055;
+  --cs-accent:#69b6ff;
+  --cs-danger:#e21a31;
+  --cs-shadow: 0 28px 80px rgba(0,0,0,.35);
+}
+
+/* Sayfayı ortala */
+.cs-wrap{
+  min-height: 100dvh;
+  background: var(--cs-bg);
+  color: var(--cs-text);
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  align-content: start;
+  gap: 20px;
+  padding: 24px;
+}
+
+/* Orta kart */
+.cs-card{
+  width: min(740px, 92vw);
+  background: linear-gradient(180deg, rgba(27,35,84,.55), var(--cs-panel-2));
+  border: 1px solid var(--cs-panel);
+  border-radius: 14px;
+  box-shadow: var(--cs-shadow);
+  padding: 14px 14px 18px;
+}
+
+/* Üst şerit */
+.cs-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 6px 10px;
+}
+.cs-case{
+  font-weight: 700;
+  color: #c8d6ff;
+  letter-spacing: .2px;
+}
+
+/* Fotoğraf alanı */
+.cs-photo{
+  background:#0d1330;
+  border: 2px solid #1f2b58;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.cs-photo img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #101525;
+  border-radius: 2px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+
+.cs-caption{
+  text-align: center;
+  color: var(--cs-muted);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Alt butonlar */
+
+.cs-actions {
+  display: flex;              /* grid yerine flex kullan */
+  justify-content: center;    /* yatayda ortala */
+  gap: 16px;                  /* butonlar arası boşluk */
+  margin-top: 16px;           /* üstten biraz boşluk */
+}
+
+
+.cs-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--cs-border);
+  background: #12214a;
+  color: var(--cs-text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .2px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.25);
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  justify-items: center;
+}
+.cs-btn:hover{
+  background:#162961;
+  border-color:#2a3b72;
+  transform: translateY(-1px);
+}
+
+/* Mobil uyum */
+@media (max-width: 820px){
+  .cs-actions{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px){
+  .cs-actions{ grid-template-columns: 1fr; }
+}

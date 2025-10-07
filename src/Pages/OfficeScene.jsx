@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./CrimeScene.css";
+import "./OfficeScene.css";
 import { useNavigate } from "react-router-dom";
 
 /** İstersen burayı props veya API'den besleyebilirsin */
@@ -30,14 +30,14 @@ export default function CrimeScene() {
           <img src={PHOTO_SRC} alt="Olay yeri fotoğrafı" />
         </div>
 
-        <div className="cs-caption">Olay Yeri İnceleme</div>
+        <div className="cs-caption">Ulvi Plevneli'nin Okul Ofisi</div>
       </div>
 
       <div className="cs-actions">
         {DESTINATIONS.map((d) => (
-          <Link key={d.to} to={d.to} className="cs-btn">
+          <center><Link key={d.to} to={d.to} className="cs-btn">
             {d.label}
-          </Link>
+          </Link></center>
         ))}
       </div>
     </div>
