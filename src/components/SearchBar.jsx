@@ -4,6 +4,7 @@ import { resolveQuery } from "../data/failler";
 import { resolveEvidenceCode } from "../data/evidence";
 import { resolvePhotoEvidenceSlug } from "../data/photoEvidence"; // 👈 yeni
 import { resolvePdfSlug } from "../data/pdf"; // 👈 ekle
+import { resolvePicSlug } from "../data/foto"; // 👈 yeni
 
 
 export default function SearchBar({ autoFocus = true }) {
@@ -26,6 +27,12 @@ export default function SearchBar({ autoFocus = true }) {
     const photoSlug = resolvePhotoEvidenceSlug(lower);
     if (photoSlug) {
       navigate(`/photo/${photoSlug}`);
+      return;
+    }
+
+    const picSlug = resolvePicSlug(lower);
+    if (picSlug) {
+      navigate(`/pic/${picSlug}`);
       return;
     }
 

@@ -40,20 +40,7 @@ export const PDFS = [
   },
 
   // --- Görseller (JPEG/PNG/WebP vs.) ---
-  {
-    slug: "ben ölüme yürüdüm",
-    title: "Ben Ölüme Yürüdüm",
-    src: "/evidence/korkulanolmadi.jpeg",
-    note: "Kanıt fotoğrafı",
-    type: "image",
-  },
-  {
-    slug: "ben olume yurudum",
-    title: "Ben Ölüme Yürüdüm",
-    src: "/evidence/korkulanolmadi.jpeg",
-    note: "Kanıt fotoğrafı",
-    type: "image",
-  },
+
 
   // ...diğerleri
 ];

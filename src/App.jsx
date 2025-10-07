@@ -24,6 +24,7 @@ import FinalConfession from "./Pages/FinalConfession.jsx";
 import Pdf from "./Pages/Pdf.jsx";
 import CrimeScene from "./Pages/CrimeScene.jsx";
 import OfficeScene from "./Pages/OfficeScene.jsx";
+import Pic from "./Pages/PicPanel.jsx";
 
 
 export default function App() {
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/ss" element={<FinalConfession />} />
           <Route path="/olayyeri" element={<CrimeScene />} />
           <Route path="/ofis" element={<OfficeScene />} />
+          <Route path="/pic/:slug" element={<Pic />} />
 
 
 
