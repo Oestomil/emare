@@ -46,7 +46,7 @@ export const PDFS = [
     type: "pdf",
   },
 
-  {    slug: "AQPEZ",
+  {    slug: "AGPEZ",
     title: "Azize Güner 2. Sorgu",
     src: "/pdf/Azize2pdf.pdf",
     note: "A.G. 2. Sorgu Rapor",
