@@ -6,38 +6,52 @@ export const PDFS = [
   {
     slug: "azizeadli",
     title: "Azize Adli Rapor",
-    src: "/azizeadli.pdf",
+    src: "/pdf/azizeadli.pdf",
     note: "Suç Kaydı Raporu",
     type: "pdf",
   },
   {
     slug: "bedirhanadli",
     title: "Bedirhan Adli Rapor",
-    src: "/bedirhanadli.pdf",
+    src: "/pdf/bedirhanadli.pdf",
     note: "Suç Kaydı Raporu",
     type: "pdf",
   },
   {
     slug: "fundaadli",
     title: "Funda Adli Rapor",
-    src: "/fundaadli.pdf",
+    src: "/pdf/fundaadli.pdf",
     note: "Suç Kaydı Raporu",
     type: "pdf",
   },
   {
     slug: "ulviadli",
     title: "Ulvi Adli Rapor",
-    src: "/ulviadli.pdf",
+    src: "/pdf/ulviadli.pdf",
     note: "Suç Kaydı Raporu",
     type: "pdf",
   },
   {
     slug: "kamiladli",
     title: "Kamil Adli Rapor",
-    src: "/kamiladli.pdf",
+    src: "/pdf/kamiladli.pdf",
     note: "Suç Kaydı Raporu",
     type: "pdf",
   },
+
+{    slug: "USTMEL",
+    title: "Ulvi Plevneli Otopsi Raporu",
+    src: "/pdf/otopsiuzun.pdf",
+    note: "Adli Tıp Raporu",
+    type: "pdf",
+  },
+
+  {    slug: "AQPEZ",
+    title: "Azize Güner 2. Sorgu",
+    src: "/pdf/Azize2pdf.pdf",
+    note: "A.G. 2. Sorgu Rapor",
+    type: "pdf",
+  }
 
   // --- Görseller (JPEG/PNG/WebP vs.) ---
 

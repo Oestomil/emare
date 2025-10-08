@@ -36,7 +36,7 @@
   -ms-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
   -o-transform: translate(50%, calc(-90% - var(--tooltip-shift)));
   z-index: 9999;
-  background: #0f56da;
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 0;
