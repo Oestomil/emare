@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { resolveQuery } from "../data/failler";
 import { resolveEvidenceCode } from "../data/evidence";
-import { resolvePhotoEvidenceSlug } from "../data/photoEvidence"; // 👈 yeni
-import { resolvePdfSlug } from "../data/pdf"; // 👈 ekle
-import { resolvePicSlug } from "../data/foto"; // 👈 yeni
-
+import { resolvePhotoEvidenceSlug } from "../data/photoEvidence";
+import { resolvePdfSlug } from "../data/pdf";
+import { resolvePicSlug } from "../data/foto";
 
 export default function SearchBar({ autoFocus = true }) {
   const [q, setQ] = useState("");
@@ -16,60 +15,38 @@ export default function SearchBar({ autoFocus = true }) {
     const input = q.trim();
     const lower = input.toLowerCase();
 
-    // 1) Kanıt kodu mu? (DFGR2 vb.)
+    // 1) Kanıt kodu
     const code = resolveEvidenceCode(lower);
-    if (code) {
-      navigate(`/e/${code}`);
-      return;
-    }
+    if (code) { navigate(`/e/${code}`); return; }
 
-    // 2) Fotoğraflı delil mi? (slug/alias -> /photo/:id)
+    // 2) Foto delil
     const photoSlug = resolvePhotoEvidenceSlug(lower);
-    if (photoSlug) {
-      navigate(`/photo/${photoSlug}`);
-      return;
-    }
+    if (photoSlug) { navigate(`/photo/${photoSlug}`); return; }
 
+    // 2.5) Yeni PIC
     const picSlug = resolvePicSlug(lower);
-    if (picSlug) {
-      navigate(`/pic/${picSlug}`);
-      return;
-    }
+    if (picSlug) { navigate(`/pic/${picSlug}`); return; }
 
-    // 3) Video mu? (örnek: sktret / mtsh)
+    // 3) Video
     if (lower === "sktret" || lower === "mtsh") {
-      navigate(`/video/${lower}`);
-      return;
-    }
-    // 4) PDF mi?
-    const pdfSlug = resolvePdfSlug(lower);
-    if (pdfSlug) {
-      navigate(`/pdf/${pdfSlug}`);
-     return;
+      navigate(`/video/${lower}`); return;
     }
 
+    // 4) PROFİL (isim yazınca buraya düşmeli)
+    const profileSlug = resolveQuery(lower);
+    if (profileSlug) { navigate(`/p/${profileSlug}`); return; }
 
+    // 5) PDF — SADECE TAM SLUG! (örn: USTMEL, AGPEZ, ulviadli)
+    const pdfSlug = resolvePdfSlug(input); // orijinali veriyoruz ki büyük/küçük önemsiz olsun
+    if (pdfSlug) { navigate(`/pdf/${pdfSlug}`); return; }
 
-    // 4) Profil mi?
-    const slug = resolveQuery(lower);
-    if (slug) {
-      navigate(`/p/${slug}`);
-      return;
-    }
-    if (lower === "qprfc") {
-       navigate("/videofeed");
-      return;
-    }
-    if (lower === "plara") {
-    navigate("/olayyeri");
-    return;
-   }
-   
+    // 6) diğer kısayollar
+    if (lower === "qprfc") { navigate("/videofeed"); return; }
+    if (lower === "plara") { navigate("/olayyeri"); return; }
 
-    // 5) Hiçbiri değilse: sonuç yok
+    // 7) sonuç yok
     const params = new URLSearchParams({ q: lower });
     navigate(`/no-results?${params.toString()}`);
-
   }
 
   return (
@@ -83,18 +60,9 @@ export default function SearchBar({ autoFocus = true }) {
         autoFocus={autoFocus}
       />
       <button className="search-btn" type="submit" aria-label="Ara">
-        <svg
-          className="search-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          width="20"
-          height="20"
-          style={{ marginRight: 6 }}
-        >
+        <svg className="search-icon" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+             width="20" height="20" style={{ marginRight: 6 }}>
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
