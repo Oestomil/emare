@@ -58,7 +58,14 @@ export const PDFS = [
     src: "/pdf/kamil2.pdf",
     note: "Kamil Sen İfadesi",
     type: "pdf",
-  }
+  },
+
+    {    slug: "FNDHC",
+    title: "Funda R. 2. Sorgu",
+    src: "/pdf/Funda2.pdf",
+    note: "Funda R. İfadesi",
+    type: "pdf",
+  },
 
   // --- Görseller (JPEG/PNG/WebP vs.) ---
 
