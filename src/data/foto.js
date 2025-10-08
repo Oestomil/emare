@@ -4,7 +4,7 @@ export const PICS = {
   olayyeri: {
     slug: "Ben Ölüme Yürüdüm",
     title: "Gazete Küpürü",
-    src: "/evidence/korkulanolmadi.png", // senin verdiğin yol
+    src: "/gazete1.png", // senin verdiğin yol
     aliases: ["ben ölüme yürüdüm", "benölümeyürüdüm", "ben olume yurudum", "benolumeyurudum"],
     note: "Azize Güner (19) İntihar  Haberi.",
   },
