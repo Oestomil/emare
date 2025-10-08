@@ -51,6 +51,13 @@ export const PDFS = [
     src: "/pdf/Azize2pdf.pdf",
     note: "A.G. 2. Sorgu Rapor",
     type: "pdf",
+  },
+
+  {    slug: "KSMER",
+    title: "Kamil Şen 2. Sorgu",
+    src: "/pdf/kamil2.pdf",
+    note: "Kamil Sen İfadesi",
+    type: "pdf",
   }
 
   // --- Görseller (JPEG/PNG/WebP vs.) ---

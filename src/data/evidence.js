@@ -98,8 +98,28 @@ export const EVIDENCE = {
       "/evidence/krtlr3.png",
       "/evidence/krtlr4.png",
     ]
+  },
+
+  NVDSH: {
+    brand: "Emare",
+    code: "NVDSH",
+    subtitle: "Kaynak: Kamera görüntüsü • iPhone 13 Pro",
+    footnote: "Tüm hakları saklıdır.",
+    cornerNumber: "5",
+    images: [
+      "/azizebedi/1.png" ,
+      "/azizebedi/2.png",
+      "/azizebedi/3.png",
+      "/azizebedi/4.png",
+      "/azizebedi/5.png",
+      "/azizebedi/6.png",
+      "/azizebedi/7.png",
+      "/azizebedi/8.png",
+      "/azizebedi/9.png",
+      "/azizebedi/10.png",
+    ]
   }
-}
+};
 
 // ----------------------------------------------------
 // 2) Kod çözümleyici (arama çubuğu için normalize eder)
