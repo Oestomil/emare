@@ -59,7 +59,7 @@ export const EVIDENCE = {
   },
   ORTOTR: {
     brand: "Emare",
-    code: "ORTOTR",
+    code: "WETCE",
     subtitle: "Kaynak: Kamera görüntüsü • iPhone 13 Pro",
     footnote: "Tüm hakları saklıdır.",
     cornerNumber: "3",

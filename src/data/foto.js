@@ -16,7 +16,14 @@ export const PICS = {
     src: "/images/psvfb.jpeg",
     aliases: ["psvfb", "psv fb", "psv-fb"],
   },
+  GAZETE2: {
+    slug: "TRSGZ",
+    title: "Gazete Küpürü 3",
+    src: "/images/tursu.png",
+    aliases: ["trsgz", "trs-gz", "trsg z"],
+  },
 };
+
 
 // Türkçe karakter ve boşluk normalize
 function normalize(str) {
