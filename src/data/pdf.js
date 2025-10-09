@@ -11,6 +11,7 @@ export const PDFS = [
   { slug: "AGPEZ",  title: "Azize Güner 2. Sorgu",        src: "/pdf/Azize2pdf.pdf",  note: "A.G. 2. Sorgu",  type: "pdf" },
   { slug: "KSMER",  title: "Kamil Şen 2. Sorgu",          src: "/pdf/kamil2.pdf",     note: "K.Ş. İfade",     type: "pdf" },
   { slug: "FNDHC",  title: "Funda R. 2. Sorgu",           src: "/pdf/Funda2.pdf",     note: "F.R. İfade",     type: "pdf" },
+  { slug: "BDJJA",  title: "Bedirhan M. İfade",           src: "/pdf/Bedirhan2.pdf",   note: "B.M. İfade",     type: "pdf" },
 ];
 
 // tekil pdf bulucu
