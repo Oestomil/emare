@@ -11,7 +11,7 @@ import Profile from "./Pages/Profile.jsx";
 import EvidencePage from "./Pages/EvidencePage.jsx";
 import GatePage from "./Pages/GatePage.jsx";
 import GatePanel from "./Pages/GatePanel.jsx";
-import PhotoPanel from "./Pages/PhotoPanel.jsx";  
+
 import Insta from "./Pages/Insta.jsx";
 import InstaHotspots from "./Pages/InstaHotspots.jsx";
 import BirinciTelefon from "./Pages/BirinciTelefon.jsx";
@@ -79,7 +79,7 @@ export default function App() {
         <Route path="/e/:slug" element={<EvidencePage />} />
         <Route path="/gate" element={<GatePage />} />
         <Route path="/gate-panel" element={<GatePanel />} />
-        <Route path="/photo/:photoId" element={<PhotoPanel />} />
+
         <Route path="/i" element={<InstaGo />} />
         <Route path="/i/:name" element={<InstaGo />} />
         <Route path="/pdf/:slug" element={<Pdf />} />
