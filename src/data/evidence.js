@@ -57,7 +57,7 @@ export const EVIDENCE = {
 
     ],
   },
-  ORTOTR: {
+  WETCE: {
     brand: "Emare",
     code: "WETCE",
     subtitle: "Kaynak: Kamera görüntüsü • iPhone 13 Pro",
@@ -86,9 +86,9 @@ export const EVIDENCE = {
     ],
   },
 
-  KRTTLR: {
+  PSAE2: {
     brand: "Emare",
-    code: "KRTTLR",
+    code: "PSAE2",
     subtitle: "Kaynak: Telefon Kayıtları • Cihaz: Google Pixel 6",
     footnote: "Gizli – yalnızca iç kullanım için.",
     cornerNumber: "8",

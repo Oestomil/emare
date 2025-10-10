@@ -21,7 +21,14 @@ export const PICS = {
     title: "Gazete Küpürü 3",
     src: "/images/tursu.png",
     aliases: ["trsgz", "trs-gz", "trsg z"],
+
   },
+  msd32: {
+    slug: "MSD32",
+    title: "Gazete Küpürü 4",
+    src: "/images/msd32.png",
+    aliases: ["msd32", "msd 32"],
+},
 };
 
 

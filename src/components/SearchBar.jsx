@@ -5,6 +5,7 @@ import { resolveEvidenceCode } from "../data/evidence";
 import { resolvePhotoEvidenceSlug } from "../data/photoEvidence";
 import { resolvePdfSlug } from "../data/pdf";
 import { resolvePicSlug } from "../data/foto";
+import { resolveVideoSlug } from "../data/video";
 
 export default function SearchBar({ autoFocus = true }) {
   const [q, setQ] = useState("");
@@ -27,10 +28,7 @@ export default function SearchBar({ autoFocus = true }) {
     const picSlug = resolvePicSlug(lower);
     if (picSlug) { navigate(`/pic/${picSlug}`); return; }
 
-    // 3) Video
-    if (lower === "sktret" || lower === "mtsh") {
-      navigate(`/video/${lower}`); return;
-    }
+
 
     // 4) PROFİL (isim yazınca buraya düşmeli)
     const profileSlug = resolveQuery(lower);
@@ -40,9 +38,16 @@ export default function SearchBar({ autoFocus = true }) {
     const pdfSlug = resolvePdfSlug(input); // orijinali veriyoruz ki büyük/küçük önemsiz olsun
     if (pdfSlug) { navigate(`/pdf/${pdfSlug}`); return; }
 
+   const videoSlug = resolveVideoSlug(lower);
+    if (videoSlug) {
+       navigate(`/video/${videoSlug}`);
+     return;
+   }
+
     // 6) diğer kısayollar
     if (lower === "qprfc") { navigate("/videofeed"); return; }
     if (lower === "plara") { navigate("/olayyeri"); return; }
+    if (lower === "iuahab") { navigate("/pdf/kamiladli"); return; }
 
     // 7) sonuç yok
     const params = new URLSearchParams({ q: lower });

@@ -36,17 +36,23 @@ const ALLOW_ENTRIES = [
   // Umut
   ["Kamil Şen", "kamil-sen"],
   ["Kamil Sen", "kamil-sen"],
+  ["KS202505X48", "kamil-sen"],
 
 
   // Azize
   ["azize güner", "azize-guner"],
   ["azize guner", "azize-guner"],
+  ["AG202505X46", "azize-guner"],
 
   // Funda
   ["funda plevneli", "funda-plevneli"],
+  ["funda plevneli", "funda-plevneli"],
+  ["FP202505X45", "funda-plevneli"],
 
   // Bedirhan
   ["bedirhan mardinli", "bedirhan-mardinli"],
+  ["bedirhan mardinli", "bedirhan-mardinli"],
+  ["BM202505X47", "bedirhan-mardinli"],
 
   ["Ulvi Plevneli", "ulvi-plevneli"]
 ];
@@ -123,6 +129,7 @@ export const PROFILES = {
       },
 
     ],
+    alliases: ["kamil şen", "kamil sen", "kamil-sen", "KS202505X48"],
     
   },
 
@@ -158,6 +165,7 @@ export const PROFILES = {
           "A.G. (19), genç yaşta hamilelik şüphesiyle kendi canına kıymak istedi. Aşırı dozda antidepresan içen A.G. hastaneye yurt arkadaşları tarafından yetiştirilerek, son anda hayata döndürüldü.",
       },
     ],
+    alliases: ["azize güner", "azize guner", "azize-guner", "AG202505X46"]
   },
 
   "funda-plevneli": {
@@ -191,6 +199,7 @@ export const PROFILES = {
           "Mamakta dördüncüsü düzenlenen Turşu Güzeli yarışmasının bu seneki kazanını Funda Şen, dünya barışı dilediğini söyledi.",
       },
     ],
+    alliases: ["funda plevneli", "funda plevneli", "funda-plevneli", "FP202505X45"]
   },
 
   "bedirhan-mardinli": {
@@ -216,6 +225,7 @@ export const PROFILES = {
           "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
       },
     ],
+    alliases: ["bedirhan mardinli", "bedirhan mardinli", "bedirhan-mardinli", "BM202505X47"]
   },
     "ulvi-plevneli": {
     slug: "ulvi-plevneli",

@@ -1,22 +1,48 @@
-// src/Pages/VideoPage.jsx
-import { useParams } from "react-router-dom";
-import "./Video.css";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { getVideoBySlug } from "../data/video";
+import styles from "./VideoPage.module.css";
 
 export default function VideoPage() {
-  const { videoId } = useParams();
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const video = getVideoBySlug(slug);
+
+  if (!video) {
+    return (
+      <div className={styles.wrap}>
+        <h1>Video bulunamadı</h1>
+        <button onClick={() => navigate(-1)} className={styles.btn}>
+          ← Geri
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="video-wrap">
-      <div className="video-card">
-        <div className="card-glow" />
-        <h2 style={{ marginBottom: "1rem" }}>Video: {videoId}.mp4</h2>
+    <div className={styles.wrap}>
+      <div className={styles.header}>
+        <button onClick={() => navigate(-1)} className={styles.btn}>← Geri</button>
+        <h1 className={styles.title}>{video.title}</h1>
+        <div className={styles.spacer} />
+      </div>
 
-        <div className="video-frame">
-          <video className="video-el" controls autoPlay>
-            <source src={`/videos/${videoId}.mp4`} type="video/mp4" />
-            Tarayıcınız video oynatmayı desteklemiyor.
-          </video>
-        </div>
+      <div className={styles.player}>
+        <video
+          src={video.src}
+          controls
+          preload="metadata"
+          className={styles.video}
+        />
+      </div>
+
+      <div className={styles.note}>{video.note}</div>
+
+      {/* Örn. başka videoya link */}
+      <div className={styles.footer}>
+        <Link to="/video/SKTRET" className={styles.link}>Sokak Röportajı</Link>
+        <Link to="/video/MTSH" className={styles.link}>Mahkeme Kaydı</Link>
+        <Link to="/video/V5WQS" className={styles.link}>112 Acil Çağrı Arama Kaydı</Link>
+
       </div>
     </div>
   );
