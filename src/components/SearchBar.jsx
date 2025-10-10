@@ -46,8 +46,9 @@ export default function SearchBar({ autoFocus = true }) {
 
     // 6) diğer kısayollar
     if (lower === "qprfc") { navigate("/videofeed"); return; }
-    if (lower === "plara") { navigate("/olayyeri"); return; }
+    if (lower === "emare") { navigate("/olayyeri"); return; }
     if (lower === "iuahab") { navigate("/pdf/kamiladli"); return; }
+
 
     // 7) sonuç yok
     const params = new URLSearchParams({ q: lower });
