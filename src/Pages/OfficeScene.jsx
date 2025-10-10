@@ -9,7 +9,7 @@ const PHOTO_SRC = "/evidence/offie.jpeg"; // public/evindence/olayana.jpeg
 
 const DESTINATIONS = [
   { label: "Ofis Görünüm 1", to: "/scene/ofis-cop" },
-  { label: "Ofis Görünüm 2", to: "/photo/pc" },
+  { label: "Ofis Görünüm 2", to: "/scene/pc" },
 
 ];
 

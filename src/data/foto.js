@@ -29,6 +29,18 @@ export const PICS = {
     src: "/images/msd32.png",
     aliases: ["msd32", "msd 32"],
 },
+  drg21: {
+    slug: "DRG21",
+    title: "Drug Test Raporu",
+    src: "/images/drg21.png",
+    aliases: ["drg21", "drg 21"],
+},
+  asm15: {
+    slug: "15ASM",
+    title: "Plamingo Slip",
+    src: "/images/15asm.png",
+    aliases: ["15asm", "15 asm", "15 asım"],
+},
 };
 
 
