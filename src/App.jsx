@@ -51,7 +51,7 @@ export default function App() {
       {!hideHeader && (
         <header className="header">
           
-          <Link to="/search?case=313131" aria-label="Emare anasayfa">
+          <Link to="/search?case=30912025" aria-label="Emare anasayfa">
             <img
               src="/banner.svg"
               alt="Emare"

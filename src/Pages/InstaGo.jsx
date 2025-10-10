@@ -41,7 +41,7 @@ export default function InstaGo() {
     <div className="ig-wrap">
       <div className="ig-card">
         <div className="ig-head">
-          <Link to="/search?case=313131" className="ig-back">← Geri</Link>
+          <Link to="/search?case=30912025" className="ig-back">← Geri</Link>
           <h1>Instagram’a Git</h1>
         </div>
 

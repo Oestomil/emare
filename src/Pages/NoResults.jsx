@@ -15,7 +15,7 @@ return (
 <p><em>“{q}”</em> için bir kayıt bulunamadı.</p>
 <div className="sub">Daha iyi bir arama için başa dönün.</div>
 <div style={{marginTop:14}}>
-<Link className="btn" to="/">Anasayfaya dön</Link>
+<Link className="btn" to="/search?case=30912025">Anasayfaya dön</Link>
 </div>
 </div>
 )

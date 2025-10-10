@@ -1,7 +1,7 @@
 // src/data/foto.js
 // Basit bir sözlük yapısı: slug -> { title, src, aliases?, note? }
 export const PICS = {
-  olayyeri: {
+  benolumeyurudum: {
     slug: "Ben Ölüme Yürüdüm",
     title: "Gazete Küpürü",
     src: "/gazete1.png", // senin verdiğin yol
