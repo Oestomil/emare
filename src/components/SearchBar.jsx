@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { resolveQuery } from "../data/failler";
 import { resolveEvidenceCode } from "../data/evidence";
-import { resolvePhotoEvidenceSlug } from "../data/photoEvidence";
+
 import { resolvePdfSlug } from "../data/pdf";
 import { resolvePicSlug } from "../data/foto";
 import { resolveVideoSlug } from "../data/video";
@@ -20,9 +20,6 @@ export default function SearchBar({ autoFocus = true }) {
     const code = resolveEvidenceCode(lower);
     if (code) { navigate(`/e/${code}`); return; }
 
-    // 2) Foto delil
-    const photoSlug = resolvePhotoEvidenceSlug(lower);
-    if (photoSlug) { navigate(`/photo/${photoSlug}`); return; }
 
     // 2.5) Yeni PIC
     const picSlug = resolvePicSlug(lower);
