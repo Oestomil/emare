@@ -23,6 +23,8 @@ import CrimeScene from "./Pages/CrimeScene.jsx";
 import OfficeScene from "./Pages/OfficeScene.jsx";
 import Pic from "./Pages/PicPanel.jsx";
 import VideoPanel from "./Pages/VideoPage.jsx";
+import SceneHotspotPage from "./Pages/SceneHotspotPage.jsx";
+import LabScene from "./Pages/LabScene.jsx";
 
 
 export default function App() {
@@ -91,6 +93,8 @@ export default function App() {
         <Route path="/s/gate" element={<Navigate to="/gate" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/video/:slug" element={<VideoPanel />} />
+        <Route path="/scene/:slug" element={<SceneHotspotPage />} />
+        <Route path="/lab" element={<LabScene />} />
       </Routes>
     </div>
   );

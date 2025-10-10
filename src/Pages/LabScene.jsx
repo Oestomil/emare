@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
-import "./OfficeScene.css";
+import "./CrimeScene.css";
 import { useNavigate } from "react-router-dom";
 
 /** İstersen burayı props veya API'den besleyebilirsin */
 const CASE_NO = "357465";
-const PHOTO_SRC = "/evidence/offie.jpeg"; // public/evindence/olayana.jpeg
+const PHOTO_SRC = "/evidence/lab.jpg"; // public/evindence/olayana.jpeg
 // Eğer klasörün "evidence" ise: const PHOTO_SRC = "/evidence/olayana.jpeg";
 
 const DESTINATIONS = [
-  { label: "Ofis Görünüm 1", to: "/scene/ofis-cop" },
+  { label: "Tatil Bileti", to: "/photo/bilet" },
   { label: "Ofis Görünüm 2", to: "/photo/pc" },
+  { label: "Buruşuk Kağıt", to: "/scene/ofis-cop" },
 
 ];
 
-export default function OfficeScene() {
+export default function LabScene() {
   const navigate = useNavigate();
   return (
     
@@ -35,10 +36,14 @@ export default function OfficeScene() {
 
       <div className="cs-actions">
         {DESTINATIONS.map((d) => (
-          <center><Link key={d.to} to={d.to} className="cs-btn">
-            {d.label}
-          </Link></center>
-        ))}
+        <center key={d.to}>
+          <Link to={d.to} className="cs-btn">
+           {d.label}
+           </Link>
+          </center>
+          ))}
+
+
       </div>
     </div>
   );

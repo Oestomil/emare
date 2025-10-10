@@ -8,10 +8,11 @@ const PHOTO_SRC = "/evidence/olayana.jpeg"; // public/evindence/olayana.jpeg
 // Eğer klasörün "evidence" ise: const PHOTO_SRC = "/evidence/olayana.jpeg";
 
 const DESTINATIONS = [
-  { label: "Olay yeri 1", to: "/photo/fridge" },
-  { label: "Olay yeri 2", to: "/photo/kulluk" },
-  { label: "Olay yeri 3", to: "/photo/masa" },
-  { label: "Olay yeri 4", to: "/photo/antre" },
+  { label: "Olay yeri 1", to: "/scene/fridge" },
+  { label: "Olay yeri 2", to: "/scene/kulluk" },
+  { label: "Olay yeri 3", to: "/scene/masa" },
+  { label: "Olay yeri 4", to: "/scene/antre" },
+  { label: "Ofis", to: "/ofis" },
 ];
 
 export default function CrimeScene() {

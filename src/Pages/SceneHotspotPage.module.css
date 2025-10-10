@@ -1,0 +1,148 @@
+* { -webkit-tap-highlight-color: transparent; }
+
+.wrap {
+  min-block-size: 100dvh;
+  padding: 12px clamp(10px, 4vw, 16px) max(12px, env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding-top: max(0px, env(safe-area-inset-top));
+}
+.title { text-align: center; font-size: clamp(18px, 2.8vw, 24px); }
+.spacer { inline-size: 32px; }
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  background: #0f56da;
+  color: #fff;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.btn:hover { filter: brightness(0.95); }
+
+/* Dış çerçeve süsleri burada: bu katmanda padding/border olabilir */
+.frame {
+  inline-size: min(100%, var(--stage-max, 1280px));
+  margin-inline: auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  background: #0b1020;
+}
+
+/* Gerçek hizalama alanı: img ile birebir örtüşür, PADDING YOK! */
+.imgBox {
+  position: relative;
+  inline-size: 100%;
+  /* block-size otomatik: img ne kadar ise o kadar */
+}
+
+.base {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  user-select: none;
+  pointer-events: none; /* üstündeki hotspotlar tıklansın */
+  will-change: filter;
+}
+.baseBlur {
+  filter: blur(4px) brightness(0.92);
+  transition: filter 150ms ease;
+}
+
+/* Hotspot — yüzde koordinatlar artık imgBox referanslı */
+.hotspot {
+  position: absolute;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border: #0f56da 2px solid;
+  touch-action: manipulation;
+}
+@media (hover: hover) {
+  .hotspot:hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    outline: 2px dashed rgba(0, 153, 255, 0.6);
+    border-radius: 6px;
+  }
+}
+
+/* Dokunma hedefini büyütme */
+.tapPad {
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: clamp(40px, 8vw, 56px);
+  block-size: clamp(40px, 8vw, 56px);
+}
+
+/* Önde PNG (panelsiz) */
+.float {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  pointer-events: auto;
+  padding: 6px;
+}
+
+.overlayImg {
+  inline-size: 100%;
+  max-inline-size: min(var(--ovw, 70vw), var(--opx, 900px));
+  block-size: auto;
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
+}
+
+@media (max-width: 768px) {
+  .overlayImg {
+    max-inline-size: min(92vw, 90svw);
+    max-block-size: 76svh;
+    object-fit: contain;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .overlayImg {
+    max-inline-size: min(80vw, 70svh);
+    max-block-size: 70svh;
+  }
+}
+
+/* Kapat butonu */
+.close {
+  position: absolute;
+  inset-block-start: max(-4px, calc(-4px + env(safe-area-inset-top)));
+  inset-inline-end: -4px;
+  inline-size: 36px;
+  block-size: 36px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.58);
+  color: #fff;
+  font-size: 20px;
+  line-height: 36px;
+  cursor: pointer;
+}
+.close:hover { background: rgba(0,0,0,0.72); }
+
+/* fallback */
+.miss { min-block-size: 60dvh; display: grid; place-items: center; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .baseBlur { transition: none; }
+}
