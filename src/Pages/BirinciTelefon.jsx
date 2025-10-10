@@ -17,7 +17,7 @@ export default function BirinciTelefon() {
       </section>
 
       <main className={styles.cards}>
-        <button className={styles.card} onClick={() => navigate("/e/ORTOTR")}>
+        <button className={styles.card} onClick={() => navigate("/e/WETCE")}>
           <span>Azize Güner ile mesajlaşması</span>
         </button>
         <button className={styles.card} onClick={() => navigate("/e/EU82HNS")}>
