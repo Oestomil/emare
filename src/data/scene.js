@@ -130,14 +130,6 @@ export const SCENES = {
       },
     ],
     },
-    "pc": {
-    title: "Ofis Görünüm 2",
-    main: "/evidence/office.jpeg", // 1280x720 fotoğraf
-    hotspots: [
-        { id: "b", x: 75, y: 70, img: "/evidence/photo5/hediye.jpg", label: "Detay 1" },
-        { id: "c", x: 25, y: 20, img: "/evidence/photo5/ataturk.png", label: "Detay 2" },
-    ],
-    },
     "bilet": {
     title: "bilet",
     base: "/de/bilet.png", // public içine koy
@@ -243,7 +235,37 @@ export const SCENES = {
         },
       },
     ],
+        },
+        "pc": {
+    title: "Ofis Bilgisayarı",
+    base: "/evidence/office.jpeg", // public içine koy
+    maxWidth: 1280,               // sahnenin genişlik sınırı (px)
+    hotspots: [
+        {
+        id: "detail1",
+        label: "Detay 1",
+        rect: { x: 75, y: 70, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/evidence/photo5/hediye.jpg", // arkaplansız PNG
+            alt: "Detay 1",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Detay 1 açıklaması",  
+        }, },
+        {
+        id: "detail2",
+        label: "Detay 2",
+        rect: { x: 25, y: 20, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/evidence/photo5/ataturk.png", // arkaplansız PNG
+            alt: "Detay 2",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Detay 2 açıklaması",  
         }
+        }
+        ],
+    },
   };
 
 
