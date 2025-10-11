@@ -20,6 +20,12 @@ export const VIDEOS = [
     src: "/videos/gatex.mp4",
     note: "Apartman girişi kamera görüntüsü",
   },
+  {
+    slug: "ENKHG",
+    title: "Kamil Şen Story Kaydı",
+    src: "/videos/eniste.mp4",
+    note: "Kamil Şen'in sosyal medya story kaydı",
+  },
 ];
 
 // Tekil getir

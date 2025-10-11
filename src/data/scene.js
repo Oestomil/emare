@@ -138,11 +138,114 @@ export const SCENES = {
         { id: "c", x: 25, y: 20, img: "/evidence/photo5/ataturk.png", label: "Detay 2" },
     ],
     },
+    "bilet": {
+    title: "bilet",
+    base: "/de/bilet.png", // public içine koy
+    maxWidth: 1280,               // sahnenin genişlik sınırı (px)
+    hotspots: [
+        {
+        id: "detail1",
+        label: "Funda Parmak İzi",
+        rect: { x: 15, y: 50, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+          overlay: { 
+              src: "/fundaparmak.jpg", // arkaplansız PNG
+              alt: "Funda Parmak İzi",
+              maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+              maxPx: 900,    // masaüstü sınırı
+              caption: "Funda'nın Parmak İzi",
+          }
+        },
+        {
+        id: "detail2",
+        label: "Azize Parmak İzi",
+        rect: { x: 30, y: 65, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        overlay: { 
+            src: "/azizeparmak.jpg", // arkaplansız PNG
+            alt: "Azize Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Azize'nin Parmak İzi",
+        },
+      },
+        {
+        id: "detail3",
+        label: "Ulvi Parmak İzi",
+        rect: { x: 70, y: 35, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/ulviparmak.jpg", // arkaplansız PNG
+            alt: "Ulvi Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Ulvi'nin Parmak İzi",
+        },},
+        {
+           id: "detail4",
+        label: "Tatil Turu Personel Parmak İzi",
+        rect: { x: 70, y: 50, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla 
+        overlay: { 
+            src: "/tur.svg", // arkaplansız PNG
+            alt: "Tatil Turu Personel Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Tatil Turu Personel Parmak İzi",
 
-    
+      },
+    },
 
+      ],
+    },
+    "knf33": {
+    title: "Bicak",
+    base: "/de/bicak.jpeg", // public içine koy
+    maxWidth: 1280,               // sahnenin genişlik sınırı (px)
+    hotspots: [
+        { 
+        id: "detail1",
+        label: "Kamil Şen Parmak İzi",
+        rect: { x: 45, y: 80, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/kamilparmak.jpg", // arkaplansız PNG
+            alt: "Kamil Şen Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Kamil Şen'in Parmak İzi",
+        }
+        },
 
-};
+    ]},
+    "siir": {
+    title: "Şiir",
+    base: "/de/kgt.png", // public içine koy
+    maxWidth: 1280,               // sahnenin genişlik sınırı (px)
+    hotspots: [
+        {
+        id: "detail1",
+        label: "Funda Parmak İzi",
+        rect: { x: 15, y: 15, w: 10, h: 20 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/fundaparmak.jpg", // arkaplansız PNG
+            alt: "Funda Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Funda'nın Parmak İzi",
+        }
+        },
+        {
+        id: "detail2",
+        label: "Ulvi Parmak İzi",
+        rect: { x: 10, y: 65, w: 10, h: 20 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/ulviparmak.jpg", // arkaplansız PNG
+            alt: "Ulvi Parmak İzi",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Ulvi'nin Parmak İzi",
+        },
+      },
+    ],
+        }
+  };
+
 
 // Yardımcı: sahneyi slug ile getir
 export function getScene(slug) {

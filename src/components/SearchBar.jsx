@@ -45,6 +45,9 @@ export default function SearchBar({ autoFocus = true }) {
     if (lower === "qprfc") { navigate("/videofeed"); return; }
     if (lower === "emare") { navigate("/olayyeri"); return; }
     if (lower === "iuahab") { navigate("/pdf/kamiladli"); return; }
+    if (lower === "lab-1") { navigate("/lab"); return; }
+    if (lower === "KNF33") { navigate("/scene/knF33"); return; }
+    if (lower === "knf33") { navigate("/scene/knf33"); return; }
 
 
     // 7) sonuç yok

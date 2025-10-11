@@ -8,9 +8,8 @@ const PHOTO_SRC = "/evidence/lab.jpg"; // public/evindence/olayana.jpeg
 // Eğer klasörün "evidence" ise: const PHOTO_SRC = "/evidence/olayana.jpeg";
 
 const DESTINATIONS = [
-  { label: "Tatil Bileti", to: "/photo/bilet" },
-  { label: "Ofis Görünüm 2", to: "/photo/pc" },
-  { label: "Buruşuk Kağıt", to: "/scene/ofis-cop" },
+  { label: "Tatil Bileti", to: "/scene/bilet" },
+  { label: "Buruşuk Kağıt", to: "/scene/siir" },
 
 ];
 
