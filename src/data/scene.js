@@ -46,7 +46,7 @@ export const SCENES = {
  },
  "fridge": {
     title: "Buzdolabı",
-    base: "/evidence/photo1/fridge.jpeg", // public içine koy
+    base: "/evidence/photo1/fridge.png", // public içine koy
     maxWidth: 1280,               // sahnenin genişlik sınırı (px)
     hotspots: [
       {
