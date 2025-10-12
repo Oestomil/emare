@@ -22,6 +22,23 @@ export const EVIDENCE = {
     ],
   },
 
+  BMKLJ: {
+    brand: "Emare",
+    code: "BMKLJ",
+    subtitle: "Kaynak: Arşiv • Cihaz: iPhone 13",
+    cornerNumber: "6",
+    images: [
+      "/hop/1.png",
+      "/hop/2.png",
+      "/hop/3.png",
+      "/hop/4.png",
+      "/hop/5.png",
+      "/hop/6.png",
+      "/hop/7.png",
+      "/hop/8.png",
+    ],
+  },
+
   HLKLR: {
     brand: "Emare",
     code: "HLKLR",

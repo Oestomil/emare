@@ -1,17 +1,21 @@
-/* Dokunmatik parmak izi vurgusunu kaldır */
+/* dokunmatik parmak izi */
 * { -webkit-tap-highlight-color: transparent; }
 
-/* Genel düzen */
+/* tema ve iskelet */
 .wrap {
+  --fg: #cfe1ff;
+  --brand: #0f56da;
+  --bg: #0c1320;
+
   min-block-size: 100dvh;
   padding: 12px clamp(10px, 4vw, 16px) max(12px, env(safe-area-inset-bottom));
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 12px;
+  overscroll-behavior: contain;
 
-  /* Tema renkleri */
-  --fg: #0059ff;   /* genel yazı rengi */
-  --bg: #0c1320;   /* arka plan */
+  background: var(--bg);
+  color: var(--fg);
 }
 
 .header {
@@ -21,21 +25,30 @@
   gap: 10px;
   padding-top: max(0px, env(safe-area-inset-top));
 }
-.title { text-align: center; font-size: clamp(18px, 2.8vw, 24px); }
+
+.title {
+  text-align: center;
+  font-size: clamp(18px, 2.6vw, 24px);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .spacer { inline-size: 32px; }
 
 .btn {
   padding: 8px 12px;
   border-radius: 10px;
   border: none;
-  background: #0f56da;
+  background: var(--brand);
   color: #fff;
   cursor: pointer;
   touch-action: manipulation;
+  font-weight: 600;
 }
 .btn:hover { filter: brightness(0.95); }
 
-/* Dış çerçeve */
+/* sahne çerçevesi */
 .frame {
   inline-size: min(100%, var(--stage-max, 1280px));
   margin-inline: auto;
@@ -43,21 +56,30 @@
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0,0,0,0.25);
   background: #0b1020;
+
+  /* ekran yüksekliğine adaptif sınır (mobil için header yüksekliğini düş) */
+  max-block-size: calc(100svh - var(--header-h, 0px) - max(12px, env(safe-area-inset-bottom)));
+}
+@supports not (height: 100svh) {
+  .frame {
+    max-block-size: calc(100dvh - var(--header-h, 0px) - max(12px, env(safe-area-inset-bottom)));
+  }
 }
 
-/* Görsel alanı */
+/* base görüntü alanı */
 .imgBox {
   position: relative;
   inline-size: 100%;
+  max-block-size: inherit;
 }
 
+/* taban görsel */
 .base {
   display: block;
   inline-size: 100%;
   block-size: auto;
   user-select: none;
   pointer-events: none;
-  will-change: filter;
   background: var(--bg);
 }
 .baseBlur {
@@ -65,7 +87,7 @@
   transition: filter 150ms ease;
 }
 
-/* Hotspot */
+/* hotspot alanı - yüzde tabanlı */
 .hotspot {
   position: absolute;
   border: none;
@@ -73,23 +95,39 @@
   cursor: pointer;
   touch-action: manipulation;
 }
+
+/* klavye ile odak görünürlüğü */
+.hotspot:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* fare varsa hover göstergesi */
 @media (hover: hover) {
   .hotspot:hover::after {
     content: "";
     position: absolute;
     inset: 0;
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
     border-radius: 6px;
   }
 }
+
+/* dokunmatik rahatlık pedi */
 .tapPad {
   position: absolute;
   inset: 50%;
   transform: translate(-50%, -50%);
-  inline-size: clamp(40px, 8vw, 56px);
-  block-size: clamp(40px, 8vw, 56px);
+  inline-size: clamp(40px, 10vw, 72px);
+  block-size: clamp(40px, 10vw, 72px);
 }
 
-/* Float (ön plan PNG ve açıklama alanı) */
+/* overlay konteyner (PC: merkez) */
 .float {
   position: absolute;
   inset-inline-start: 50%;
@@ -101,32 +139,37 @@
   gap: 8px;
   pointer-events: auto;
   padding: 6px;
-  color: inherit; /* caption kendi rengini belirlesin */
+  color: inherit;
 }
 
+/* overlay görsel */
 .overlayImg {
   inline-size: 100%;
   max-inline-size: min(var(--ovw, 70vw), var(--opx, 900px));
   block-size: auto;
+  max-block-size: 70svh;      /* PC’de rahat okuma */
+  object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
   filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
 }
 
+/* mobilde biraz daha kısa */
 @media (max-width: 768px) {
   .overlayImg {
     max-inline-size: min(92vw, 90svw);
-    max-block-size: 76svh;
-    object-fit: contain;
-  }
-}
-@media (max-height: 500px) and (orientation: landscape) {
-  .overlayImg {
-    max-inline-size: min(80vw, 70svh);
-    max-block-size: 70svh;
+    max-block-size: 62svh;
   }
 }
 
-/* Kapat butonu */
+/* çok alçak yatay ekranlarda */
+@media (max-height: 500px) and (orientation: landscape) {
+  .overlayImg {
+    max-inline-size: min(80vw, 70svh);
+    max-block-size: 58svh;
+  }
+}
+
+/* kapat butonu */
 .close {
   position: absolute;
   inset-block-start: max(-4px, calc(-4px + env(safe-area-inset-top)));
@@ -143,29 +186,83 @@
 }
 .close:hover { background: rgba(0,0,0,0.72); }
 
-/* === Detay açıklaması (tam siyah balon) === */
+/* açıklama balonu (tam siyah) */
 .caption {
   margin-top: 8px;
   padding: 10px 14px;
   border-radius: 10px;
-  background: #000000 !important;   /* zemin siyah */
-  color: #fff !important;         /* yazı beyaz */
+  background: #000;
+  color: #fff;
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
   max-width: min(var(--ovw, 70vw), var(--opx, 900px));
+  max-block-size: 24svh;   /* uzun metinde iç scroll */
+  overflow: auto;
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
 
-/* Hata/fallback ekranı */
-.miss { 
-  min-block-size: 60dvh; 
-  display: grid; 
-  place-items: center; 
-  gap: 12px; 
+/* eksik sahne */
+.miss {
+  min-block-size: 60dvh;
+  display: grid;
+  place-items: center;
+  gap: 12px;
 }
 
-/* Hareket azaltımı */
+/* === MOBİL: TAM EKRAN OVERLAY === */
+@media (max-width: 768px) {
+  .frame {
+    inline-size: 100svw;
+    max-block-size: calc(100svh - var(--header-h, 0px) - max(12px, env(safe-area-inset-bottom)));
+    margin-inline: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .imgBox { max-block-size: inherit; }
+
+  .base { inline-size: 100%; block-size: auto; }
+
+  /* Overlay mobilde gerçek fullscreen modal gibi */
+  .float {
+    position: fixed;
+    inset: 0;
+    transform: none;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: clamp(10px, 3vw, 16px);
+    background: rgba(0,0,0,0.45);
+  }
+
+  .overlayImg {
+    max-inline-size: 100svw;
+    max-block-size: calc(100svh - 120px); /* üstte kapat + altta caption payı */
+    object-fit: contain;
+  }
+
+  .caption {
+    font-size: clamp(15px, 2.2vw, 17px);
+    max-inline-size: 100svw;
+    max-block-size: 30svh;
+    overflow: auto;
+    background: rgba(0,0,0,0.92);
+  }
+
+  .close {
+    position: fixed;
+    inset-block-start: max(10px, calc(10px + env(safe-area-inset-top)));
+    inset-inline-end: 10px;
+    inline-size: 44px;
+    block-size: 44px;
+    font-size: 24px;
+    line-height: 44px;
+    background: rgba(0,0,0,0.65);
+  }
+}
+
+/* hareket azaltımı */
 @media (prefers-reduced-motion: reduce) {
   .baseBlur { transition: none; }
 }

@@ -66,7 +66,7 @@ export const SCENES = {
         label: "Detay 2",
         rect: { x: 35, y: 25, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
         overlay: {
-            src: "/evidence/photo1/detail2.jpeg", // arkaplansız PNG
+            src: "/evidence/photo1/detail2.png", // arkaplansız PNG
             alt: "Detay 2",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
@@ -231,22 +231,21 @@ export const SCENES = {
     hotspots: [
         {
         id: "detail1",
-        label: "Detay 1",
-        rect: { x: 75, y: 70, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        label: "Bardak",
+        rect: { x: 70, y: 65, w: 10, h: 12 }, // yaklaşık — devtools ile ayarla
         overlay: {
-            src: "/evidence/photo5/hediye.jpg", // arkaplansız PNG
-            alt: "Detay 1",
+            src: "/evidence/photo5/hediye.png", // arkaplansız PNG
+            alt: "Bardak",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Birşeyler ters gibi geliyor bana...",  
         }, },
         {
         id: "detail2",
-        label: "Detay 2",
-        rect: { x: 25, y: 20, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        label: "Atatürk Resmi",
+        rect: { x: 15, y: 10, w: 20, h: 30 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/evidence/photo5/ataturk.png", // arkaplansız PNG
-            alt: "Detay 2",
+            alt: "Atatürk resmi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
             caption: "Başbuğ o7",  

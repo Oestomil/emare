@@ -4,7 +4,7 @@ export const PICS = {
   benolumeyurudum: {
     slug: "Ben Ölüme Yürüdüm",
     title: "Gazete Küpürü",
-    src: "/gazete1.png", // senin verdiğin yol
+    src: "/gazete1.jpg", // senin verdiğin yol
     aliases: ["ben ölüme yürüdüm", "benölümeyürüdüm", "ben olume yurudum", "benolumeyurudum"],
     note: "Azize Güner (19) İntihar  Haberi.",
   },
@@ -13,7 +13,7 @@ export const PICS = {
   kamera1: {
     slug: "PSVFB",
     title: "Gazete Küpürü 2",
-    src: "/images/psvfb.jpeg",
+    src: "/images/psvfb.jpg",
     aliases: ["psvfb", "psv fb", "psv-fb"],
   },
   GAZETE2: {
@@ -26,7 +26,7 @@ export const PICS = {
   msd32: {
     slug: "MSD32",
     title: "Gazete Küpürü 4",
-    src: "/images/msd32.jpeg",
+    src: "/images/msd32.jpg",
     aliases: ["msd32", "msd 32"],
 },
   drg21: {
@@ -41,6 +41,13 @@ export const PICS = {
     src: "/images/15asm.png",
     aliases: ["15asm", "15 asm", "15 asım"],
 },
+  GRSANK: {
+    slug: "GRSANK",
+    title: "Garson İfadesi",
+    src: "/images/GRSANK.jpg",
+    aliases: ["grsank", "grs ank", "grsanık"],
+  note: "Funda Okul Giriş Çıkış.",
+  },
 };
 
 
