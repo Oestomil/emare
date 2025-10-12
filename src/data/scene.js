@@ -108,15 +108,9 @@ export const SCENES = {
     },
     "masa": {
     title: "Masa",
-    base: "/evidence/photo3/Masa.jpeg", // public içine koy
+    base: "/evidence/photo3/masa.png", // public içine koy
     maxWidth: 1280,               // sahnenin genişlik sınırı (px)
-    hotspots: [
-        {
-        id: "detail1",
-        label: "Detay 1",
-        rect: { x: 30, y: 40, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
-      },
-    ],
+
     },
     "bilet": {
     title: "bilet",
