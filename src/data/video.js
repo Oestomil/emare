@@ -25,7 +25,10 @@ export const VIDEOS = [
     title: "Kamil Şen Story Kaydı",
     src: "/videos/eniste.mp4",
     note: "Kamil Şen'in sosyal medya story kaydı",
+    mektupTitle: "Kamil'in Mektubu",
+    mektupYazi: "Bunu yazan tosun, okuyana kosun.",
   },
+
 ];
 
 // Tekil getir

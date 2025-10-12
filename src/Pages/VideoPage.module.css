@@ -1,51 +1,115 @@
+/* ===========================
+   VideoPage.module.css (fresh)
+   =========================== */
+
+/* Dokunmatik parlama kapat */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* --------- Tema / İskelet --------- */
+:root {
+  --bg: #0c1320;
+  --fg: #e8eeff;
+  --brand: #0f56da;
+}
+
 .wrap {
   min-height: 100dvh;
   padding: 16px;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 16px;
+  background: var(--bg);
+  color: var(--fg);
+  overscroll-behavior: contain;
 }
 
+/* --------- Üst Başlık --------- */
 .header {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 12px;
+  padding-top: max(0px, env(safe-area-inset-top));
 }
 
 .btn {
   padding: 6px 12px;
-  background: #0f56da;
+  background: var(--brand);
   color: #fff;
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-weight: 600;
 }
 .btn:hover { filter: brightness(0.95); }
 
 .title {
   font-size: clamp(18px, 2.6vw, 24px);
   text-align: center;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .spacer { width: 40px; }
 
+/* --------- Oynatıcı Kapsayıcısı ---------
+   Amaç: her koşulda videonun tamamı görünsün.
+   - position:relative → skeleton overlay için referans
+   - height: gerçek değer → contain ile kırpmasız görüntü
+------------------------------------------- */
 .player {
+  position: relative;
   display: grid;
   place-items: center;
-}
-
-.video {
-  width: min(100%, 1280px);
-  aspect-ratio: 16 / 9;
+  margin-inline: auto;
   background: #000;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  width: min(100%, 1280px);
+  overflow: visible; /* kırpma yok */
 }
 
+/* Yatay videolar: 16:9 çerçeve; height, aspect-ratio’dan türetilir */
+.landscape {
+  aspect-ratio: 16 / 9;
+}
+
+/* Dikey videolar (masaüstü): yüksekliğe sabitle, genişlik otomatik */
+.portrait {
+  aspect-ratio: auto;
+  height: min(86dvh, 900px); /* masaüstünde ferah dikey okuma */
+  width: auto;
+}
+
+/* --------- Video Elemanı ---------
+   Kırpmasız görüntülemek için contain + max-* sınırları
+------------------------------------ */
+.video {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+}
+
+/* --------- Skeleton (metadata gelene kadar) --------- */
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: inherit;
+}
+@keyframes shimmer { to { background-position-x: -200%; } }
+
+/* --------- Alt Not & Linkler --------- */
 .note {
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.8;
   font-size: 0.95rem;
 }
 
@@ -53,10 +117,75 @@
   display: flex;
   justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
+
 .link {
-  color: #0f56da;
+  color: #8fb3ff;
   text-decoration: none;
   font-weight: 600;
 }
 .link:hover { text-decoration: underline; }
+
+/* --------- Mektup Kartı ---------
+   Times New Roman, krem kağıt hissi
+----------------------------------- */
+.mektup {
+  margin: 32px auto 12px;
+  padding: 28px clamp(16px, 6vw, 48px);
+  background: #f7f1e3;
+  color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  font-family: "Times New Roman", Times, serif;
+  max-width: min(90vw, 800px);
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+.mektupTitle {
+  font-weight: 700;
+  font-size: clamp(18px, 2.2vw, 22px);
+  text-align: center;
+  margin-bottom: 16px;
+  text-decoration: underline;
+}
+
+.mektupYazi {
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: justify;
+  white-space: pre-line; /* \n satır sonlarını koru */
+}
+
+/* --------- Mobil: Tam Ekran Doldur ---------
+   Header yüksekliği JS ile --header-h değişkenine yazılıyor.
+   Hem portrait hem landscape modda yükseklik GERÇEK değer.
+----------------------------------------------- */
+@media (max-width: 768px) {
+  .wrap { padding: 12px; gap: 12px; }
+
+  .portrait,
+  .landscape {
+    width: 100svw;
+    height: calc(100svh - var(--header-h, 0px) - max(12px, env(safe-area-inset-bottom)));
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Mektup kartı mobil ölçüler */
+  .mektup {
+    margin: 24px 0 8px;
+    padding: 20px 16px;
+    max-width: 94vw;
+  }
+}
+
+/* svh desteklenmeyen tarayıcılar için fallback */
+@supports not (height: 100svh) {
+  @media (max-width: 768px) {
+    .portrait,
+    .landscape {
+      height: calc(100dvh - var(--header-h, 0px) - max(12px, env(safe-area-inset-bottom)));
+    }
+  }
+}
