@@ -30,7 +30,7 @@ export default function LabScene() {
           <img src={PHOTO_SRC} alt="Olay yeri fotoğrafı" />
         </div>
 
-        <div className="cs-caption">Ulvi Plevneli'nin Okul Ofisi</div>
+        <div className="cs-caption">Ankara Bölge Kriminal Polis Laboratuvarı Müdürlüğü</div>
       </div>
 
       <div className="cs-actions">

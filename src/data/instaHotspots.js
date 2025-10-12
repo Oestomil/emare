@@ -24,7 +24,7 @@ const instaHotspots = {
     })),
   },
 
-  azize_g: {
+  "azize.g": {
     bg: "/images/azize_profile.png",
     boxes: sharedBoxes.map((b) => ({
       ...b,

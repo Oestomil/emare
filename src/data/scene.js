@@ -41,12 +41,7 @@ export const SCENES = {
     title: "Antre",
     base: "/evidence/photo4/antre.jpeg", // örnek-2 jpeg (public içine koy)
     maxWidth: 1280,               // sahnenin genişlik sınırı (px)
-    hotspots: [
-        {
-        id: "detail1",
-        label: "Detay 1",
-        rect: { x: 40, y: 45, w: 5, h: 5 },}// yaklaşık — devtools ile ayarla
-    ],
+
     
  },
  "fridge": {
@@ -63,7 +58,7 @@ export const SCENES = {
             alt: "Detay 1",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 1 açıklaması",
+
         },
       },
         {
@@ -75,7 +70,7 @@ export const SCENES = {
             alt: "Detay 2",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 2 açıklaması",
+
         },
       },
     ],
@@ -94,7 +89,7 @@ export const SCENES = {
             alt: "Detay 1",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 1 açıklaması",
+
         },
       },
       {
@@ -106,7 +101,7 @@ export const SCENES = {
             alt: "Detay 2",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 2 açıklaması",
+
         },
       },
     ],
@@ -120,13 +115,6 @@ export const SCENES = {
         id: "detail1",
         label: "Detay 1",
         rect: { x: 30, y: 40, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
-        overlay: { 
-            src: "/evidence/photo3/detail1.png", // arkaplansız PNG
-            alt: "Detay 1",
-            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
-            maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 1 açıklaması",
-        },
       },
     ],
     },
@@ -144,7 +132,7 @@ export const SCENES = {
               alt: "Funda Parmak İzi",
               maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
               maxPx: 900,    // masaüstü sınırı
-              caption: "Funda'nın Parmak İzi",
+              caption: "Bunların kimin olduğunu bulmak lazım.",
           }
         },
         {
@@ -156,7 +144,7 @@ export const SCENES = {
             alt: "Azize Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Azize'nin Parmak İzi",
+              caption: "Bunların kimin olduğunu bulmak lazım.",
         },
       },
         {
@@ -168,7 +156,7 @@ export const SCENES = {
             alt: "Ulvi Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Ulvi'nin Parmak İzi",
+              caption: "Bunların kimin olduğunu bulmak lazım.",
         },},
         {
            id: "detail4",
@@ -179,7 +167,7 @@ export const SCENES = {
             alt: "Tatil Turu Personel Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Tatil Turu Personel Parmak İzi",
+              caption: "Bunların kimin olduğunu bulmak lazım.",
 
       },
     },
@@ -219,7 +207,7 @@ export const SCENES = {
             alt: "Funda Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Funda'nın Parmak İzi",
+              caption: "Bunların kimin olduğunu bulmak lazım.",
         }
         },
         {
@@ -250,7 +238,7 @@ export const SCENES = {
             alt: "Detay 1",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 1 açıklaması",  
+            caption: "Birşeyler ters gibi geliyor bana...",  
         }, },
         {
         id: "detail2",
@@ -261,7 +249,7 @@ export const SCENES = {
             alt: "Detay 2",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
-            caption: "Detay 2 açıklaması",  
+            caption: "Başbuğ o7",  
         }
         }
         ],

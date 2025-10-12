@@ -1,11 +1,17 @@
+/* Dokunmatik parmak izi vurgusunu kaldır */
 * { -webkit-tap-highlight-color: transparent; }
 
+/* Genel düzen */
 .wrap {
   min-block-size: 100dvh;
   padding: 12px clamp(10px, 4vw, 16px) max(12px, env(safe-area-inset-bottom));
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 12px;
+
+  /* Tema renkleri */
+  --fg: #0059ff;   /* genel yazı rengi */
+  --bg: #0c1320;   /* arka plan */
 }
 
 .header {
@@ -29,7 +35,7 @@
 }
 .btn:hover { filter: brightness(0.95); }
 
-/* Dış çerçeve süsleri burada: bu katmanda padding/border olabilir */
+/* Dış çerçeve */
 .frame {
   inline-size: min(100%, var(--stage-max, 1280px));
   margin-inline: auto;
@@ -39,11 +45,10 @@
   background: #0b1020;
 }
 
-/* Gerçek hizalama alanı: img ile birebir örtüşür, PADDING YOK! */
+/* Görsel alanı */
 .imgBox {
   position: relative;
   inline-size: 100%;
-  /* block-size otomatik: img ne kadar ise o kadar */
 }
 
 .base {
@@ -51,15 +56,16 @@
   inline-size: 100%;
   block-size: auto;
   user-select: none;
-  pointer-events: none; /* üstündeki hotspotlar tıklansın */
+  pointer-events: none;
   will-change: filter;
+  background: var(--bg);
 }
 .baseBlur {
   filter: blur(4px) brightness(0.92);
   transition: filter 150ms ease;
 }
 
-/* Hotspot — yüzde koordinatlar artık imgBox referanslı */
+/* Hotspot */
 .hotspot {
   position: absolute;
   border: none;
@@ -72,12 +78,9 @@
     content: "";
     position: absolute;
     inset: 0;
-
     border-radius: 6px;
   }
 }
-
-/* Dokunma hedefini büyütme */
 .tapPad {
   position: absolute;
   inset: 50%;
@@ -86,7 +89,7 @@
   block-size: clamp(40px, 8vw, 56px);
 }
 
-/* Önde PNG (panelsiz) */
+/* Float (ön plan PNG ve açıklama alanı) */
 .float {
   position: absolute;
   inset-inline-start: 50%;
@@ -98,6 +101,7 @@
   gap: 8px;
   pointer-events: auto;
   padding: 6px;
+  color: inherit; /* caption kendi rengini belirlesin */
 }
 
 .overlayImg {
@@ -139,9 +143,29 @@
 }
 .close:hover { background: rgba(0,0,0,0.72); }
 
-/* fallback */
-.miss { min-block-size: 60dvh; display: grid; place-items: center; gap: 12px; }
+/* === Detay açıklaması (tam siyah balon) === */
+.caption {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #000000 !important;   /* zemin siyah */
+  color: #fff !important;         /* yazı beyaz */
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  max-width: min(var(--ovw, 70vw), var(--opx, 900px));
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
 
+/* Hata/fallback ekranı */
+.miss { 
+  min-block-size: 60dvh; 
+  display: grid; 
+  place-items: center; 
+  gap: 12px; 
+}
+
+/* Hareket azaltımı */
 @media (prefers-reduced-motion: reduce) {
   .baseBlur { transition: none; }
 }

@@ -26,7 +26,7 @@ export const PICS = {
   msd32: {
     slug: "MSD32",
     title: "Gazete Küpürü 4",
-    src: "/images/msd32.png",
+    src: "/images/msd32.jpeg",
     aliases: ["msd32", "msd 32"],
 },
   drg21: {

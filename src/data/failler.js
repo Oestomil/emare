@@ -115,20 +115,10 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/kamiladli" },
       { title: "Parmak İzi", url: "/kamilparmak.jpg" },
-      { title: "kamilsenn Instagram", url: "/i/" },
+      { title: "Sosyal Medya", url: "/i/" },
       { title: "Telefon Kayıtları", url: "/e/KRTTLR" }
     ],
-    news: [
-      {
-        id: "n1",
-        title: "Çankaya'da Vahşet",
-        date: "18 Nisan 2025",
-        source: "Gerekli Haber",
-        snippet:
-          "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
-      },
-
-    ],
+    
     alliases: ["kamil şen", "kamil sen", "kamil-sen", "KS202505X48"],
     
   },
@@ -145,26 +135,9 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/azizeadli" },
       { title: "Parmak İzi", url: "/azizeparmak.jpg" }, 
-       { title: "azize_g Instagram", url: "/i/" }
+       { title: "Sosyal Medya", url: "/i/" }
     ],
-    news: [
-      {
-        id: "n1",
-        title: "Çankaya'da Vahşet",
-        date: "18 Nisan 2025",
-        source: "Gerekli Haber",
-        snippet:
-          "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
-      },
-      {
-        id: "n2",
-        title: "Genç Kızın Akıl Almaz İntiharı",
-        date: "10 Mayıs 2021",
-        source: "SABAH",
-        snippet:
-          "A.G. (19), genç yaşta hamilelik şüphesiyle kendi canına kıymak istedi. Aşırı dozda antidepresan içen A.G. hastaneye yurt arkadaşları tarafından yetiştirilerek, son anda hayata döndürüldü.",
-      },
-    ],
+  
     alliases: ["azize güner", "azize guner", "azize-guner", "AG202505X46"]
   },
 
@@ -181,24 +154,7 @@ export const PROFILES = {
       { title: "Adli Sicil Kaydı", url: "/pdf/fundaadli" },
       { title: "Parmak İzi", url: "/fundaparmak.jpg" },
     ],
-    news: [
-      {
-        id: "n1",
-        title: "Çankaya'da Vahşet",
-        date: "18 Nisan 2025",
-        source: "Gerekli Haber",
-        snippet:
-          "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
-      },
-      {
-        id: "n2",
-        title: "Mamak Turşu Güzeli Yarışması",
-        date: "01 Haziran 2004",
-        source: "Ankara'nın Sesi",
-        snippet:
-          "Mamakta dördüncüsü düzenlenen Turşu Güzeli yarışmasının bu seneki kazanını Funda Şen, dünya barışı dilediğini söyledi.",
-      },
-    ],
+  
     alliases: ["funda plevneli", "funda plevneli", "funda-plevneli", "FP202505X45"]
   },
 
@@ -214,17 +170,9 @@ export const PROFILES = {
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/bediradli" },
       { title: "Parmak İzi", url: "/bedriparmak.jpg" },
+      { title: "Sosyal Medya", url: "/i/" },
     ],
-    news: [
-      {
-        id: "n1",
-        title: "Çankaya'da Vahşet",
-        date: "18 Nisan 2025",
-        source: "Gerekli Haber",
-        snippet:
-          "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
-      },
-    ],
+   
     alliases: ["bedirhan mardinli", "bedirhan mardinli", "bedirhan-mardinli", "BM202505X47"]
   },
     "ulvi-plevneli": {
@@ -245,24 +193,6 @@ export const PROFILES = {
   { title: "Parmak İzi", url: "/ulviparmak.jpg" },
   { title: "2. Telefon", url: "/gate" }, // ✅ /s/gate değil
   { title: "1. Telefon", url: "/birincitelefon" } // ✅ /s/evidence/DFGR2 değil
-    ],
-
-    news: [
-        {
-        id: "n1",
-        title: "Çankaya'da Vahşet",
-        date: "25 Mayıs 2025",
-        source: "Gerekli Haber",
-        snippet:
-          "Ankara Üniversitesi öğretim üyesi Ulvi Plevneli, evinde ölü bulundu. Polis olayla ilgili soruşturma başlattı.",
-        },
-        {id: "n2",
-        title: "Uluslararası Uzay Mekiği Maket Yarışması",
-        date: "19 Mayıs 2017",
-        source: "Yeni Şafak",
-        snippet:
-          "Ülkemizi, Uluslararası Uzay Mekiği Maket Yarışmasında temsil eden Anadolu Üniversitesi öğrencileri ülkemize 2 bronz ve 1 adet gümüş madalya getirerek, gururlandırdı.",
-      },
     ],
   },
 };

@@ -1,10 +1,11 @@
 // src/data/instaData.js
 
 const instaData = {
-  azize_g: [
+  "azize.g": [
     "/images/azize1.png",
     "/images/azize2.png",
     "/images/azize3.png",
+    
   ],
   bedirhan_35: [
     "/images/bedirhan1.png",

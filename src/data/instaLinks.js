@@ -1,6 +1,6 @@
 // Kişi -> Instagram kullanıcı adı / tam URL
 const instaLinks = {
-  azize_g:   { label: "azize_g",   username: "azize_g" },
+  "azize.g":   { label: "azize.g",   username: "azize.g" },
   bedirhan_35:{ label: "bedirhan_35",username: "bedirhan_35" },
   kamilsenn:   { label: "kamilsenn",username: "kamilsenn" },
 };
