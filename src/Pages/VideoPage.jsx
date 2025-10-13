@@ -8,19 +8,17 @@ export default function VideoPage() {
   const navigate = useNavigate();
   const video = getVideoBySlug(slug);
 
-  const playerRef = useRef(null);
   const headerRef = useRef(null);
   const frameRef = useRef(null);
 
-  const [orientation, setOrientation] = useState("landscape");
+  const [orientation, setOrientation] = useState("landscape"); // 'portrait' | 'landscape'
   const [ready, setReady] = useState(false);
 
-  // Header yüksekliğini ölçüp CSS değişkenine aktar
+  // Header yüksekliğini ölç → mobil tam ekran için CSS değişkeni
   useEffect(() => {
     const setHeights = () => {
       const hh = headerRef.current?.getBoundingClientRect().height || 0;
-      if (frameRef.current)
-        frameRef.current.style.setProperty("--header-h", `${hh}px`);
+      frameRef.current?.style.setProperty("--header-h", `${hh}px`);
     };
     setHeights();
     window.addEventListener("resize", setHeights);
@@ -31,9 +29,7 @@ export default function VideoPage() {
     return (
       <div className={styles.wrap}>
         <h1>Video bulunamadı</h1>
-        <button onClick={() => navigate(-1)} className={styles.btn}>
-          ← Geri
-        </button>
+        <button onClick={() => navigate(-1)} className={styles.btn}>← Geri</button>
       </div>
     );
   }
@@ -51,6 +47,9 @@ export default function VideoPage() {
     orientation === "portrait" ? styles.portrait : styles.landscape,
   ].join(" ");
 
+  const letterTitle = video.mektupTitle ?? video["mektup-title"];
+  const letterText  = video.mektupYazi  ?? video["mektup-yazi"];
+
   return (
     <div className={styles.wrap}>
       <div ref={headerRef} className={styles.header}>
@@ -61,7 +60,6 @@ export default function VideoPage() {
 
       <div ref={frameRef} className={playerClass} aria-label="Video alanı">
         <video
-          ref={playerRef}
           src={video.src}
           controls
           preload="metadata"
@@ -75,19 +73,12 @@ export default function VideoPage() {
 
       {video.note ? <div className={styles.note}>{video.note}</div> : null}
 
-      {/* --- MEKTUP ALANI --- */}
-      {video.mektupTitle && video.mektupYazi && (
+      {letterTitle && letterText && (
         <div className={styles.mektup}>
-          <h2 className={styles.mektupTitle}>{video.mektupTitle}</h2>
-          <p className={styles.mektupYazi}>{video.mektupYazi}</p>
+          <h2 className={styles.mektupTitle}>{letterTitle}</h2>
+          <p className={styles.mektupYazi}>{letterText}</p>
         </div>
       )}
-
-      <div className={styles.footer}>
-        <Link to="/video/SKTRET" className={styles.link}>Sokak Röportajı</Link>
-        <Link to="/video/MTSH" className={styles.link}>Mahkeme Kaydı</Link>
-        <Link to="/video/V5WQS" className={styles.link}>112 Acil Çağrı Arama Kaydı</Link>
-      </div>
     </div>
   );
 }
