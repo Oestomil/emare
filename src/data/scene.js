@@ -51,11 +51,11 @@ export const SCENES = {
     hotspots: [
       {
         id: "detail1",  
-        label: "Detay 1",
+        label: "Fotoğraf Detay 1",
         rect: { x: 35, y: 15, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/evidence/photo1/detail1.png", // arkaplansız PNG
-            alt: "Detay 1",
+            alt: "Fotoğraf Detay 1",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
 
@@ -63,11 +63,11 @@ export const SCENES = {
       },
         {
         id: "detail2",  
-        label: "Detay 2",
+        label: "Fotoğraf Detay 2",
         rect: { x: 35, y: 25, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/evidence/photo1/detail2.png", // arkaplansız PNG
-            alt: "Detay 2",
+            alt: "Fotoğraf Detay 2",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
 
@@ -82,11 +82,11 @@ export const SCENES = {
     hotspots: [
       {
         id: "detail1",
-        label: "Detay 1",
+        label: "İzmarit",
         rect: { x: 40, y: 45, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/evidence/photo2/detay1.png", // arkaplansız PNG
-            alt: "Detay 1",
+            alt: "İzmarit",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
 
@@ -94,11 +94,11 @@ export const SCENES = {
       },
       {
         id: "detail2",
-        label: "Detay 2",
+        label: "İzmarit",
         rect: { x: 55, y: 55, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/evidence/photo2/detay2.png", // arkaplansız PNG
-            alt: "Detay 2",
+            alt: "İzmarit",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
 
@@ -119,11 +119,11 @@ export const SCENES = {
     hotspots: [
         {
         id: "detail1",
-        label: "Funda Parmak İzi",
+        label: "Parmak İzi",
         rect: { x: 15, y: 50, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
           overlay: { 
               src: "/fundaparmak.jpg", // arkaplansız PNG
-              alt: "Funda Parmak İzi",
+              alt: "Parmak İzi",
               maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
               maxPx: 900,    // masaüstü sınırı
               caption: "Bunların kimin olduğunu bulmak lazım.",
@@ -131,11 +131,11 @@ export const SCENES = {
         },
         {
         id: "detail2",
-        label: "Azize Parmak İzi",
+        label: "Parmak İzi",
         rect: { x: 30, y: 65, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
         overlay: { 
             src: "/azizeparmak.jpg", // arkaplansız PNG
-            alt: "Azize Parmak İzi",
+            alt: "Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
               caption: "Bunların kimin olduğunu bulmak lazım.",
@@ -194,11 +194,11 @@ export const SCENES = {
     hotspots: [
         {
         id: "detail1",
-        label: "Funda Parmak İzi",
+        label: "Parmak İzi",
         rect: { x: 15, y: 15, w: 10, h: 20 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/fundaparmak.jpg", // arkaplansız PNG
-            alt: "Funda Parmak İzi",
+            alt: "Parmak İzi",
             maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
             maxPx: 900,    // masaüstü sınırı
               caption: "Bunların kimin olduğunu bulmak lazım.",
