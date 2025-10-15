@@ -247,6 +247,25 @@ export const SCENES = {
         }
         ],
     },
+    "BM202EV15D2": {
+    title: "Son Sahne",
+    base: "/son.jpeg", // public içine koy
+    maxWidth: 1280,               // sahnenin genişlik sınırı (px)
+    hotspots: [
+        {
+        id: "detail1",
+        label: "Detay 1",
+        rect: { x: 35, y: 15, w: 5, h: 5 }, // yaklaşık — devtools ile ayarla
+        overlay: {
+            src: "/bedriparmak.jpg", // arkaplansız PNG
+            alt: "Detay 1",
+            maxVw: 70,     // overlay genişlik sınırı: min(70vw, maxPx)
+            maxPx: 900,    // masaüstü sınırı
+            caption: "Bunların kimin olduğunu bulmak lazım.",
+        },
+      },
+    ],
+    },
   };
 
 
