@@ -244,3 +244,8 @@ textarea.field { resize: vertical; }
 .btn-danger:hover{ background:#e21a31; }
 select.field{ appearance:none; background-image:linear-gradient(45deg,transparent 50%,#7da8ff 50%),linear-gradient(135deg,#7da8ff 50%,transparent 50%),linear-gradient(to right,#273055,#273055); background-position:calc(100% - 18px) calc(50% - 4px),calc(100% - 12px) calc(50% - 4px),calc(100% - 32px) 50%; background-size:6px 6px,6px 6px,1px 60%; background-repeat:no-repeat; }
 textarea.field{ resize:vertical; }
+.search-item:hover,
+.search-item-active {
+  background: rgba(255,255,255,.08);
+  outline: 1px dashed rgba(255,255,255,.15);
+}
