@@ -1,0 +1,211 @@
+/* =========================================================
+   InstaHotspot — mobile-first, panelsiz (sadece arka blur + önde PNG)
+   ========================================================= */
+
+/* Temel değişkenler */
+:root{
+  --bg: #0c1320;
+  --text: #e9eefb;
+  --brand: #69b6ff;
+  --border: rgba(255,255,255,.10);
+  --border-strong: rgba(255,255,255,.18);
+  --shadow: 0 18px 48px rgba(0,0,0,.45);
+
+  /* Overlay varsayılan limitleri — “bir tık büyük” */
+  --ovw: 80vw;   /* genişlik limiti */
+  --opx: 1000px; /* masaüstü piksel limiti */
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Sayfa sarmalayıcı */
+.ih-wrap{
+  min-block-size: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px clamp(10px, 4vw, 16px) max(12px, env(safe-area-inset-bottom));
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+  overscroll-behavior: contain;
+}
+
+/* Üst bar */
+.ih-header{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding-block-start: max(0px, env(safe-area-inset-top));
+}
+.ih-back{
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 700;
+}
+.ih-back:hover{ text-decoration: underline; }
+.ih-title{
+  margin: 0;
+  text-align: center;
+  font-size: clamp(18px, 2.8vw, 24px);
+}
+.ih-sp{ inline-size: 32px; } /* sağ denge boşluğu */
+
+/* Sahne çerçevesi (süsler burada, çalışma alanı içeride) */
+.ih-frame{
+  inline-size: min(100%, 1280px);
+  margin-inline: auto;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b1020;
+  box-shadow: var(--shadow);
+}
+
+/* Gerçek hizalama alanı: IMG ile birebir; padding/border YOK */
+.ih-imgbox{
+  position: relative;
+  inline-size: 100%;
+}
+
+/* Arka plan görseli — sadece bu blur’lanır */
+.ih-base{
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  user-select: none;
+  pointer-events: none; /* üstte hotspot tıklansın */
+  will-change: filter;
+}
+.ih-baseBlur{
+  filter: blur(4px) brightness(0.92);
+  transition: filter 150ms ease;
+}
+
+/* Hotspot: görünmez tıklama alanı (yüzde koordinatlar imgbox’a göre) */
+.ih-hotspot{
+  position: absolute;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+@media (hover: hover){
+  .ih-hotspot:hover::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    outline: 2px dashed rgba(0,153,255,0.6);
+    border-radius: 6px;
+  }
+}
+
+/* Dokunma hedefini büyüten ped (40–56px arası) */
+.ih-tappad{
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: clamp(40px, 8vw, 56px);
+  block-size: clamp(40px, 8vw, 56px);
+}
+
+/* Önde PNG — PANELSİZ, sayfa içinde ortalanmış floating katman */
+.ih-float{
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  pointer-events: auto;
+  padding: 6px;
+  animation: ih-fade-in .14s ease-out both;
+}
+
+/* Overlay görüntü (PNG/JPG) — “bir tık büyük” varsayılan */
+.ih-overlay{
+  inline-size: 100%;
+  max-inline-size: min(var(--ovw), var(--opx));
+  block-size: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Telefon — ekranı aşmasın (hem genişlik hem yükseklikten sınırla) */
+@media (max-width: 768px){
+  .ih-overlay{
+    max-inline-size: min(94vw, 92svw);
+    max-block-size: 80svh;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape){
+  .ih-overlay{
+    max-inline-size: min(84vw, 75svh);
+    max-block-size: 75svh;
+  }
+}
+
+/* Kapat butonu — panel yok; floating içinde küçük buton */
+.ih-close{
+  position: absolute;
+  inset-block-start: max(-4px, calc(-4px + env(safe-area-inset-top)));
+  inset-inline-end: -4px;
+  inline-size: 36px;
+  block-size: 36px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.58);
+  color: #fff;
+  font-size: 20px;
+  line-height: 36px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform .12s ease, background-color .12s ease;
+}
+.ih-close:hover{ background: rgba(0,0,0,0.72); transform: scale(1.03); }
+
+/* Hata durumu (entry bulunamadıysa) */
+.ih-miss-wrap{
+  min-block-size: 100dvh;
+  background: var(--bg);
+  display: grid; place-items: center;
+  color: var(--text);
+  padding: 24px;
+}
+.ih-miss-card{
+  inline-size: min(560px, 92vw);
+  background: linear-gradient(180deg, rgba(27,35,54,.75), rgba(17,24,41,.9));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.ih-miss-head{ display: inline-flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.ih-igdot{ inline-size: 28px; block-size: 28px; border-radius: 8px; display: inline-block; }
+.ih-miss-note{ color: #a4aec2; margin: 6px 0 18px; }
+.ih-miss-link{
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Animasyonlar */
+@keyframes ih-fade-in{
+  from{ opacity: 0; transform: translate(-50%, -52%) scale(.985); }
+  to  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Erişilebilirlik: hareketi azalt */
+@media (prefers-reduced-motion: reduce){
+  .ih-baseBlur{ transition: none; }
+  .ih-close{ transition: none; }
+  .ih-float{ animation: none; }
+}

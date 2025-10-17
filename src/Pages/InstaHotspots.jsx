@@ -1,79 +1,35 @@
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import instaHotspots from "../data/instaHotspots";
-import HotspotImage from "../components/HotspotImage";
+import "./instahotspots.css"; // 👈 ayrı CSS
 
 export default function InstaHotspots() {
   const { name } = useParams();
   const navigate = useNavigate();
   const entry = instaHotspots[name];
 
+  // aktif overlay & img load
+  const [active, setActive] = useState(null);   // hotspot id
+  const [ready, setReady] = useState(false);    // base img loaded
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && setActive(null);
+    window.addEventListener("keydown", onKey, { passive: true });
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   if (!entry) {
-    // IG gradient renkleri
     const igGradient = "linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)";
-
     return (
-      <div
-        style={{
-          minHeight: "100dvh",
-          background: "#0c1320",
-          display: "grid",
-          placeItems: "center",
-          padding: 24,
-          color: "#e9eefb",
-        }}
-      >
-        <div
-          style={{
-            width: "min(560px, 92vw)",
-            background:
-              "linear-gradient(180deg, rgba(27,35,54,.75), rgba(17,24,41,.9))",
-            border: "1px solid rgba(255,255,255,.08)",
-            borderRadius: 16,
-            padding: 24,
-            textAlign: "center",
-            boxShadow: "0 18px 48px rgba(0,0,0,.45)",
-          }}
-        >
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              marginBottom: 10,
-            }}
-          >
-            <span
-              aria-hidden
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 8,
-                background: igGradient,
-                display: "inline-block",
-              }}
-            />
-            <strong style={{ fontSize: 18 }}>
-              Eksik veya hatalı giriş yaptınız
-            </strong>
+      <div className="ih-miss-wrap">
+        <div className="ih-miss-card">
+          <div className="ih-miss-head">
+            <span aria-hidden className="ih-igdot" style={{ background: igGradient }} />
+            <strong>Eksik veya hatalı giriş yaptınız</strong>
           </div>
-
-          <p style={{ color: "#a4aec2", marginTop: 6, marginBottom: 18 }}>
-            Lütfen tekrar deneyin veya Instagram yönlendirme sayfasına dönün.
-          </p>
-
-          <Link
-            to="/i"
-            style={{
-              display: "inline-block",
-              padding: "10px 16px",
-              borderRadius: 999,
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: 700,
-              background: igGradient,
-              boxShadow: "0 10px 24px rgba(0,0,0,.35)",
-            }}
-          >
+          <p className="ih-miss-note">Lütfen tekrar deneyin veya Instagram yönlendirme sayfasına dönün.</p>
+          <Link to="/i" className="ih-miss-link" style={{ background: igGradient }}>
             /i sayfasına dön
           </Link>
         </div>
@@ -81,20 +37,98 @@ export default function InstaHotspots() {
     );
   }
 
-  // 🔹 kind:"link" olan kutuya özel click handler
+  // Veri sözleşmesi:
+  // entry.bg: string (base image)
+  // entry.boxes: [{ id, rect:{x,y,w,h}, kind?: 'overlay'|'link', overlay?: {src,alt,maxVw,maxPx,caption} }]
+  const activeHotspot = useMemo(
+    () => (entry?.boxes || []).find((b) => b.id === active) || null,
+    [entry, active]
+  );
+
   const handleBoxClick = (box) => {
     if (box.kind === "link") {
-      navigate("/i"); // HashRouter varsa otomatik #/i
+      navigate("/i"); // dahili Link navigasyonu (aynı sekme)
+      return;
+    }
+    if (box.overlay?.src) {
+      setActive((prev) => (prev === box.id ? null : box.id));
     }
   };
 
   return (
-    <div style={{ padding: 16, background: "#0c1320", minHeight: "100dvh" }}>
-      <HotspotImage
-        src={entry.bg}
-        boxes={entry.boxes}
-        onBoxClick={handleBoxClick} // HotspotImage'e prop geçiyoruz
-      />
+    <div className="ih-wrap">
+      <div className="ih-header">
+        <Link to="/search?case=30912025" className="ih-back">← Geri</Link>
+        <h1 className="ih-title">Instagram Hotspots</h1>
+        <div className="ih-sp" />
+      </div>
+
+      <div className="ih-frame">
+        <div
+          className="ih-imgbox"
+          onClick={() => { if (active) setActive(null); }}
+        >
+          {/* SADECE bu blur'lanır */}
+          <img
+            ref={imgRef}
+            src={entry.bg}
+            alt={entry.title || "Sahne"}
+            className={`ih-base ${active ? "ih-baseBlur" : ""}`}
+            onLoad={() => setReady(true)}
+            draggable="false"
+          />
+
+          {/* Hotspotlar — img yüklenmeden çizme */}
+          {ready && (entry.boxes || []).map((box) => (
+            <button
+              key={box.id}
+              className="ih-hotspot"
+              style={{
+                left: `${box.rect.x}%`,
+                top: `${box.rect.y}%`,
+                width: `${box.rect.w}%`,
+                height: `${box.rect.h}%`,
+              }}
+              onClick={(e) => { e.stopPropagation(); handleBoxClick(box); }}
+              aria-label={box.label || "Detay"}
+              title={box.label || ""}
+            >
+              <span className="ih-tappad" />
+            </button>
+          ))}
+
+          {/* Önde PNG — PANELSİZ, ortada */}
+          {ready && activeHotspot?.overlay?.src && (
+            <div
+              className="ih-float"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                ["--ovw"]: `${activeHotspot.overlay.maxVw ?? 70}vw`,
+                ["--opx"]: `${activeHotspot.overlay.maxPx ?? 900}px`,
+              }}
+            >
+              <button
+                className="ih-close"
+                onClick={() => setActive(null)}
+                aria-label="Kapat"
+                title="Kapat"
+              >
+                ×
+              </button>
+
+              <img
+                src={activeHotspot.overlay.src}
+                alt={activeHotspot.overlay.alt || ""}
+                className="ih-overlay"
+              />
+
+              {activeHotspot.overlay.caption && (
+                <div className="ih-cap">{activeHotspot.overlay.caption}</div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
