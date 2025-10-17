@@ -134,7 +134,7 @@ export const PROFILES = {
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/azizeadli" },
-      { title: "Parmak İzi", url: "/pic/azizeparmak.jpg" }, 
+      { title: "Parmak İzi", url: "/pic/azizeparmak" }, 
        { title: "Sosyal Medya", url: "/i/" }
     ],
   

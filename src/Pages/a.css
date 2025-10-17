@@ -137,14 +137,14 @@
 /* Telefon — ekranı aşmasın (hem genişlik hem yükseklikten sınırla) */
 @media (max-width: 768px){
   .ih-overlay{
-    max-inline-size: min(94vw, 92svw);
-    max-block-size: 80svh;
+    max-inline-size: min(220vw, 96svw);  /* 194vw->220vw, 92svw->96svw */
+    max-block-size: 85svh;               /* 80svh->85svh */
   }
 }
 @media (max-height: 500px) and (orientation: landscape){
   .ih-overlay{
-    max-inline-size: min(84vw, 75svh);
-    max-block-size: 75svh;
+    max-inline-size: min(200vw, 80svh);  /* 184vw->200vw, 75svh->80svh */
+    max-block-size: 80svh;               /* 75svh->80svh */
   }
 }
 
