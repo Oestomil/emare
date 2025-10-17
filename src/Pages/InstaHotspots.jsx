@@ -59,7 +59,7 @@ export default function InstaHotspots() {
     <div className="ih-wrap">
       <div className="ih-header">
         <Link to="/search?case=30912025" className="ih-back">← Geri</Link>
-        <h1 className="ih-title">Instagram Hotspots</h1>
+        <h1 className="ih-title">Instagram</h1>
         <div className="ih-sp" />
       </div>
 

@@ -120,7 +120,7 @@ export const SCENES = {
         {
         id: "detail1",
         label: "Parmak İzi",
-        rect: { x: 15, y: 50, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        rect: { x: 15, y: 55, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
           overlay: { 
               src: "/fundaparmak.jpg", // arkaplansız PNG
               alt: "Parmak İzi",
@@ -132,7 +132,7 @@ export const SCENES = {
         {
         id: "detail2",
         label: "Parmak İzi",
-        rect: { x: 30, y: 65, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        rect: { x: 30, y: 70, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
         overlay: { 
             src: "/azizeparmak.jpg", // arkaplansız PNG
             alt: "Parmak İzi",
@@ -144,7 +144,7 @@ export const SCENES = {
         {
         id: "detail3",
         label: "Ulvi Parmak İzi",
-        rect: { x: 70, y: 35, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
+        rect: { x: 70, y: 40, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/ulviparmak.jpg", // arkaplansız PNG
             alt: "Ulvi Parmak İzi",
@@ -155,7 +155,7 @@ export const SCENES = {
         {
            id: "detail4",
         label: "Tatil Turu Personel Parmak İzi",
-        rect: { x: 70, y: 50, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla 
+        rect: { x: 70, y: 55, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla 
         overlay: { 
             src: "/tur.svg", // arkaplansız PNG
             alt: "Tatil Turu Personel Parmak İzi",
@@ -175,7 +175,7 @@ export const SCENES = {
     hotspots: [
         { 
         id: "detail1",
-        label: "Kamil Şen Parmak İzi",
+        label: "Parmak İzi",
         rect: { x: 45, y: 80, w: 10, h: 10 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/kamilparmak.jpg", // arkaplansız PNG
@@ -207,7 +207,7 @@ export const SCENES = {
         {
         id: "detail2",
         label: "Ulvi Parmak İzi",
-        rect: { x: 10, y: 65, w: 10, h: 20 }, // yaklaşık — devtools ile ayarla
+        rect: { x: 10, y: 75, w: 10, h: 20 }, // yaklaşık — devtools ile ayarla
         overlay: {
             src: "/ulviparmak.jpg", // arkaplansız PNG
             alt: "Ulvi Parmak İzi",
