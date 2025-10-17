@@ -25,10 +25,31 @@ export const VIDEOS = [
     title: "Kamil Şen Story Kaydı",
     src: "/videos/eniste.mp4",
     note: "Kamil Şen'in sosyal medya story kaydı",
-    mektupTitle: "Kamil'in Mektubu",
-    mektupYazi: "Bunu yazan tosun, okuyana kosun.",
   },
-
+  {
+    slug: "LUHS2",
+    title: "Poolamingo Kamera Kaydı",
+    src: "/videos/poolamingo.mp4",
+    note: "Güvenlik kamera kaydı",
+  },
+  {
+    slug: "secenekfunda",
+    title: "Haberler - Funda Plevneli Seçenek",
+    src: "/videos/funda.mp4",
+    note: "Funda Plevneli ile ilgili haber kaydı",
+  },
+  { 
+    slug: "secenekkamil",
+    title: "Haberler - Kamil Şen Seçenek",
+    src: "/videos/kamil.mp4",
+    note: "Kamil Şen ile ilgili haber kaydı",
+  },
+  {
+    slug: "secenekbedirhan",
+    title: "Haberler - Bedirhan Mert Seçenek",
+    src: "/videos/bedirhan.mp4",
+    note: "Bedirhan Mert ile ilgili haber kaydı",
+  },
 ];
 
 // Tekil getir
