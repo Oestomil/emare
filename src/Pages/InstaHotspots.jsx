@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import instaHotspots from "../data/instaHotspots";
-import "./instaHotspots.css"; // 👈 ayrı CSS
+import "./a.css"; // 👈 ayrı CSS
 
 export default function InstaHotspots() {
   const { name } = useParams();
