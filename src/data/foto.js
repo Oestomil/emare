@@ -5,8 +5,8 @@ export const PICS = {
     slug: "Ben Ölüme Yürüdüm",
     title: "Gazete Küpürü",
     src: "/gazete1.jpg", // senin verdiğin yol
-    aliases: ["ben ölüme yürüdüm", "benölümeyürüdüm", "ben olume yurudum", "benolumeyurudum"],
     note: "Azize Güner (19) İntihar  Haberi.",
+    aliases: ["benolumeyurudum", "ben ölüm yürüdüm", "ben-ölüm-yürüdüm", "ben ölüme yürüdüm" ,"Ben Ölüme Yürüdüm" ],
   },
 
   // örnek ikinci kayıt – istediğin gibi çoğalt
@@ -47,6 +47,41 @@ export const PICS = {
     src: "/images/GRSANK.jpg",
     aliases: ["grsank", "grs ank", "grsanık"],
   note: "Funda Okul Giriş Çıkış.",
+  },
+  azizeparmak: {
+    slug: "AZIZEPARMAK",
+    title: "Azize'nin Parmak İzi",
+    src: "/azizeparmak.jpg",
+ 
+  note: "Azize Güner'in Parmak İzi Raporu.",
+  },
+  kamilparmak: {
+    slug: "KAMILPARMAK",
+    title: "Kamil'in Parmak İzi",
+    src: "/kamilparmak.jpg",
+
+  note: "Kamil Şen'in Parmak İzi Raporu.",
+  },
+  fundaparmak: {
+    slug: "FUNDAPARMAK",
+    title: "Funda'nın Parmak İzi",
+    src: "/fundaparmak.jpg",
+
+  note: "Funda Plevneli'nin Parmak İzi Raporu.",
+  },
+  bedirhanparmak: {
+    slug: "BEDIRHANPARMAK",
+    title: "Bedirhan'ın Parmak İzi",
+    src: "/bedirhanparmak.jpg",
+   
+  note: "Bedirhan Mert'in Parmak İzi Raporu.",
+  },
+  ulviparmak: {
+    slug: "ULVIPARMAK",
+    title: "Ulvi'nin Parmak İzi",
+    src: "/ulviparmak.jpg",
+  
+  note: "Ulvi Plevneli'nin Parmak İzi Raporu.",
   },
 };
 

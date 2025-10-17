@@ -114,7 +114,7 @@ export const PROFILES = {
     ],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/kamiladli" },
-      { title: "Parmak İzi", url: "/kamilparmak.jpg" },
+      { title: "Parmak İzi", url: "/pic/kamilparmak" },
       { title: "Sosyal Medya", url: "/i/" },
       { title: "Telefon Kayıtları", url: "/e/KRTTLR" }
     ],
@@ -134,7 +134,7 @@ export const PROFILES = {
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/azizeadli" },
-      { title: "Parmak İzi", url: "/azizeparmak.jpg" }, 
+      { title: "Parmak İzi", url: "/pic/azizeparmak.jpg" }, 
        { title: "Sosyal Medya", url: "/i/" }
     ],
   
@@ -152,7 +152,7 @@ export const PROFILES = {
     education: ["Lisans: YOK"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/fundaadli" },
-      { title: "Parmak İzi", url: "/fundaparmak.jpg" },
+      { title: "Parmak İzi", url: "/pic/fundaparmak" },
     ],
   
     alliases: ["funda plevneli", "funda plevneli", "funda-plevneli", "FP202505X45"]
@@ -169,7 +169,7 @@ export const PROFILES = {
     education: ["Lisans: Ankara Üniversitesi (Devam Ediyor.)"],
     projects: [
       { title: "Adli Sicil Kaydı", url: "/pdf/bediradli" },
-      { title: "Parmak İzi", url: "/bedriparmak.jpg" },
+      { title: "Parmak İzi", url: "/pic/bedriparmak" },
       { title: "Sosyal Medya", url: "/i/" },
     ],
    
@@ -190,7 +190,7 @@ export const PROFILES = {
     ],
     projects: [
   { title: "Adli Sicil Kaydı", url: "/pdf/ulviadli" },
-  { title: "Parmak İzi", url: "/ulviparmak.jpg" },
+  { title: "Parmak İzi", url: "/pic/ulviparmak" },
   { title: "2. Telefon", url: "/gate" }, // ✅ /s/gate değil
   { title: "1. Telefon", url: "/birincitelefon" } // ✅ /s/evidence/DFGR2 değil
     ],
