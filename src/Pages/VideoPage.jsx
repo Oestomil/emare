@@ -49,6 +49,7 @@ export default function VideoPage() {
 
   const letterTitle = video.mektupTitle ?? video["mektup-title"];
   const letterText  = video.mektupYazi  ?? video["mektup-yazi"];
+  const letterUrl   = video.mektupUrl   ?? video["mektup-url"];
 
   return (
     <div className={styles.wrap}>
@@ -73,10 +74,13 @@ export default function VideoPage() {
 
       {video.note ? <div className={styles.note}>{video.note}</div> : null}
 
-      {letterTitle && letterText && (
+      {letterTitle && letterText && letterUrl &&(
         <div className={styles.mektup}>
           <h2 className={styles.mektupTitle}>{letterTitle}</h2>
           <p className={styles.mektupYazi}>{letterText}</p>
+          <a href={letterUrl} className={styles.mektupLink}>
+            İtirafın Tamamını Görüntüle
+          </a>
         </div>
       )}
     </div>

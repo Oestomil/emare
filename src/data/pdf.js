@@ -13,6 +13,9 @@ export const PDFS = [
   { slug: "KSMER",  title: "Kamil Şen 2. Sorgu",          src: "/pdf/kamil2.pdf",     note: "K.Ş. İfade",     type: "pdf" },
   { slug: "FNDHC",  title: "Funda P. 2. Sorgu",           src: "/pdf/Funda2.pdf",     note: "F.P. İfade",     type: "pdf" },
   { slug: "bdhjja",  title: "Bedirhan M. İfade",           src: "/pdf/Bedirhan2.pdf",   note: "B.M. İfade",     type: "pdf" },
+  { slug: "kamiltut", title: "Bedirhan Tutuklama Kararı", src: "/pdf/kamiltutuklama.pdf", note: "Bedirhan Tutuklama Kararı", type: "pdf" },
+  { slug: "fundatut", title: "Bedirhan Tutuklama Kararı", src: "/pdf/fundatutuklama.pdf", note: "Bedirhan Tutuklama Kararı", type: "pdf" },
+  { slug: "bedirhantut", title: "Bedirhan Tutuklama Kararı", src: "/pdf/bedirhantutuklama.pdf", note: "Bedirhan Mardinli Tutuklama Kararı", type: "pdf" },
 ];
 
 // tekil pdf bulucu

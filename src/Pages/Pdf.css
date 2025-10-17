@@ -22,7 +22,7 @@
 }
 
 .pdf-card{
-  width: min(1300px, 98vw);
+  width: min(1000px, 96vw);  /* 1300px->1000px, 98vw->96vw */
   background: linear-gradient(180deg, rgba(27,35,54,.85), rgba(17,24,49,.92));
   border: 1px solid var(--pdf-border);
   border-radius: 18px;

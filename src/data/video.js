@@ -37,18 +37,27 @@ export const VIDEOS = [
     title: "Haberler - Funda Plevneli Seçenek",
     src: "/videos/funda.mp4",
     note: "Funda Plevneli ile ilgili haber kaydı",
+        mektupTitle: "İtiraf Mektubu",
+    mektupYazi: "''Cinayet gününden önceki gece Ulvi Plevneli'ye mesaj attım hocam size gelebilir miyim diye...",
+    mektupUrl: "/#/pdf/fundatut"
   },
   { 
     slug: "secenekkamil",
     title: "Haberler - Kamil Şen Seçenek",
     src: "/videos/kamil.mp4",
     note: "Kamil Şen ile ilgili haber kaydı",
+    mektupTitle: "İtiraf Mektubu",
+    mektupYazi: "''Cinayet gününden önceki gece Ulvi Plevneli'ye mesaj attım hocam size gelebilir miyim diye...",
+    mektupUrl: "/#/pdf/kamiltut"
   },
   {
     slug: "secenekbedirhan",
-    title: "Haberler - Bedirhan Mert Seçenek",
+    title: "Haberler - Bedirhan Mardinli Seçenek",
     src: "/videos/bedirhan.mp4",
     note: "Bedirhan Mert ile ilgili haber kaydı",
+        mektupTitle: "İtiraf Mektubu",
+    mektupYazi: "''Cinayet gününden önceki gece Ulvi Plevneli'ye mesaj attım hocam size gelebilir miyim diye...",
+    mektupUrl: "/#/pdf/bedirhantut"
   },
 ];
 
