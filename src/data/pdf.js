@@ -6,6 +6,7 @@ export const PDFS = [
   { slug: "fundaadli",    title: "Funda Adli Rapor",     src: "/pdf/fundaadli.pdf",      note: "Suç Kaydı Raporu", type: "pdf" },
   { slug: "ulviadli",     title: "Ulvi Adli Rapor",      src: "/pdf/ulviadli.pdf",       note: "Suç Kaydı Raporu", type: "pdf" },
   { slug: "kamiladli",    title: "Kamil Adli Rapor",     src: "/pdf/kamiladli.pdf",      note: "Suç Kaydı Raporu", type: "pdf" },
+  { slug: "unvi2",       title: "Ders Sonuçları", src: "/pdf/UNV2.pdf",    note: "Ders Sonuçları",   type: "pdf" },
 
   // "IUHAB" takma adı → kamiladli
   { slug: "iuhab",        title: "Kamil Adli Rapor",     src: "/pdf/kamiladli.pdf",      note: "Suç Kaydı Raporu", type: "pdf", aliases: ["IUHAB","iuhab"] },
