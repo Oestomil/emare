@@ -76,6 +76,7 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
     const term = input.trim();
     const lower = term.toLowerCase();
 
+
     // 1) Kanıt kodu
     const code = resolveEvidenceCode(lower);
     if (code) { navigate(`/e/${code}`); return; }
