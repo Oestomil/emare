@@ -9,29 +9,45 @@ import { resolveVideoSlug } from "../data/video";
 /** ====== Basit yerel hafıza (kullanıcıya özel anahtar destekli) ====== */
 const RECENT_KEY = (userId) => `emare:recentSearches:${userId || "anon"}`;
 const RECENT_LIMIT = 10;
+
 function loadRecent(userId = "anon") {
   try {
     const raw = localStorage.getItem(RECENT_KEY(userId));
     const arr = raw ? JSON.parse(raw) : [];
-    return Array.isArray(arr) ? arr.filter(x => typeof x === "string") : [];
+    return Array.isArray(arr) ? arr.filter((x) => typeof x === "string") : [];
   } catch {
     return [];
   }
 }
+
 function saveRecent(term, userId = "anon") {
   const t = (term || "").trim();
   if (!t) return;
   const key = RECENT_KEY(userId);
   let list = loadRecent(userId);
-  list = [t, ...list.filter(x => x.toLowerCase() !== t.toLowerCase())];
+  list = [t, ...list.filter((x) => x.toLowerCase() !== t.toLowerCase())];
   if (list.length > RECENT_LIMIT) list = list.slice(0, RECENT_LIMIT);
+  localStorage.setItem(key, JSON.stringify(list));
+}
+
+// ✅ Tamamını temizle
+function clearRecent(userId = "anon") {
+  localStorage.removeItem(RECENT_KEY(userId));
+}
+
+// ✅ Tek tek sil
+function removeOneRecent(term, userId = "anon") {
+  const key = RECENT_KEY(userId);
+  const list = loadRecent(userId).filter(
+    (x) => x.toLowerCase() !== (term || "").toLowerCase()
+  );
   localStorage.setItem(key, JSON.stringify(list));
 }
 
 /**
  * Props:
  * - autoFocus?: boolean
- * - currentUserId?: string  // istersen login UID gibi ver; vermezsen "anon"
+ * - currentUserId?: string
  */
 export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) {
   const [q, setQ] = useState("");
@@ -65,9 +81,9 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
     const val = q.trim().toLowerCase();
     const base = recent;
     if (!val) return base;
-    const starts = base.filter(t => t.toLowerCase().startsWith(val));
+    const starts = base.filter((t) => t.toLowerCase().startsWith(val));
     const includes = base.filter(
-      t => !starts.includes(t) && t.toLowerCase().includes(val)
+      (t) => !starts.includes(t) && t.toLowerCase().includes(val)
     );
     return [...starts, ...includes];
   }, [q, recent]);
@@ -75,7 +91,6 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
   function performNavigate(input) {
     const term = input.trim();
     const lower = term.toLowerCase();
-
 
     // 1) Kanıt kodu
     const code = resolveEvidenceCode(lower);
@@ -85,25 +100,24 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
     const picSlug = resolvePicSlug(lower);
     if (picSlug) { navigate(`/pic/${picSlug}`); return; }
 
-    // 4) PROFİL (isim yazınca buraya düşmeli)
+    // 4) PROFİL
     const profileSlug = resolveQuery(lower);
     if (profileSlug) { navigate(`/p/${profileSlug}`); return; }
 
-    // 5) PDF — SADECE TAM SLUG! (örn: USTMEL, AGPEZ, ulviadli)
-    const pdfSlug = resolvePdfSlug(term); // orijinali veriyoruz
+    // 5) PDF (tam slug)
+    const pdfSlug = resolvePdfSlug(term);
     if (pdfSlug) { navigate(`/pdf/${pdfSlug}`); return; }
 
     // 5.5) Video
     const videoSlug = resolveVideoSlug(lower);
     if (videoSlug) { navigate(`/video/${videoSlug}`); return; }
 
-    // 6) diğer kısayollar
+    // 6) kısayollar
     if (lower === "qprfc") { navigate("/videofeed"); return; }
     if (lower === "emare") { navigate("/olayyeri"); return; }
     if (lower === "iuahab") { navigate("/pdf/kamiladli"); return; }
     if (lower === "lab-1") { navigate("/lab"); return; }
-    if (lower === "KNF33") { navigate("/scene/knF33"); return; }
-    if (lower === "knf33") { navigate("/scene/knf33"); return; }
+    if (lower === "KNF33" || lower === "knf33") { navigate("/scene/knf33"); return; }
 
     // 7) sonuç yok
     const params = new URLSearchParams({ q: lower });
@@ -139,10 +153,10 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setHoverIndex(i => (i + 1) % suggestions.length);
+      setHoverIndex((i) => (i + 1) % suggestions.length);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setHoverIndex(i => (i - 1 + suggestions.length) % suggestions.length);
+      setHoverIndex((i) => (i - 1 + suggestions.length) % suggestions.length);
     } else if (e.key === "Enter") {
       if (hoverIndex >= 0) {
         e.preventDefault();
@@ -152,6 +166,28 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
       setOpen(false);
       setHoverIndex(-1);
     }
+  }
+
+  // 🔘 tümünü temizle
+  function onClearAll(e) {
+    e.stopPropagation();
+    clearRecent(currentUserId);
+    setRecent([]);
+    setHoverIndex(-1);
+    // list açık kalsın; istersen setOpen(false) yapabilirsin
+  }
+
+  // ❌ tek satırı sil
+  function onRemoveOne(e, term) {
+    e.stopPropagation();
+    removeOneRecent(term, currentUserId);
+    setRecent(loadRecent(currentUserId));
+    // hoverIndex düzelt
+    setHoverIndex((i) => {
+      if (i < 0) return i;
+      const len = suggestions.length - 1;
+      return len <= 0 ? -1 : Math.min(i, len - 1);
+    });
   }
 
   return (
@@ -168,10 +204,43 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
           aria-label="Arama"
           autoFocus={autoFocus}
         />
+
+        {/* Temizle butonu: input sağında küçük bir ikon */}
+        {recent.length > 0 && (
+          <button
+            type="button"
+            onClick={onClearAll}
+            aria-label="Son aramaları temizle"
+            title="Son aramaları temizle"
+            style={{
+              position: "absolute",
+              right: 96, // Ara butonuna çakışmasın diye
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "transparent",
+              border: 0,
+              cursor: "pointer",
+              fontSize: 14,
+              opacity: 0.85
+            }}
+          >
+            🧹
+          </button>
+        )}
+
         <button className="search-btn" type="submit" aria-label="Ara">
-          <svg className="search-icon" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              width="20" height="20" style={{ marginRight: 6 }}>
+          <svg
+            className="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            width="20"
+            height="20"
+            style={{ marginRight: 6 }}
+          >
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
@@ -200,35 +269,96 @@ export default function SearchBar({ autoFocus = true, currentUserId = "anon" }) 
             zIndex: 50
           }}
         >
-          {suggestions.map((s, idx) => (
+          {/* Başlık + Toplu Temizle */}
+          <div
+            style={{
+              position: "sticky",
+              top: 0,
+              background: "inherit",
+              padding: "6px 10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderBottom: "1px dashed rgba(255,255,255,.08)",
+              borderRadius: 8,
+            }}
+          >
+            <span style={{ opacity: 0.8, fontSize: 12 }}>Son aramalar</span>
             <button
-              key={`${s}-${idx}`}
-              className={`search-item ${idx === hoverIndex ? "search-item-active" : ""}`}
-              onMouseEnter={() => setHoverIndex(idx)}
-              onMouseLeave={() => setHoverIndex(-1)}
-              onClick={() => onPick(s)}
-              role="option"
-              aria-selected={idx === hoverIndex}
-              title={s}
+              type="button"
+              onClick={onClearAll}
+              className="search-clear-btn"
+              aria-label="Tümünü temizle"
+              title="Tümünü temizle"
               style={{
-                width: "100%",
-                textAlign: "left",
                 background: "transparent",
-                color: "var(--fg, #e9eefc)",
                 border: 0,
-                padding: "10px 12px",
-                borderRadius: 10,
-                display: "grid",
-                gridTemplateColumns: "22px 1fr",
-                gap: 8,
-                cursor: "pointer"
+                color: "var(--fg, #e9eefc)",
+                fontSize: 12,
+                opacity: 0.9,
+                cursor: "pointer",
+                padding: "4px 6px",
               }}
             >
-              <span aria-hidden>🕘</span>
-              <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {s}
-              </span>
+              Temizle
             </button>
+          </div>
+
+          {suggestions.map((s, idx) => (
+            <div
+              key={`${s}-${idx}`}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "22px 1fr 22px",
+                alignItems: "center",
+                gap: 8,
+                padding: "8px 10px",
+                borderRadius: 10,
+                background:
+                  idx === hoverIndex ? "rgba(109,123,255,.10)" : "transparent",
+              }}
+              onMouseEnter={() => setHoverIndex(idx)}
+              onMouseLeave={() => setHoverIndex(-1)}
+            >
+              <span aria-hidden>🕘</span>
+
+              <button
+                onClick={() => onPick(s)}
+                title={s}
+                role="option"
+                aria-selected={idx === hoverIndex}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  background: "transparent",
+                  color: "var(--fg, #e9eefc)",
+                  border: 0,
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  padding: 0,
+                }}
+              >
+                {s}
+              </button>
+
+              <button
+                aria-label={`${s} ifadesini listeden kaldır`}
+                title="Bu ifadeyi kaldır"
+                onClick={(e) => onRemoveOne(e, s)}
+                style={{
+                  background: "transparent",
+                  border: 0,
+                  cursor: "pointer",
+                  opacity: 0.8,
+                  fontSize: 16,
+                  lineHeight: 1,
+                }}
+              >
+                ×
+              </button>
+            </div>
           ))}
         </div>
       )}
