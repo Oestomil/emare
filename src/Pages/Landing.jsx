@@ -1,6 +1,8 @@
+// src/Pages/Landing.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DETECTIVE_NO, CASE_NO } from "../data/auth";
+import { LOGINS } from "../data/auth"; // senin auth.js'de p1/p2 veya istediğin anahtarlar olmalı
+import { trackEntryChannel, saveEntryToDB } from "../lib/firebase";
 import "./Landing.css";
 
 export default function Landing() {
@@ -18,31 +20,52 @@ export default function Landing() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const ok =
-      detectiveNo?.trim() === DETECTIVE_NO &&
-      caseNo?.trim() === CASE_NO;
+    const dn = (detectiveNo || "").trim();
+    const cn = (caseNo || "").trim();
 
-    if (!ok) return alert("Bilgiler hatalı!");
+    // Hangi profil eşleştiyse onu bul
+    const matched = Object.entries(LOGINS).find(
+      ([, creds]) => dn === creds.DETECTIVE_NO && cn === creds.CASE_NO
+    );
 
+    if (!matched) {
+      alert("Bilgiler hatalı!");
+      return;
+    }
+
+    const [profileKey] = matched; // örn "p1" veya "p2"
+
+    // localStorage işlemleri (benzer şekilde)
     if (remember) {
-      localStorage.setItem("detectiveNo", detectiveNo.trim());
-      localStorage.setItem("caseNo", caseNo.trim());
+      localStorage.setItem("detectiveNo", dn);
+      localStorage.setItem("caseNo", cn);
     } else {
       localStorage.removeItem("detectiveNo");
       localStorage.removeItem("caseNo");
     }
-    navigate(`/search?case=${encodeURIComponent(caseNo.trim())}`);
+
+    // 1) Analytics (görünmez) - fire-and-forget
+    try {
+      trackEntryChannel(profileKey, { case_no: cn });
+    } catch (err) {
+      // sessizce geç
+      console.warn("trackEntryChannel çağrısı hata:", err);
+    }
+
+    // 2) Firestore'a kayıt (enteries) - fire-and-forget
+    // saveEntryToDB içindeki try/catch hataları yakalar, burada await yok -> kullanıcı beklemez
+    saveEntryToDB({ profileKey, detectiveNo: dn, caseNo: cn });
+
+    // 3) Oyuna yönlendir (URL'de kanal bilgisi yok)
+    navigate(`/search?case=${encodeURIComponent(cn)}`);
   };
 
   return (
     <div className="landing">
-      {/* arka-plan efektleri */}
       <div className="bg-aurora" aria-hidden="true" />
       <div className="bg-noise" aria-hidden="true" />
 
-
       <main className="container hero" role="main">
-        {/* Metin – mobilde üste gelecek */}
         <section className="welcome" aria-labelledby="welcome-title">
           <h1 id="welcome-title" className="welcome-title">
             EKİBE <span>HOŞ GELDİN!</span>
@@ -56,7 +79,6 @@ export default function Landing() {
           </p>
         </section>
 
-        {/* Giriş Kartı */}
         <section className="card" aria-label="Giriş paneli">
           <form onSubmit={handleSubmit} className="form">
             <label className="input">
